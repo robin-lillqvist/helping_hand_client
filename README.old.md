@@ -1,1 +1,0 @@
-# helping_hand_client
