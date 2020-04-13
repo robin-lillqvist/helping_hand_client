@@ -1,8 +1,12 @@
 import React from 'react';
 import Header from './components/Header'
 import CreateRequest from './components/CreateRequest'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { fetchProducts } from './state/actions/productActions'
 
-function App() {
+const App = props => {
+  props.fetchProducts()
   return (
     <>
       <Header />
@@ -12,4 +16,10 @@ function App() {
   );
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchProducts: bindActionCreators(fetchProducts, dispatch)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App)

@@ -9,6 +9,7 @@ import configureStore from "./state/store/configureStore";
 axios.defaults.baseURL = "http://localhost:3000/api/";
 
 const store = configureStore()
+
 ReactDOM.render(
   <Provider store={store}> 
     <App />
