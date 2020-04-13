@@ -1,14 +1,20 @@
 describe('when products are visible', () => {
   before(() => {
+    cy.exec("yarn start")
     cy.server();
     cy.route({
       method: 'GET',
       url: 'http://localhost:3000/api/v1/products',
       response: 'fixture:products.json'
     })
+    cy.visit('/')
   })
   it('successfully', () => {
-    cy.get("#product").within(() => {
+    cy.get("button")
+        .contains("Create your request")
+        .click();
+    ;
+    cy.get("#product-list").within(() => {
       cy.contains('Potatoes'); //product
       cy.contains('98'); //price
     })
@@ -20,10 +26,15 @@ describe('when the are NO products', () => {
     cy.route({
       method: 'GET',
       url: 'http://localhost:3000/api/v1/products',
-      response: []
+      response: ''
     })
+    cy.visit("/")
   })
+
   it('unsuccessfully', () => {
-    cy.get('#product').should('not.exist')
+    cy.get("button")
+    .contains("Create your request")
+    .click();
+    cy.get('#product-list').should("contain", "")
   })
 });

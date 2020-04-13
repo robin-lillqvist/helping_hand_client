@@ -5,14 +5,16 @@ import { fetchProducts } from '../state/actions/productActions'
 import { SHOW_REQUEST_FORM } from '../state/actions/actionTypes'
 
 const CreateRequest = props => {
+  props.fetchProducts()
   let productDisplay
 
   const dispatch = useDispatch()
   
-  props.fetchProducts()
+  
 
-  const addToRequest = async event => {
-    debugger
+  const addToRequest = async () => {
+  // let response = axios.get("/products")
+  // return response.data
   }
 
 
@@ -20,7 +22,7 @@ const CreateRequest = props => {
   } else {
     productDisplay = props.products.map(product => {
       return (
-        <li key={product.id}>
+        <li id="product" key={product.id}>
           <div>
             {product.name} {product.price}
             <button key={product.id} onClick={addToRequest.bind(this)}>
@@ -45,12 +47,6 @@ const CreateRequest = props => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    products: state.products,
-    showRequestForm: state.showRequestForm
-  }
-}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -58,4 +54,10 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    products: state.products,
+    showRequestForm: state.showRequestForm
+  }
+}
 export default connect(mapStateToProps, mapDispatchToProps)(CreateRequest)
