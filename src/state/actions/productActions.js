@@ -14,5 +14,4 @@ const dispatchProductAction = json => {
   return { type: GET_PRODUCT_LIST, payload: json }
 };
 
-
 export { fetchProducts };
