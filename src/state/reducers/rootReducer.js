@@ -8,6 +8,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         ...action.payload
       };
+      default:
+      return {
+        ...state,
+        ...action.payload
+      };
   }
 };
+
 export default rootReducer;
