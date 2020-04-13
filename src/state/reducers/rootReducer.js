@@ -8,6 +8,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         ...action.payload
       };
+      case actionTypes.SHOW_REQUEST_FORM:
+      return {
+        ...state,
+        ...action.payload,
+        showRequestForm: action.showRequestForm
+      };
       default: 
       return state;
   }

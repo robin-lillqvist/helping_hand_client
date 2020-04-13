@@ -1,5 +1,6 @@
 const initialState = {
-  products: []
+  products: [],
+  showRequestForm: false
 };
 
 export default initialState
