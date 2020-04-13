@@ -6,12 +6,13 @@ import { bindActionCreators } from 'redux'
 import { fetchProducts } from './state/actions/productActions'
 
 const App = props => {
-  props.fetchProducts()
+  
+
   return (
     <>
       <Header />
       <button className='create-request'>Create your request</button> 
-      <CreateRequest />
+      <CreateRequest props={props}/>
     </>
   );
 }
