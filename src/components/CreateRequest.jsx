@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 
 
  const CreateRequest = props => {
-   let productDisplay = props.articles.map(product => {
+   let productDisplay = props.products.map(product => {
      return (
-      <div key={product.id} align="center">
+      <div key={product.id} align='center'>
         <h1>{product.name}{product.price}</h1>
       </div>
      )
