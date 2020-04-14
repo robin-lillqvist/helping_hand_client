@@ -6,6 +6,7 @@ import { fetchProducts } from '../state/actions/productActions'
 
 const CreateRequest = props => {
   let productDisplay
+  let requestDisplay
 
   const dispatch = useDispatch()
 
@@ -18,10 +19,8 @@ const CreateRequest = props => {
   const addToRequest = async event => {
     let id = event.target.parentElement.dataset.id
     let response
-    debugger
     if (props.task.id) {
-      debugger
-      response = await axios.put('/tasks/1', {
+      response = await axios.put(`/tasks/${props.task.id}`, {
         product_id: id
       })
     } else {
@@ -29,6 +28,7 @@ const CreateRequest = props => {
         product_id: id
       })
     }
+    debugger
     dispatch({ type: 'UPDATE_REQUEST', payload: response.data.task })
   }
 
@@ -52,7 +52,24 @@ const CreateRequest = props => {
     })
   }
 
-  
+  // if (props.task) {
+  //   requestDisplay = props.taskProducts.map(product => {
+  //     return (
+  //       <>
+  //         <div id={product.id}>{product.name}</div>
+  //       </>
+  //     )
+  //   })
+  // } else {
+  //   requestDisplay = (<></>)
+  // }
+
+
+
+
+
+
+
 
   return (
     <>
@@ -60,6 +77,7 @@ const CreateRequest = props => {
         Create your request
       </button>
       <ul id='product-list'>{productDisplay}</ul>
+      <div>{requestDisplay}</div>
     </>
   )
 }
@@ -74,7 +92,8 @@ const mapStateToProps = state => {
   return {
     products: state.products,
     showRequestForm: state.showRequestForm,
-    task: state.task
+    task: state.task,
+    taskProducts: state.taskProducts
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreateRequest)
