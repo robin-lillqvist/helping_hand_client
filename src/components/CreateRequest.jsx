@@ -5,21 +5,19 @@ import { bindActionCreators } from 'redux'
 import { fetchProducts } from '../state/actions/productActions'
 
 const CreateRequest = props => {
-
   let productDisplay
 
   const dispatch = useDispatch()
 
   const getProducts = async () => {
-    let response = await axios.get("/products");
-    dispatch({ type: "GET_PRODUCT_LIST", payload: response.data })
-    dispatch({ type: "SHOW_REQUEST_FORM", showRequestForm: true })
+    let response = await axios.get('/products')
+    dispatch({ type: 'GET_PRODUCT_LIST', payload: response.data })
+    dispatch({ type: 'SHOW_REQUEST_FORM', showRequestForm: true })
   }
 
-
-
-  const addToRequest = async () => {
-    // let response = axios.get("/products")
+  const addToRequest = async event => {
+    let id = event.target.parentElement.dataset.id
+    let response = await axios.post('/products')
     // return response.data
   }
 
@@ -27,13 +25,17 @@ const CreateRequest = props => {
   } else {
     productDisplay = props.products.map(product => {
       return (
-        <li id='product' key={product.id}>
-          <div>
+        <li
+          id={`product-${product.id}`}
+          key={product.id}
+          data-id={product.id}
+          data-name={product.name}
+          data-price={product.price}
+        >
             {product.name} {product.price}
             <button key={product.id} onClick={addToRequest.bind(this)}>
               Add
             </button>
-          </div>
         </li>
       )
     })
@@ -41,10 +43,7 @@ const CreateRequest = props => {
 
   return (
     <>
-      <button
-        className='create-request'
-        onClick={getProducts.bind(this)}
-      >
+      <button className='create-request' onClick={getProducts.bind(this)}>
         Create your request
       </button>
       <ul id='product-list'>{productDisplay}</ul>
