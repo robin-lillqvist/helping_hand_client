@@ -12,8 +12,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         task: action.payload,
-        taskID: action.payload.id,
-        taskProducts: action.payload.products
+        taskID: action.payload.id
       };
       case actionTypes.SHOW_REQUEST_FORM:
       return {
