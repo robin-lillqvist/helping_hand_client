@@ -17,8 +17,19 @@ const CreateRequest = props => {
 
   const addToRequest = async event => {
     let id = event.target.parentElement.dataset.id
-    let response = await axios.post('/products')
-    // return response.data
+    let response
+    debugger
+    if (props.task.id) {
+      debugger
+      response = await axios.put('/tasks/1', {
+        product_id: id
+      })
+    } else {
+      response = await axios.post('/tasks', {
+        product_id: id
+      })
+    }
+    dispatch({ type: 'UPDATE_REQUEST', payload: response.data.task })
   }
 
   if (!props.showRequestForm) {
@@ -32,14 +43,16 @@ const CreateRequest = props => {
           data-name={product.name}
           data-price={product.price}
         >
-            {product.name} {product.price}
-            <button key={product.id} onClick={addToRequest.bind(this)}>
-              Add
-            </button>
+          {product.name} {product.price}
+          <button key={product.id} onClick={addToRequest.bind(this)}>
+            Add
+          </button>
         </li>
       )
     })
   }
+
+  
 
   return (
     <>
@@ -60,7 +73,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     products: state.products,
-    showRequestForm: state.showRequestForm
+    showRequestForm: state.showRequestForm,
+    task: state.task
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreateRequest)
