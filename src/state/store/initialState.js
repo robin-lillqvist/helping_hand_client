@@ -1,9 +1,9 @@
 const initialState = {
   products: [],
   showRequestForm: false,
-  task: {},
+  task: { products: [] },
   taskID: null,
-  taskProducts: {}
+  taskProducts: {},
 };
 
-export default initialState
+export default initialState;

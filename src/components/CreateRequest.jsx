@@ -28,12 +28,11 @@ const CreateRequest = props => {
         product_id: id
       })
     }
-    debugger
+    // debugger
     dispatch({ type: 'UPDATE_REQUEST', payload: response.data.task })
   }
 
-  if (!props.showRequestForm) {
-  } else {
+  if (props.showRequestForm) {
     productDisplay = props.products.map(product => {
       return (
         <li
@@ -52,22 +51,17 @@ const CreateRequest = props => {
     })
   }
 
-  // if (props.task) {
-  //   requestDisplay = props.taskProducts.map(product => {
-  //     return (
-  //       <>
-  //         <div id={product.id}>{product.name}</div>
-  //       </>
-  //     )
-  //   })
-  // } else {
-  //   requestDisplay = (<></>)
-  // }
-
-
-
-
-
+  if (props.task) {
+    requestDisplay = props.task.products.map(product => {
+      return (
+        <>
+          <div id={product.id}>{product.name} {product.amount}</div>
+        </>
+      )
+    })
+  } else {
+    requestDisplay = (<></>)
+  }
 
 
 
@@ -77,7 +71,7 @@ const CreateRequest = props => {
         Create your request
       </button>
       <ul id='product-list'>{productDisplay}</ul>
-      <div>{requestDisplay}</div>
+      <div id="request-list">{requestDisplay}</div>
     </>
   )
 }
