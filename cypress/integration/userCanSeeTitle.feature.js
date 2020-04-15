@@ -1,6 +1,5 @@
 describe("User can:", () => {
   before(() => {
-    cy.exec("yarn start");
     cy.visit("/");
   });
 
