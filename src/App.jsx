@@ -1,11 +1,22 @@
-import React from 'react';
+import React from 'react'
+import Header from './components/Header'
+import CreateRequest from './components/CreateRequest'
+import { connect } from 'react-redux'
 
-function App() {
+const App = props => {
   return (
     <>
-      <h1>Helping hand</h1>
+      <Header />
+      <CreateRequest />
     </>
-  );
+  )
 }
 
-export default App;
+
+const mapStateToProps = state => {
+  return {
+    products: state.products,
+    showRequestForm: state.showRequestForm
+  }
+}
+export default connect(mapStateToProps)(App)
