@@ -1,4 +1,4 @@
-describe('when products are visible', () => {
+describe('When products are visible', () => {
   before(() => {
     cy.exec("yarn start")
     cy.server();
@@ -9,7 +9,7 @@ describe('when products are visible', () => {
     })
     cy.visit('/')
   })
-  it('successfully', () => {
+  it('user can successfully create a request', () => {
     cy.get("button")
         .contains("Create your request")
         .click();
@@ -20,7 +20,7 @@ describe('when products are visible', () => {
     })
   })
 });
-describe('when the are NO products', () => {
+describe('When the are NO products', () => {
   before(() => {
     cy.server();
     cy.route({
@@ -31,7 +31,7 @@ describe('when the are NO products', () => {
     cy.visit("/")
   })
 
-  it('unsuccessfully', () => {
+  it('user cannot add any products', () => {
     cy.get("button")
     .contains("Create your request")
     .click();

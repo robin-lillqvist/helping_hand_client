@@ -1,4 +1,4 @@
-describe("when products are visible", () => {
+describe("When products are visible", () => {
   before(() => {
       cy.exec("yarn start")
     cy.server();
@@ -20,7 +20,7 @@ describe("when products are visible", () => {
     cy.visit("/");
   });
 
-  it("successfully add products", () => {
+  it("user can successfully add products", () => {
     cy.get("button").contains("Create your request").click();
     cy.get("#product-1").within(() => {
       cy.contains("Potatoes"); //product
