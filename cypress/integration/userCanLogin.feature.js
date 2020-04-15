@@ -49,7 +49,7 @@ describe("User can login", () => {
     });
     cy.get("#success-message").should(
       "contain",
-      "Request failed with status code 401"
+      "Invalid login credentials. Please try again."
     );
   });
 });
