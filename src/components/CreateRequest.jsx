@@ -98,7 +98,6 @@ const CreateRequest = props => {
       <div id='request-list'>
         {requestDisplay} {confirmButton}
       </div>
-      <div id='success-message'>{props.message}</div>
     </>
   )
 }
