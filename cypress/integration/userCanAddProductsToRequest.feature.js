@@ -39,6 +39,7 @@ describe("when products are visible", () => {
       cy.contains("Potatoes"); //product
       cy.contains("Shampoo"); //product
       cy.get("button").should("contain", "Place Order").click();
-  });
+    });
+    cy.get("#success-message").should("contain", "Congrats. You have successfully placed your request.")
   });
 });

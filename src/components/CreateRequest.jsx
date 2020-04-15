@@ -40,6 +40,8 @@ const CreateRequest = props => {
         activity: 'confirmed'
       })
     } 
+    dispatch({ type: 'SHOW_ORDER_SUCCESS_MESSAGE', showSuccessMessage: true, message: 'Congrats. You have successfully placed your request.' })
+    dispatch({ type: 'RESET_PAGE', showRequestForm: false, task: {products: []} })
   }
 
   if (props.showRequestForm) {
@@ -79,7 +81,10 @@ const CreateRequest = props => {
       </button>
       <ul id='product-list'>{productDisplay}</ul>
       <div id="request-list">
-        {requestDisplay} {confirmButton}
+        {requestDisplay} {confirmButton} 
+      </div>
+      <div id="success-message">
+        {props.message}
       </div>
     </>
   )
@@ -96,7 +101,8 @@ const mapStateToProps = state => {
     products: state.products,
     showRequestForm: state.showRequestForm,
     task: state.task,
-    taskProducts: state.taskProducts
+    taskProducts: state.taskProducts,
+    message: state.message
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreateRequest)

@@ -17,7 +17,21 @@ const rootReducer = (state = initialState, action) => {
       case actionTypes.SHOW_REQUEST_FORM:
       return {
         ...state,
-        showRequestForm: action.showRequestForm
+        showRequestForm: action.showRequestForm,
+        message: ""
+      };
+      case actionTypes.SHOW_ORDER_SUCCESS_MESSAGE:
+      return {
+        ...state,
+        showSuccessMessage: action.showSuccessMessage,
+        message: action.message
+      };
+      case actionTypes.RESET_PAGE:
+      return {
+        ...state,
+        showRequestForm: action.showRequestForm,
+        taskID: null,
+        task: {products: []}
       };
       default: 
       return state;
