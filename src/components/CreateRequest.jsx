@@ -12,8 +12,10 @@ const CreateRequest = props => {
   const dispatch = useDispatch()
 
   const getProducts = async () => {
-    let response = await axios.get('/products')
-    dispatch({ type: 'GET_PRODUCT_LIST', payload: response.data })
+    if (props.products.length === 0) {
+      let response = await axios.get('/products')
+      dispatch({ type: 'GET_PRODUCT_LIST', payload: response.data })
+    }
     dispatch({ type: 'SHOW_REQUEST_FORM', showRequestForm: true })
   }
 
@@ -29,7 +31,6 @@ const CreateRequest = props => {
         product_id: id
       })
     }
-    // debugger
     dispatch({ type: 'UPDATE_REQUEST', payload: response.data.task })
   }
 
@@ -39,9 +40,17 @@ const CreateRequest = props => {
       response = await axios.put(`/tasks/${props.task.id}`, {
         activity: 'confirmed'
       })
-    } 
-    dispatch({ type: 'SHOW_ORDER_SUCCESS_MESSAGE', showSuccessMessage: true, message: 'Congrats. You have successfully placed your request.' })
-    dispatch({ type: 'RESET_PAGE', showRequestForm: false, task: {products: []} })
+    }
+    dispatch({
+      type: 'SHOW_ORDER_SUCCESS_MESSAGE',
+      showSuccessMessage: true,
+      message: 'Congrats. You have successfully placed your request.'
+    })
+    dispatch({
+      type: 'RESET_PAGE',
+      showRequestForm: false,
+      task: { products: [] }
+    })
   }
 
   if (props.showRequestForm) {
@@ -64,15 +73,21 @@ const CreateRequest = props => {
   }
 
   if (props.task.id) {
-    confirmButton = <button id='confirm-task' onClick={submitTask.bind(this)}>Place Order</button>
     requestDisplay = props.task.products.map(product => {
       return (
         <>
-          <div id={product.id}>{product.name} {product.amount}</div>
+          <div id={product.id}>
+            {product.name} {product.amount}
+          </div>
         </>
       )
     })
-  } 
+    confirmButton = (
+      <button id='confirm-task' onClick={submitTask.bind(this)}>
+        Place Order
+      </button>
+    )
+  }
 
   return (
     <>
@@ -80,12 +95,10 @@ const CreateRequest = props => {
         Create your request
       </button>
       <ul id='product-list'>{productDisplay}</ul>
-      <div id="request-list">
-        {requestDisplay} {confirmButton} 
+      <div id='request-list'>
+        {requestDisplay} {confirmButton}
       </div>
-      <div id="success-message">
-        {props.message}
-      </div>
+      <div id='success-message'>{props.message}</div>
     </>
   )
 }

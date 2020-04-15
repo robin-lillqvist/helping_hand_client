@@ -6,34 +6,34 @@ const rootReducer = (state = initialState, action) => {
     case actionTypes.GET_PRODUCT_LIST:
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
       };
-      case actionTypes.UPDATE_REQUEST:
+    case actionTypes.UPDATE_REQUEST:
       return {
         ...state,
         task: action.payload,
-        taskID: action.payload.id
+        taskID: action.payload.id,
       };
-      case actionTypes.SHOW_REQUEST_FORM:
+    case actionTypes.SHOW_REQUEST_FORM:
       return {
         ...state,
         showRequestForm: action.showRequestForm,
-        message: ""
+        message: "",
       };
-      case actionTypes.SHOW_ORDER_SUCCESS_MESSAGE:
+    case actionTypes.SHOW_ORDER_SUCCESS_MESSAGE:
       return {
         ...state,
         showSuccessMessage: action.showSuccessMessage,
-        message: action.message
+        message: action.message,
       };
-      case actionTypes.RESET_PAGE:
+    case actionTypes.RESET_PAGE:
       return {
         ...state,
         showRequestForm: action.showRequestForm,
         taskID: null,
-        task: {products: []}
+        task: { products: [] },
       };
-      default: 
+    default:
       return state;
   }
 };
