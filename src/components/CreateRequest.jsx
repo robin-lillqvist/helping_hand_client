@@ -7,6 +7,7 @@ import { fetchProducts } from '../state/actions/productActions'
 const CreateRequest = props => {
   let productDisplay
   let requestDisplay
+  let confirmButton
 
   const dispatch = useDispatch()
 
@@ -51,7 +52,8 @@ const CreateRequest = props => {
     })
   }
 
-  if (props.task) {
+  if (props.task.id) {
+    confirmButton = <button id='confirm-task'>Place Order</button>
     requestDisplay = props.task.products.map(product => {
       return (
         <>
@@ -59,19 +61,17 @@ const CreateRequest = props => {
         </>
       )
     })
-  } else {
-    requestDisplay = (<></>)
-  }
-
-
+  } 
 
   return (
     <>
-      <button className='create-request' onClick={getProducts.bind(this)}>
+      <button id='create-request' onClick={getProducts.bind(this)}>
         Create your request
       </button>
       <ul id='product-list'>{productDisplay}</ul>
-      <div id="request-list">{requestDisplay}</div>
+      <div id="request-list">
+        {requestDisplay} {confirmButton}
+      </div>
     </>
   )
 }
