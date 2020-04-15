@@ -1,6 +1,5 @@
 describe("when products are visible", () => {
   before(() => {
-      cy.exec("yarn start")
     cy.server();
     cy.route({
       method: "GET",

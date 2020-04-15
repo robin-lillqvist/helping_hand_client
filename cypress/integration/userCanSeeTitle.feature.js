@@ -1,6 +1,5 @@
 describe("Free Article view:", () => {
   before(() => {
-    cy.exec("yarn start");
     cy.visit("/");
   });
 
