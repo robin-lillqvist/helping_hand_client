@@ -33,6 +33,15 @@ const CreateRequest = props => {
     dispatch({ type: 'UPDATE_REQUEST', payload: response.data.task })
   }
 
+  const submitTask = async event => {
+    let response
+    if (props.task.id) {
+      response = await axios.put(`/tasks/${props.task.id}`, {
+        activity: 'confirmed'
+      })
+    } 
+  }
+
   if (props.showRequestForm) {
     productDisplay = props.products.map(product => {
       return (
@@ -53,7 +62,7 @@ const CreateRequest = props => {
   }
 
   if (props.task.id) {
-    confirmButton = <button id='confirm-task'>Place Order</button>
+    confirmButton = <button id='confirm-task' onClick={submitTask.bind(this)}>Place Order</button>
     requestDisplay = props.task.products.map(product => {
       return (
         <>
