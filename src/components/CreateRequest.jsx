@@ -24,7 +24,10 @@ const CreateRequest = props => {
     let response
     if (props.task.id) {
       response = await axios.put(`/tasks/${props.task.id}`, {
-        product_id: id
+        product_id: id,
+        headers: {
+          user_id: props.userID
+        }
       })
     } else {
       response = await axios.post('/tasks', {

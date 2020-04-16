@@ -18,11 +18,9 @@ const onLogin = (event, dispatch) => {
         payload: { authenticated: true, userEmail: response.data.email, userID: response.data.id }
       });
       dispatch({ type: "GREETING", payload: `Welcome ${response.data.email}` });
-      debugger
     })
 
     .catch(error => {
-        debugger
       let errorMessage = error.response.data.errors;
       dispatch({ type: "GREETING", payload: errorMessage });
     });
