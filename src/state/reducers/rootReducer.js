@@ -2,6 +2,7 @@ import initialState from "../store/initialState";
 import * as actionTypes from "../actions/actionTypes";
 
 const rootReducer = (state = initialState, action) => {
+  debugger
   switch (action.type) {
     case actionTypes.GET_PRODUCT_LIST:
       return {
@@ -33,10 +34,16 @@ const rootReducer = (state = initialState, action) => {
         taskID: null,
         task: { products: [] }
       };
-      case actionTypes.LOGIN_USER:
+    case actionTypes.LOGIN_USER:
       return {
         ...state,
         showLogin: true,
+      };
+    case actionTypes.REGISTER_USER:
+      return {
+        ...state,
+        showLogin: false,
+        showRegistrationForm: true
       };
     case actionTypes.CLOSE_LOGIN:
       return {

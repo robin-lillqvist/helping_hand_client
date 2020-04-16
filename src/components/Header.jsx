@@ -1,15 +1,19 @@
 import React from "react";
-import { LOGIN_USER } from "../state/actions/actionTypes";
+import { LOGIN_USER, REGISTER_USER } from "../state/actions/actionTypes";
 import { connect } from "react-redux";
 import { useSelector } from "react-redux";
+
+
 
 const Header = (props) => {
   const authenticated = useSelector((state) => state.authenticated);
   let name;
+  let signup
   if (authenticated) {
     name = "Logout";
   } else {
     name = "Login";
+    signup = 'Register'
   }
   return (
     <div>
@@ -21,6 +25,11 @@ const Header = (props) => {
       >
         {name}
       </button>
+      <button
+        name="register"
+        id="register"
+        onClick={() => props.dispatch({ type: REGISTER_USER })}
+      >{signup}</button>
     </div>
   );
 };

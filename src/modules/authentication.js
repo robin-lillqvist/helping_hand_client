@@ -26,6 +26,28 @@ const onLogin = (event, dispatch) => {
     });
 };
 
+const onRegister = (event, dispatch) => {
+  event.preventDefault();
+  auth
+    .registration(
+      event.target.elements.email.value,
+      event.target.elements.password.value,
+      event.target.elements.password_confirmation.value
+    )
+    .then(response => {
+      dispatch({
+        type: "AUTHENTICATE",
+        payload: { authenticated: true, userEmail: response.data.email, userID: response.data.id }
+      });
+      dispatch({ type: "GREETING", payload: `Welcome ${response.data.email}` });
+    })
+
+    .catch(error => {
+      let errorMessage = error.response.data.errors;
+      dispatch({ type: "GREETING", payload: errorMessage });
+    });
+};
+
 const onLogout = dispatch => {
   auth.signOut().then(() => {
     dispatch({
@@ -36,4 +58,4 @@ const onLogout = dispatch => {
   });
 };
 
-export { onLogin, onLogout };
+export { onLogin, onLogout, onRegister };
