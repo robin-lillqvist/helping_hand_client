@@ -7,6 +7,7 @@ import { fetchProducts } from '../state/actions/productActions'
 const CreateRequest = props => {
   let productDisplay
   let requestDisplay
+  let createButton 
   let confirmButton
 
   const dispatch = useDispatch()
@@ -59,6 +60,14 @@ const CreateRequest = props => {
     })
   }
 
+  if (props.userID) {
+    createButton = (
+      <button id='create-request' onClick={getProducts.bind(this)}>
+        Create your request
+      </button>
+    )
+  }
+
   if (props.showRequestForm) {
     productDisplay = props.products.map(product => {
       return (
@@ -97,9 +106,7 @@ const CreateRequest = props => {
 
   return (
     <>
-      <button id='create-request' onClick={getProducts.bind(this)}>
-        Create your request
-      </button>
+      {createButton}
       <ul id='product-list'>{productDisplay}</ul>
       <div id='request-list'>
         {requestDisplay} {confirmButton}

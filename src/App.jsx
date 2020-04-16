@@ -23,7 +23,7 @@ const mapStateToProps = state => {
     products: state.products,
     showRequestForm: state.showRequestForm,
     showLogin: state.showLogin,
-    showRegistrationForm: state.showRegistrationForm,
+    showRegister: state.showRegister,
     message: state.message
   }
 }
