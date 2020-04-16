@@ -3,12 +3,12 @@ describe("When products are visible", () => {
     cy.server();
     cy.route({
       method: "POST",
-      url: "**/auth/",
+      url: "**/auth/sign_in",
       response: "fixture:login.json",
     });
     cy.route({
       method: "GET",
-      url: "**/auth/",
+      url: "**/auth/validate_token",
       response: "fixture:login.json",
     });
     cy.route({
