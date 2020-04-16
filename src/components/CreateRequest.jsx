@@ -3,7 +3,7 @@ import axios from 'axios'
 import { connect, useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchProducts } from '../state/actions/productActions'
-import { Button, List, Container } from 'semantic-ui-react'
+import { Button, List, Container, Grid } from 'semantic-ui-react'
 
 const CreateRequest = props => {
   let productDisplay
@@ -63,27 +63,31 @@ const CreateRequest = props => {
 
   if (props.userID) {
     createButton = (
-      <Button id='create-request' onClick={getProducts.bind(this)}>
-        Create your request
-      </Button>
+      <Grid.Column align='center'>
+        <Button id='create-request' onClick={getProducts.bind(this)}>
+          Create your request
+        </Button>
+      </Grid.Column>
     )
   }
 
   if (props.showRequestForm) {
     productDisplay = props.products.map(product => {
       return (
-        <List
-          id={`product-${product.id}`}
-          key={product.id}
-          data-id={product.id}
-          data-name={product.name}
-          data-price={product.price}
-        >
-          {product.name} {product.price}
-          <Button key={product.id} onClick={addToRequest.bind(this)}>
-            Add
-          </Button>
-        </List>
+        <Grid.Column align='center'>
+          <List
+            id={`product-${product.id}`}
+            key={product.id}
+            data-id={product.id}
+            data-name={product.name}
+            data-price={product.price}
+          >
+            {product.name} {product.price}
+            <Button key={product.id} onClick={addToRequest.bind(this)}>
+              Add
+            </Button>
+          </List>
+        </Grid.Column>
       )
     })
   }
@@ -92,26 +96,30 @@ const CreateRequest = props => {
     requestDisplay = props.task.products.map(product => {
       return (
         <>
-          <Container id={product.id}>
-            {product.name} {product.amount}
-          </Container>
+          <Grid.Column align='center'>
+            <Container id={product.id}>
+              {product.name} {product.amount}
+            </Container>
+          </Grid.Column>
         </>
       )
     })
     confirmButton = (
-      <Button id='confirm-task' onClick={submitTask.bind(this)}>
-        Place Order
-      </Button>
+      <Grid.Column align='center'>
+        <Button id='confirm-task' onClick={submitTask.bind(this)}>
+          Place Order
+        </Button>
+      </Grid.Column>
     )
   }
 
   return (
     <>
-      {createButton}
-      <List id='product-list'>{productDisplay}</List>
-      <Container id='request-list'>
-        {requestDisplay} {confirmButton}
-      </Container>
+        {createButton}
+        <List id='product-list'>{productDisplay}</List>
+        <Container id='request-list'>
+          {requestDisplay} {confirmButton}
+        </Container>
     </>
   )
 }
