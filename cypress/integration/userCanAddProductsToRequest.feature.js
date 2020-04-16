@@ -3,27 +3,27 @@ describe("When products are visible", () => {
     cy.server();
     cy.route({
       method: "POST",
-      url: "**/**",
+      url: "**/auth/",
       response: "fixture:login.json",
     });
     cy.route({
       method: "GET",
-      url: "**/auth/**",
+      url: "**/auth/",
       response: "fixture:login.json",
     });
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/products",
+      url: "**/products",
       response: "fixture:products.json",
     });
     cy.route({
       method: "POST",
-      url: "http://localhost:3000/api/v1/tasks",
+      url: "**/tasks",
       response: "fixture:taskList_response.json",
     });
     cy.route({
       method: "PUT",
-      url: "http://localhost:3000/api/v1/tasks/1",
+      url: "**/tasks/1",
       response: "fixture:taskList_update_response.json",
     });
     cy.visit("/");

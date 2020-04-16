@@ -51,7 +51,8 @@ const onRegister = (event, dispatch) => {
       dispatch({ type: "GREETING", payload: `Welcome ${response.data.data.email}` });
     })
     .catch((error) => {
-      dispatch({ type: "GREETING", payload: error.data.errors });
+      debugger
+      dispatch({ type: "GREETING", payload: error.response.data.errors.full_messages });
     });
 };
 
