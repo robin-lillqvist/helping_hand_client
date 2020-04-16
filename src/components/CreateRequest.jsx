@@ -3,6 +3,7 @@ import axios from 'axios'
 import { connect, useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchProducts } from '../state/actions/productActions'
+import { Button, List, Container } from 'semantic-ui-react'
 
 const CreateRequest = props => {
   let productDisplay
@@ -62,16 +63,16 @@ const CreateRequest = props => {
 
   if (props.userID) {
     createButton = (
-      <button id='create-request' onClick={getProducts.bind(this)}>
+      <Button id='create-request' onClick={getProducts.bind(this)}>
         Create your request
-      </button>
+      </Button>
     )
   }
 
   if (props.showRequestForm) {
     productDisplay = props.products.map(product => {
       return (
-        <li
+        <List
           id={`product-${product.id}`}
           key={product.id}
           data-id={product.id}
@@ -79,10 +80,10 @@ const CreateRequest = props => {
           data-price={product.price}
         >
           {product.name} {product.price}
-          <button key={product.id} onClick={addToRequest.bind(this)}>
+          <Button key={product.id} onClick={addToRequest.bind(this)}>
             Add
-          </button>
-        </li>
+          </Button>
+        </List>
       )
     })
   }
@@ -91,26 +92,26 @@ const CreateRequest = props => {
     requestDisplay = props.task.products.map(product => {
       return (
         <>
-          <div id={product.id}>
+          <Container id={product.id}>
             {product.name} {product.amount}
-          </div>
+          </Container>
         </>
       )
     })
     confirmButton = (
-      <button id='confirm-task' onClick={submitTask.bind(this)}>
+      <Button id='confirm-task' onClick={submitTask.bind(this)}>
         Place Order
-      </button>
+      </Button>
     )
   }
 
   return (
     <>
       {createButton}
-      <ul id='product-list'>{productDisplay}</ul>
-      <div id='request-list'>
+      <List id='product-list'>{productDisplay}</List>
+      <Container id='request-list'>
         {requestDisplay} {confirmButton}
-      </div>
+      </Container>
     </>
   )
 }
