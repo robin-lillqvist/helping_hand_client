@@ -7,9 +7,7 @@ const Login = props => {
   const authenticated = useSelector(state => state.authenticated)
 
   let login
-  if (authenticated) {
-    // login = <button onClick={() => onLogout(dispatch)}>Logout</button>
-  } else {
+  if (!authenticated){
     login = (
       <form id='login-form' onSubmit={event => onLogin(event, dispatch)}>
         <input id='email' name='email' placeholder='Email' autoComplete="new-email"/>

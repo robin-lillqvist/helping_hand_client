@@ -13,7 +13,7 @@ describe("When products are visible", () => {
     });
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/products",
+      url: "**/products",
       response: "fixture:products.json",
     });
     cy.visit("/");
@@ -49,8 +49,8 @@ describe("When the are NO products", () => {
     });
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/v1/products",
-      response: "",
+      url: "**/products",
+      response: "fixture:products.json",
     });
     cy.visit("/");
     cy.get("#login").click();
