@@ -1,39 +1,69 @@
-describe('When products are visible', () => {
+describe("When products are visible", () => {
   before(() => {
     cy.server();
     cy.route({
-      method: 'GET',
-      url: 'http://localhost:3000/api/v1/products',
-      response: 'fixture:products.json'
-    })
-    cy.visit('/')
-  })
-  it('user can successfully create a request', () => {
-    cy.get("button")
-        .contains("Create your request")
-        .click();
-    ;
+      method: "POST",
+      url: "**/**",
+      response: "fixture:login.json",
+    });
+    cy.route({
+      method: "GET",
+      url: "**/auth/**",
+      response: "fixture:login.json",
+    });
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000/api/v1/products",
+      response: "fixture:products.json",
+    });
+    cy.visit("/");
+    cy.get("#login").click();
+    cy.get("#login-form").within(() => {
+      cy.get("#email").type("user@mail.com");
+      cy.get("#password").type("password");
+      cy.get("#login-button").contains("Login").click();
+    });
+    cy.get("#success-message").should("contain", "Welcome user@mail.com");
+  });
+  it("user can successfully create a request", () => {
+    cy.get("button").contains("Create your request").click();
     cy.get("#product-list").within(() => {
-      cy.contains('Potatoes'); //product
-      cy.contains('98'); //price
-    })
-  })
+      cy.contains("Potatoes"); //product
+      cy.contains("98"); //price
+    });
+  });
 });
-describe('When the are NO products', () => {
+
+describe("When the are NO products", () => {
   before(() => {
     cy.server();
     cy.route({
-      method: 'GET',
-      url: 'http://localhost:3000/api/v1/products',
-      response: ''
-    })
-    cy.visit("/")
-  })
+      method: "POST",
+      url: "**/**",
+      response: "fixture:login.json",
+    });
+    cy.route({
+      method: "GET",
+      url: "**/auth/**",
+      response: "fixture:login.json",
+    });
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000/api/v1/products",
+      response: "",
+    });
+    cy.visit("/");
+    cy.get("#login").click();
+    cy.get("#login-form").within(() => {
+      cy.get("#email").type("user@mail.com");
+      cy.get("#password").type("password");
+      cy.get("#login-button").contains("Login").click();
+    });
+    cy.get("#success-message").should("contain", "Welcome user@mail.com");
+  });
 
-  it('user cannot add any products', () => {
-    cy.get("button")
-    .contains("Create your request")
-    .click();
-    cy.get('#product-list').should("contain", "")
-  })
+  it("user cannot add any products", () => {
+    cy.get("button").contains("Create your request").click();
+    cy.get("#product-list").should("contain", "");
+  });
 });

@@ -13,7 +13,6 @@ const onLogin = (event, dispatch) => {
       event.target.elements.password.value
     )
     .then((response) => {
-      debugger
       dispatch({
         type: "AUTHENTICATE",
         payload: {
@@ -28,8 +27,7 @@ const onLogin = (event, dispatch) => {
       });
     })
     .catch((error) => {
-      debugger
-      dispatch({ type: "GREETING", payload: error.message });
+      dispatch({ type: "GREETING", payload: error.response.data.errors });
     });
 };
 
@@ -42,19 +40,17 @@ const onRegister = (event, dispatch) => {
       password_confirmation: event.target.elements.password_confirmation.value,
     })
     .then((response) => {
-      debugger;
       dispatch({
         type: "AUTHENTICATE",
         payload: {
           authenticated: true,
-          userEmail: response.data.email,
-          userID: response.data.id,
+          userEmail: response.data.data.email,
+          userID: response.data.data.id,
         },
       });
-      dispatch({ type: "GREETING", payload: `Welcome ${response.data.email}` });
+      dispatch({ type: "GREETING", payload: `Welcome ${response.data.data.email}` });
     })
     .catch((error) => {
-      debugger
       dispatch({ type: "GREETING", payload: error.data.errors });
     });
 };
@@ -65,7 +61,7 @@ const onLogout = (dispatch) => {
       type: "AUTHENTICATE",
       payload: { authenticated: false, userEmail: null },
     });
-    dispatch({ type: "GREETING", payload: "See ya!" });
+    dispatch({ type: "LOGOUT", message: "See ya!" });
   });
 };
 

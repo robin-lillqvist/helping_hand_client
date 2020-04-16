@@ -1,9 +1,10 @@
 import React from 'react'
 import { LOGIN_USER, REGISTER_USER } from '../state/actions/actionTypes'
-import { connect } from 'react-redux'
-import { useSelector } from 'react-redux'
+import { onLogout } from '../modules/authentication'
+import { connect, useDispatch, useSelector } from 'react-redux'
 
 const Header = props => {
+  const dispatch = useDispatch()
   const authenticated = useSelector(state => state.authenticated)
   let buttons
   if (authenticated) {

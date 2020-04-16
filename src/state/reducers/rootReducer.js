@@ -70,6 +70,14 @@ const rootReducer = (state = initialState, action) => {
         showLogin: false,
         showRegister: false
       };
+      case actionTypes.LOGOUT:
+      return {
+        ...state,
+        showRequestForm: false,
+        showLogin: false,
+        showRegister: false,
+        message: action.message
+      };
     default:
       return state;
   }

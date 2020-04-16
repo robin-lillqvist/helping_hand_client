@@ -31,7 +31,7 @@ const RegisterUser = props => {
             placeholder='Password again...'
             autoComplete="new-password"
           ></input>
-          <input id='register-button' type='submit' value='Register' />
+          <button id='register-button' type='submit'>Register</button>
         </form>
         <button onClick={() => dispatch({ type: 'CLOSE_REGISTRATION' })}>
           Close
