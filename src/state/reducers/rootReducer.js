@@ -37,13 +37,15 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         showLogin: true,
-        showRegister: false
+        showRegister: false,
+        message: ""
       };
     case actionTypes.REGISTER_USER:
       return {
         ...state,
         showLogin: false,
-        showRegister: true
+        showRegister: true,
+        message: ""
       };
     case actionTypes.CLOSE_LOGIN:
       return {
