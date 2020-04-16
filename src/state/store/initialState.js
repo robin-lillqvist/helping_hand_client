@@ -7,6 +7,7 @@ const initialState = {
   showLogin: false,
   authenticate: false,
   userEmail: undefined,
+  userID: undefined
 };
 
 export default initialState;

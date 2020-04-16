@@ -15,9 +15,10 @@ const onLogin = (event, dispatch) => {
     .then(response => {
       dispatch({
         type: "AUTHENTICATE",
-        payload: { authenticated: true, userEmail: response.data.email }
+        payload: { authenticated: true, userEmail: response.data.email, userID: response.data.id }
       });
       dispatch({ type: "GREETING", payload: `Welcome ${response.data.email}` });
+      debugger
     })
 
     .catch(error => {

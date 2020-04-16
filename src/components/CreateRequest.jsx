@@ -28,7 +28,10 @@ const CreateRequest = props => {
       })
     } else {
       response = await axios.post('/tasks', {
-        product_id: id
+        product_id: id,
+        headers: {
+          user_id: props.userID
+        }
       })
     }
     dispatch({ type: 'UPDATE_REQUEST', payload: response.data.task })
@@ -44,7 +47,7 @@ const CreateRequest = props => {
     dispatch({
       type: 'SHOW_ORDER_SUCCESS_MESSAGE',
       showSuccessMessage: true,
-      message: 'Congrats. You have successfully placed your request.'
+      message: response.data.message
     })
     dispatch({
       type: 'RESET_PAGE',
@@ -114,7 +117,8 @@ const mapStateToProps = state => {
     showRequestForm: state.showRequestForm,
     task: state.task,
     taskProducts: state.taskProducts,
-    message: state.message
+    message: state.message,
+    userID: state.userID
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreateRequest)

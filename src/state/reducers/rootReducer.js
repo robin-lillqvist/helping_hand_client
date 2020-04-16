@@ -31,14 +31,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         showRequestForm: action.showRequestForm,
         taskID: null,
-        task: { products: [] },
+        task: { products: [] }
       };
       case actionTypes.LOGIN_USER:
       return {
         ...state,
         showLogin: true,
-        showArticlesList: false,
-        singleArticle: undefined
       };
     case actionTypes.CLOSE_LOGIN:
       return {
@@ -55,7 +53,8 @@ const rootReducer = (state = initialState, action) => {
     case actionTypes.AUTHENTICATE:
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
+        userID: action.payload.userID
       };
     default:
       return state;
