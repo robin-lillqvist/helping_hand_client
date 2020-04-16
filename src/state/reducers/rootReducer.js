@@ -31,7 +31,29 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         showRequestForm: action.showRequestForm,
         taskID: null,
-        task: { products: [] },
+        task: { products: [] }
+      };
+      case actionTypes.LOGIN_USER:
+      return {
+        ...state,
+        showLogin: true,
+      };
+    case actionTypes.CLOSE_LOGIN:
+      return {
+        ...state,
+        showLogin: false,
+        message: ""
+      };
+    case actionTypes.GREETING:
+      return {
+        ...state,
+        message: action.payload
+      };
+    case actionTypes.AUTHENTICATE:
+      return {
+        ...state,
+        ...action.payload,
+        userID: action.payload.userID
       };
     default:
       return state;
