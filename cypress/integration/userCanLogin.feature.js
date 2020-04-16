@@ -3,15 +3,15 @@ describe("User can login", () => {
     cy.server();
     cy.route({
       method: "POST",
-      url: "**/**",
+      url: "**/auth/sign_in",
       response: "fixture:login.json",
     });
     cy.route({
       method: "GET",
-      url: "**/auth/**",
+      url: "**/auth/validate_token",
       response: "fixture:login.json",
     });
-    cy.visit("http://localhost:3001");
+    cy.visit("/");
   });
 
   it("Sucessfully", () => {
@@ -37,7 +37,7 @@ describe("User can login", () => {
         success: false,
       },
     });
-    cy.visit("http://localhost:3001");
+    cy.visit("/");
   });
 
   it("With invalid credentials", () => {

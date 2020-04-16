@@ -1,0 +1,18 @@
+{
+  "status": "success",
+  "data": {
+      "id": 2,
+      "provider": "email",
+      "uid": "register@mail.com",
+      "allow_password_change": false,
+      "name": null,
+      "role": null,
+      "image": null,
+      "email": "register@mail.com",
+      "address": null,
+      "postcode": null,
+      "city": null,
+      "created_at": "2020-04-16T12:01:36.021Z",
+      "updated_at": "2020-04-16T12:01:36.074Z"
+  }
+}

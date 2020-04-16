@@ -2,7 +2,7 @@ import JtockAuth from "j-tockauth";
 
 const auth = new JtockAuth({
   host: "http://localhost:3000",
-  prefixUrl: "/api/v1"
+  prefixUrl: "/api/v1",
 });
 
 const onLogin = (event, dispatch) => {
@@ -12,28 +12,58 @@ const onLogin = (event, dispatch) => {
       event.target.elements.email.value,
       event.target.elements.password.value
     )
-    .then(response => {
+    .then((response) => {
       dispatch({
         type: "AUTHENTICATE",
-        payload: { authenticated: true, userEmail: response.data.email, userID: response.data.id }
+        payload: {
+          authenticated: true,
+          userEmail: response.data.email,
+          userID: response.data.id,
+        },
       });
-      dispatch({ type: "GREETING", payload: `Welcome ${response.data.email}` });
+      dispatch({
+        type: "GREETING",
+        payload: `Welcome ${response.data.email}`,
+      });
     })
-
-    .catch(error => {
-      let errorMessage = error.response.data.errors;
-      dispatch({ type: "GREETING", payload: errorMessage });
+    .catch((error) => {
+      dispatch({ type: "GREETING", payload: error.response.data.errors });
     });
 };
 
-const onLogout = dispatch => {
+const onRegister = (event, dispatch) => {
+  event.preventDefault();
+  auth
+    .signUp({
+      email: event.target.elements.email.value,
+      password: event.target.elements.password.value,
+      password_confirmation: event.target.elements.password_confirmation.value,
+    })
+    .then((response) => {
+      dispatch({
+        type: "AUTHENTICATE",
+        payload: {
+          authenticated: true,
+          userEmail: response.data.data.email,
+          userID: response.data.data.id,
+        },
+      });
+      dispatch({ type: "GREETING", payload: `Welcome ${response.data.data.email}` });
+    })
+    .catch((error) => {
+      debugger
+      dispatch({ type: "GREETING", payload: error.response.data.errors.full_messages });
+    });
+};
+
+const onLogout = (dispatch) => {
   auth.signOut().then(() => {
     dispatch({
       type: "AUTHENTICATE",
-      payload: { authenticated: false, userEmail: null }
+      payload: { authenticated: false, userEmail: null },
     });
-    dispatch({ type: "GREETING", payload: "See ya!" });
+    dispatch({ type: "LOGOUT", message: "See ya!" });
   });
 };
 
-export { onLogin, onLogout };
+export { onLogin, onLogout, onRegister };

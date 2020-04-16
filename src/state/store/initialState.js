@@ -5,6 +5,7 @@ const initialState = {
   taskID: null,
   message: "",
   showLogin: false,
+  showRegister: false,
   authenticate: false,
   userEmail: undefined,
   userID: undefined
