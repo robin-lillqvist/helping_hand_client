@@ -4,6 +4,7 @@ import CreateRequest from './components/CreateRequest'
 import { connect } from 'react-redux'
 import UserLogin from './components/UserLogin'
 import RegisterUser from './components/RegisterUser'
+import DisplayMap from './components/DisplayMap'
 
 const App = props => {
   return (
@@ -13,6 +14,7 @@ const App = props => {
       {props.showLogin && <UserLogin/>}
       {props.showRegister && <RegisterUser/>}
       <div id='success-message'>{props.message}</div>
+      <DisplayMap/>
     </>
   )
 }
