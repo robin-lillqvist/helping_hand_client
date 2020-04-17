@@ -59,7 +59,6 @@ const CreateRequest = props => {
         },
         { headers: headers }
       )
-      debugger
     }
     dispatch({
       type: 'SHOW_ORDER_SUCCESS_MESSAGE',

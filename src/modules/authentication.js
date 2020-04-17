@@ -40,7 +40,6 @@ const onRegister = (event, dispatch) => {
       password_confirmation: event.target.elements.password_confirmation.value,
     })
     .then((response) => {
-      debugger
       dispatch({
         type: "AUTHENTICATE",
         payload: {
