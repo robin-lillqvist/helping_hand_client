@@ -48,10 +48,16 @@ const onRegister = (event, dispatch) => {
           userID: response.data.data.id,
         },
       });
-      dispatch({ type: "GREETING", payload: `Welcome ${response.data.data.email}` });
+      dispatch({
+        type: "GREETING",
+        payload: `Welcome ${response.data.data.email}`,
+      });
     })
     .catch((error) => {
-      dispatch({ type: "GREETING", payload: error.response.data.errors.full_messages });
+      dispatch({
+        type: "GREETING",
+        payload: error.response.data.errors.full_messages,
+      });
     });
 };
 
