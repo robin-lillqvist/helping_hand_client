@@ -39,14 +39,6 @@ class MapContainer extends Component {
         activeMarker: marker,
         showingInfoWindow: true
       })
-    // const onMapClicked = props => {
-    //   if (this.state.showingInfoWindow) {
-    //     this.setState({
-    //       showingInfoWindow: false,
-    //       activeMarker: null
-    //     })
-    //   }
-    // }
     return (
       <Map
         google={this.props.google}
@@ -67,9 +59,9 @@ class MapContainer extends Component {
             onClick={onMarkerClick.bind(this)}
           />
         ))}
-        {/* <Marker onClick={this.onMarkerClick} name={'Current location'} /> */}
+        {}
         <InfoWindow onClose={this.onInfoWindowClose}>
-          <div>{/* <h1>{this.state.selectedPlace.name}</h1> */}</div>
+          <div>{}</div>
         </InfoWindow>
       </Map>
     )
