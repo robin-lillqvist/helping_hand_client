@@ -50,7 +50,7 @@ describe("When the are NO products", () => {
     cy.route({
       method: "GET",
       url: "**/products",
-      response: "fixture:products.json",
+      response: "fixture:empty_products.json",
     });
     cy.visit("/");
     cy.get("#login").click();

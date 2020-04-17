@@ -64,7 +64,7 @@ const CreateRequest = props => {
     dispatch({
       type: 'SHOW_ORDER_SUCCESS_MESSAGE',
       showSuccessMessage: true,
-      message: response.message
+      message: response.data.message
     })
     dispatch({
       type: 'RESET_PAGE',

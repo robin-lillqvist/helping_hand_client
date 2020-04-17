@@ -23,7 +23,7 @@ const onLogin = (event, dispatch) => {
       });
       dispatch({
         type: "GREETING",
-        payload: `Welcome back ${response.data.email}`,
+        payload: `Welcome ${response.data.email}`,
       });
     })
     .catch((error) => {
