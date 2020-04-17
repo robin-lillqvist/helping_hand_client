@@ -29,8 +29,9 @@ class MapContainer extends Component {
       ]
     }
     const style = {
-      width: '100%',
-      height: '100%'
+      width: '80%',
+      height: '50%',
+      align: 'center'
     }
     const onMarkerClick = (props, marker, e) =>
       this.setState({

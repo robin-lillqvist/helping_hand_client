@@ -4,21 +4,20 @@ import CreateRequest from './components/CreateRequest'
 import { connect } from 'react-redux'
 import UserLogin from './components/UserLogin'
 import RegisterUser from './components/RegisterUser'
-import DisplayMap from './components/DisplayMap'
+import ClaimTask from './components/ClaimTask';
 
 const App = props => {
   return (
     <>
       <Header />
       <CreateRequest />
+      <ClaimTask />
       {props.showLogin && <UserLogin/>}
       {props.showRegister && <RegisterUser/>}
       <div id='success-message'>{props.message}</div>
-      <DisplayMap/>
     </>
   )
 }
-
 
 const mapStateToProps = state => {
   return {

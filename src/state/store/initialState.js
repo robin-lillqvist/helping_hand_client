@@ -8,7 +8,8 @@ const initialState = {
   showRegister: false,
   authenticate: false,
   userEmail: undefined,
-  userID: undefined
+  userID: undefined,
+  showHelpMap: false
 };
 
 export default initialState;
