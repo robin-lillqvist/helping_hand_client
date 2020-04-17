@@ -23,7 +23,7 @@ const onLogin = (event, dispatch) => {
       });
       dispatch({
         type: "GREETING",
-        payload: `Welcome ${response.data.email}`,
+        payload: `Welcome back ${response.data.email}`,
       });
     })
     .catch((error) => {
@@ -40,6 +40,7 @@ const onRegister = (event, dispatch) => {
       password_confirmation: event.target.elements.password_confirmation.value,
     })
     .then((response) => {
+      debugger
       dispatch({
         type: "AUTHENTICATE",
         payload: {
@@ -51,7 +52,6 @@ const onRegister = (event, dispatch) => {
       dispatch({ type: "GREETING", payload: `Welcome ${response.data.data.email}` });
     })
     .catch((error) => {
-      debugger
       dispatch({ type: "GREETING", payload: error.response.data.errors.full_messages });
     });
 };
