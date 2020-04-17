@@ -4,20 +4,20 @@ import CreateRequest from './components/CreateRequest'
 import { connect } from 'react-redux'
 import UserLogin from './components/UserLogin'
 import RegisterUser from './components/RegisterUser'
-import { Grid } from 'semantic-ui-react'
- 
+import ClaimTask from './components/ClaimTask';
+
 const App = props => {
   return (
     <>
       <Header />
       <CreateRequest />
+      <ClaimTask />
       {props.showLogin && <UserLogin/>}
       {props.showRegister && <RegisterUser/>}
-      <Grid.Column align ='center' id='success-message'>{props.message}</Grid.Column>
+      <div id='success-message'>{props.message}</div>
     </>
   )
 }
-
 
 const mapStateToProps = state => {
   return {
