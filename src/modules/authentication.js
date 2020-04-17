@@ -1,7 +1,7 @@
 import JtockAuth from "j-tockauth";
 
 const auth = new JtockAuth({
-  host: "https://the-helping-hand.herokuapp.com/",
+  host: "https://the-helping-hand.herokuapp.com",
   prefixUrl: "/api/v1",
 });
 
