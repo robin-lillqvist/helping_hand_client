@@ -7,6 +7,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.payload,
+        showHelpMap: false
       };
     case actionTypes.UPDATE_REQUEST:
       return {
@@ -63,6 +64,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         message: action.payload,
+        showHelpMap: false
       };
     case actionTypes.AUTHENTICATE:
       return {
@@ -71,6 +73,7 @@ const rootReducer = (state = initialState, action) => {
         userID: action.payload.userID,
         showLogin: false,
         showRegister: false,
+        showHelpMap: false
       };
     case actionTypes.LOGOUT:
       return {
@@ -84,7 +87,14 @@ const rootReducer = (state = initialState, action) => {
         showRegister: false,
         authenticate: false,
         userEmail: undefined,
-        userID: undefined
+        userID: undefined,
+        message: action.message,
+        showHelpMap: false
+      };
+    case actionTypes.SHOW_MAP:
+      return {
+        ...state,
+        showHelpMap: true
       };
     default:
       return state;
