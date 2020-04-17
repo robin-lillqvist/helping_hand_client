@@ -31,38 +31,38 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         showRequestForm: action.showRequestForm,
         taskID: null,
-        task: { products: [] }
+        task: { products: [] },
       };
     case actionTypes.LOGIN_USER:
       return {
         ...state,
         showLogin: true,
         showRegister: false,
-        message: ""
+        message: "",
       };
     case actionTypes.REGISTER_USER:
       return {
         ...state,
         showLogin: false,
         showRegister: true,
-        message: ""
+        message: "",
       };
     case actionTypes.CLOSE_LOGIN:
       return {
         ...state,
         showLogin: false,
-        message: ""
+        message: "",
       };
-      case actionTypes.CLOSE_REGISTRATION:
-        return {
-          ...state,
-          showRegister: false,
-          message: ""
-        };
+    case actionTypes.CLOSE_REGISTRATION:
+      return {
+        ...state,
+        showRegister: false,
+        message: "",
+      };
     case actionTypes.GREETING:
       return {
         ...state,
-        message: action.payload
+        message: action.payload,
       };
     case actionTypes.AUTHENTICATE:
       return {
@@ -70,15 +70,21 @@ const rootReducer = (state = initialState, action) => {
         ...action.payload,
         userID: action.payload.userID,
         showLogin: false,
-        showRegister: false
+        showRegister: false,
       };
-      case actionTypes.LOGOUT:
+    case actionTypes.LOGOUT:
       return {
         ...state,
+        products: [],
         showRequestForm: false,
+        task: { products: [] },
+        taskID: null,
+        message: "",
         showLogin: false,
         showRegister: false,
-        message: action.message
+        authenticate: false,
+        userEmail: undefined,
+        userID: undefined
       };
     default:
       return state;

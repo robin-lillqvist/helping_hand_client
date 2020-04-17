@@ -2,7 +2,7 @@ import React from 'react'
 import { LOGIN_USER, REGISTER_USER } from '../state/actions/actionTypes'
 import { onLogout } from '../modules/authentication'
 import { connect, useDispatch, useSelector } from 'react-redux'
-import { Button, Menu, Item, Grid, Segment } from 'semantic-ui-react'
+import { Button, Grid, Segment } from 'semantic-ui-react'
 
 const Header = props => {
   const dispatch = useDispatch()
