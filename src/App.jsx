@@ -26,7 +26,8 @@ const mapStateToProps = state => {
     showRequestForm: state.showRequestForm,
     showLogin: state.showLogin,
     showRegister: state.showRegister,
-    message: state.message
+    message: state.message,
+    showHelpMap: state.showHelpMap
   }
 }
 export default connect(mapStateToProps)(App)

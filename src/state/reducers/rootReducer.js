@@ -18,7 +18,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         showRequestForm: action.showRequestForm,
-        message: ""
+        message: "",
       };
     case actionTypes.SHOW_ORDER_SUCCESS_MESSAGE:
       return {

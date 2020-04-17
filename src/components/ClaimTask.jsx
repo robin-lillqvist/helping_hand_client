@@ -3,16 +3,23 @@ import { connect, useDispatch } from "react-redux";
 import { Button, Grid } from "semantic-ui-react";
 import DisplayMap from "./DisplayMap";
 
-const dispatch = useDispatch()
-
-const getMap = async () => {
-  if (props.showHelpMap) {
-    dispatch({ type: 'SHOW_MAP'})
-  }
-
 const ClaimTask = (props) => {
   let claimButton;
+  let mapDisplay;
 
+  const dispatch = useDispatch()
+  
+  const getMap = () => {
+    if (!props.showHelpMap) {
+      dispatch({ type: 'SHOW_MAP'})
+    }
+    else {
+      dispatch({ type: 'SHOW_MAP'})
+    }
+  }
+  if (props.showHelpMap) {
+    mapDisplay = <DisplayMap />
+  }
   if (props.userID) {
     claimButton = (
       <Grid.Column align='center'>
@@ -20,16 +27,16 @@ const ClaimTask = (props) => {
           Offer help
         </Button>
       </Grid.Column>
-    );
+    );  
   }
-
   return (
     <>
       {claimButton}
-      <DisplayMap />
+      {mapDisplay}
     </>
   );
 };
+
 
 
 const mapStateToProps = (state) => {
@@ -38,4 +45,4 @@ const mapStateToProps = (state) => {
     userID: state.userID,
   };
 };
-export default connect(mapStateToProps)(ClaimTask, getMap);
+export default connect(mapStateToProps)(ClaimTask);
