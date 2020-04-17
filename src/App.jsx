@@ -4,8 +4,8 @@ import CreateRequest from './components/CreateRequest'
 import { connect } from 'react-redux'
 import UserLogin from './components/UserLogin'
 import RegisterUser from './components/RegisterUser'
-import { Grid } from 'semantic-ui-react'
- 
+import DisplayMap from './components/DisplayMap'
+
 const App = props => {
   return (
     <>
@@ -13,7 +13,8 @@ const App = props => {
       <CreateRequest />
       {props.showLogin && <UserLogin/>}
       {props.showRegister && <RegisterUser/>}
-      <Grid.Column align ='center' id='success-message'>{props.message}</Grid.Column>
+      <div id='success-message'>{props.message}</div>
+      <DisplayMap/>
     </>
   )
 }
