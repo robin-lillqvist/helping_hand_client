@@ -2,6 +2,7 @@ import JtockAuth from "j-tockauth";
 
 const auth = new JtockAuth({
   host: "https://the-helping-hand.herokuapp.com",
+  // host: "http://localhost:3000",
   prefixUrl: "/api/v1",
 });
 
@@ -48,11 +49,16 @@ const onRegister = (event, dispatch) => {
           userID: response.data.data.id,
         },
       });
-      dispatch({ type: "GREETING", payload: `Welcome ${response.data.data.email}` });
+      dispatch({
+        type: "GREETING",
+        payload: `Welcome ${response.data.data.email}`,
+      });
     })
     .catch((error) => {
-      debugger
-      dispatch({ type: "GREETING", payload: error.response.data.errors.full_messages });
+      dispatch({
+        type: "GREETING",
+        payload: error.response.data.errors.full_messages,
+      });
     });
 };
 

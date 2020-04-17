@@ -8,7 +8,7 @@ import { Button, List, Container, Grid } from 'semantic-ui-react'
 const CreateRequest = props => {
   let productDisplay
   let requestDisplay
-  let createButton 
+  let createButton
   let confirmButton
 
   const dispatch = useDispatch()
@@ -22,32 +22,43 @@ const CreateRequest = props => {
   }
 
   const addToRequest = async event => {
+    let headers = JSON.parse(localStorage.getItem('J-tockAuth-Storage'))
     let id = event.target.parentElement.dataset.id
     let response
     if (props.task.id) {
-      response = await axios.put(`/tasks/${props.task.id}`, {
-        product_id: id,
-        headers: {
+      response = await axios.put(
+        `/tasks/${props.task.id}`,
+        {
+          product_id: id,
           user_id: props.userID
-        }
-      })
+        },
+        { headers: headers }
+      )
     } else {
-      response = await axios.post('/tasks', {
-        product_id: id,
-        headers: {
+      response = await axios.post(
+        '/tasks',
+        {
+          product_id: id,
           user_id: props.userID
-        }
-      })
+        },
+        { headers: headers }
+      )
     }
     dispatch({ type: 'UPDATE_REQUEST', payload: response.data.task })
   }
 
   const submitTask = async event => {
+    let headers = JSON.parse(localStorage.getItem('J-tockAuth-Storage'))
     let response
     if (props.task.id) {
-      response = await axios.put(`/tasks/${props.task.id}`, {
-        activity: 'confirmed'
-      })
+      response = await axios.put(
+        `/tasks/${props.task.id}`,
+        {
+          activity: 'confirmed',
+          user_id: props.userID
+        },
+        { headers: headers }
+      )
     }
     dispatch({
       type: 'SHOW_ORDER_SUCCESS_MESSAGE',
@@ -115,11 +126,11 @@ const CreateRequest = props => {
 
   return (
     <>
-        {createButton}
-        <List id='product-list'>{productDisplay}</List>
-        <Container id='request-list'>
-          {requestDisplay} {confirmButton}
-        </Container>
+      {createButton}
+      <List id='product-list'>{productDisplay}</List>
+      <Container id='request-list'>
+        {requestDisplay} {confirmButton}
+      </Container>
     </>
   )
 }
