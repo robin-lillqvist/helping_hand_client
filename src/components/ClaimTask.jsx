@@ -3,19 +3,20 @@ import { connect, useDispatch } from "react-redux";
 import { Button, Grid } from "semantic-ui-react";
 import DisplayMap from "./DisplayMap";
 
+const dispatch = useDispatch()
+
+const getMap = async () => {
+  if (props.showHelpMap) {
+    dispatch({ type: 'SHOW_MAP'})
+  }
+
 const ClaimTask = (props) => {
-  let displayTasks;
   let claimButton;
 
-  const dispatch = useDispatch()
-
-  if (props.showHelpMap) {
-    displayTasks = <DisplayMap />;
-  }
   if (props.userID) {
     claimButton = (
       <Grid.Column align='center'>
-        <Button id="create-request" onClick={dispatch({ type: "SHOW_MAP" })}>
+        <Button id="create-request" onClick={getMap.bind(this)}>
           Offer help
         </Button>
       </Grid.Column>
@@ -25,7 +26,7 @@ const ClaimTask = (props) => {
   return (
     <>
       {claimButton}
-      {displayTasks}
+      <DisplayMap />
     </>
   );
 };
@@ -37,4 +38,4 @@ const mapStateToProps = (state) => {
     userID: state.userID,
   };
 };
-export default connect(mapStateToProps)(ClaimTask);
+export default connect(mapStateToProps)(ClaimTask, getMap);
