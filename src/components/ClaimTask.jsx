@@ -3,6 +3,7 @@ import { connect, useDispatch } from "react-redux";
 import { Button, Grid } from "semantic-ui-react";
 import DisplayMap from "./DisplayMap";
 import axios from 'axios';
+import { Marker, Map } from "google-maps-react";
 
 const ClaimTask = (props) => {
   let claimButton;
@@ -13,7 +14,7 @@ const ClaimTask = (props) => {
   const getMap = async () => {
     let response = await axios.get('/tasks', {status: "confirmed"})
       dispatch({ type: 'GET_TASKS', payload: response.data })
-    
+      debugger
     if (!props.showHelpMap) {
       dispatch({ type: 'SHOW_MAP'})
     }
@@ -47,6 +48,7 @@ const mapStateToProps = (state) => {
   return {
     showHelpMap: state.showHelpMap,
     userID: state.userID,
+    tasks: state.tasks
   };
 };
 export default connect(mapStateToProps)(ClaimTask);

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Marker, Map, InfoWindow, GoogleApiWrapper } from "google-maps-react";
-
+import { connect, useDispatch } from "react-redux";
 
 class MapContainer extends Component {
   state = {
@@ -39,6 +39,7 @@ class MapContainer extends Component {
         activeMarker: marker,
         showingInfoWindow: true
       })
+
     return (
       <Map
         centerAroundCurrentLocation
@@ -51,12 +52,12 @@ class MapContainer extends Component {
         zoom={15}
         onClick={this.onMapClicked}
       >
-        {locations.cities.map(city => (
+        {props.tasks.map(task => (
           <Marker
-            title={city.name}
-            name={city.name}
-            key={city.id}
-            position={city.position}
+            title={task.name}
+            name={task.name}
+            key={task.id}
+            position={task.position}
             onClick={onMarkerClick.bind(this)}
           />
         ))}
@@ -68,7 +69,13 @@ class MapContainer extends Component {
     )
   }
 }
-
-export default GoogleApiWrapper({
+const mapStateToProps = (state) => {
+  return {
+    tasks: state.tasks
+  };
+};
+const Google = GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-})(MapContainer);
+}, (MapContainer));
+
+export default (connect(mapStateToProps)(Google)) 

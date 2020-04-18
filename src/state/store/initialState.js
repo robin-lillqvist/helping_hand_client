@@ -9,7 +9,8 @@ const initialState = {
   authenticate: false,
   userEmail: undefined,
   userID: undefined,
-  showHelpMap: false
+  showHelpMap: false,
+  tasks: { id1: {lat: 1, long: 1}}
 };
 
 export default initialState;
