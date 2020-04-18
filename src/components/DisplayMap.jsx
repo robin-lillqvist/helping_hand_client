@@ -41,6 +41,7 @@ class MapContainer extends Component {
       })
     return (
       <Map
+        centerAroundCurrentLocation
         google={this.props.google}
         style={style}
         initialCenter={{
