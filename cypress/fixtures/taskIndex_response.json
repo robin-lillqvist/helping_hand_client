@@ -3,152 +3,54 @@
         "id": 1,
         "products": [
             {
-                "amount": 5,
+                "amount": 2,
                 "name": "Milk",
                 "total": "75.0"
+            },
+            {
+                "amount": 2,
+                "name": "Coca-Cola",
+                "total": "25.0"
+            },
+            {
+                "amount": 1,
+                "name": "Mustard",
+                "total": "25.0"
             }
         ],
         "total": "75.0",
         "long": "18.0467502",
         "lat": "59.3482644",
         "user": {
-            "id": 3,
+            "id": 100,
             "email": "testuser2@mail.com"
-        }
-    },
-    {
-        "id": 2,
-        "products": [
-            {
-                "amount": 5,
-                "name": "Milk",
-                "total": "75.0"
-            }
-        ],
-        "total": "75.0",
-        "long": "18.0467502",
-        "lat": "59.3482644",
-        "user": {
-            "id": 4,
-            "email": "testuser3@mail.com"
-        }
-    },
-    {
-        "id": 3,
-        "products": [
-            {
-                "amount": 5,
-                "name": "Milk",
-                "total": "75.0"
-            }
-        ],
-        "total": "75.0",
-        "long": "17.0467502",
-        "lat": "58.3482644",
-        "user": {
-            "id": 5,
-            "email": "testuser4@mail.com"
-        }
-    },
-    {
-        "id": 4,
-        "products": [
-            {
-                "amount": 5,
-                "name": "Milk",
-                "total": "75.0"
-            }
-        ],
-        "total": "75.0",
-        "long": "17.0467502",
-        "lat": "58.7482644",
-        "user": {
-            "id": 6,
-            "email": "testuser5@mail.com"
-        }
-    },
-    {
-        "id": 5,
-        "products": [
-            {
-                "amount": 5,
-                "name": "Milk",
-                "total": "75.0"
-            }
-        ],
-        "total": "75.0",
-        "long": "17.0467502",
-        "lat": "57.7482644",
-        "user": {
-            "id": 7,
-            "email": "testuser6@mail.com"
-        }
-    },
-    {
-        "id": 6,
-        "products": [
-            {
-                "amount": 5,
-                "name": "Milk",
-                "total": "75.0"
-            }
-        ],
-        "total": "75.0",
-        "long": "17.5467502",
-        "lat": "57.7482644",
-        "user": {
-            "id": 8,
-            "email": "testuser7@mail.com"
-        }
-    },
-    {
-        "id": 7,
-        "products": [
-            {
-                "amount": 5,
-                "name": "Milk",
-                "total": "75.0"
-            }
-        ],
-        "total": "75.0",
-        "long": "15.5467502",
-        "lat": "57.7482644",
-        "user": {
-            "id": 9,
-            "email": "testuser8@mail.com"
-        }
-    },
-    {
-        "id": 8,
-        "products": [
-            {
-                "amount": 5,
-                "name": "Milk",
-                "total": "75.0"
-            }
-        ],
-        "total": "75.0",
-        "long": "15.5467502",
-        "lat": "57.2482644",
-        "user": {
-            "id": 10,
-            "email": "testuser9@mail.com"
         }
     },
     {
         "id": 9,
         "products": [
             {
-                "amount": 5,
+                "amount": 1,
                 "name": "Milk",
                 "total": "75.0"
+            },
+            {
+                "amount": 2,
+                "name": "Bread",
+                "total": "25.0"
+            },
+            {
+                "amount": 2,
+                "name": "Eggs",
+                "total": "15.0"
             }
+            
         ],
         "total": "75.0",
         "long": "15.5467502",
         "lat": "56.2482644",
         "user": {
-            "id": 11,
+            "id": 101,
             "email": "testuser10@mail.com"
         }
     }

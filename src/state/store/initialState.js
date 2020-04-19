@@ -7,7 +7,7 @@ const initialState = {
   showLogin: false,
   showRegister: false,
   authenticate: false,
-  userEmail: undefined,
+  userEmail: "",
   userID: undefined,
   showHelpMap: false,
   requests: [
@@ -25,25 +25,8 @@ const initialState = {
       user: {
         id: 2,
         email: "robin2@mail.com",
-      },
-    },
-    {
-      id: 2,
-      products: [
-        {
-          amount: 5,
-          name: "Milk",
-          total: "30.0",
-        },
-      ],
-      total: "150.0",
-      long: 1,
-      lat: 2,
-      user: {
-        id: 15,
-        email: "asdf1@mail.com",
-      },
-    },
+      }
+    }
   ],
 };
 
