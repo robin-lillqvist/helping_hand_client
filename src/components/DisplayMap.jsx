@@ -10,8 +10,7 @@ const MapContainer = props => {
       type: 'MARKER_CLICK', selectedPlace: props, activeMarker: marker, showingInfoWindow: true
     })
   }
-
- debugger
+  
   return (
     <Map
       centerAroundCurrentLocation
