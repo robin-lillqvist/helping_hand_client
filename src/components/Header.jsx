@@ -9,41 +9,45 @@ const Header = props => {
   const authenticated = useSelector(state => state.authenticated)
   let buttons
   if (authenticated) {
-    buttons = <Grid.Column className='right aligned' width={3}><Button id="Logout" onClick={() => onLogout(dispatch)}>Logout</Button></Grid.Column>
+    buttons = (
+      <Grid.Column className='right aligned' width={4}>
+        <Button id='Logout' onClick={() => onLogout(dispatch)}>
+          Logout
+        </Button>
+      </Grid.Column>
+    )
   } else {
     buttons = (
       <>
-        <Grid.Column>
         <Button
-            name='login'
-            id='login'
-            onClick={() => props.dispatch({ type: LOGIN_USER })}
-          >
-            Login
-          </Button>
-        </Grid.Column>
-        <Grid.Column>
-          <Button
-            name='register'
-            id='register'
-            onClick={() => props.dispatch({ type: REGISTER_USER })}
-          >
-            Signup
-          </Button>
-        </Grid.Column>
+          name='login'
+          id='login'
+          onClick={() => props.dispatch({ type: LOGIN_USER })}
+        >
+          Login
+        </Button>
+        <Button
+          name='register'
+          id='register'
+          onClick={() => props.dispatch({ type: REGISTER_USER })}
+        >
+          Signup
+        </Button>
       </>
     )
   }
   return (
     <Segment inverted color='red' tertiary>
       <Grid>
-        <Grid.Column width={13}><h1 className='title'>Helping Hand</h1></Grid.Column>
-        {buttons}
+        <Grid.Column className='left aligned eight wide column'>
+          <h1 className='title'>Helping Hand</h1>
+        </Grid.Column>
+        <Grid.Column className='right aligned eight wide column'>
+          {buttons}
+        </Grid.Column>
       </Grid>
     </Segment>
   )
 }
 
 export default connect()(Header)
-
-
