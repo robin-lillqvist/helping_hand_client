@@ -7,7 +7,7 @@ const initialState = {
   showLogin: false,
   showRegister: false,
   authenticate: false,
-  userEmail: "",
+  userEmail: undefined,
   userID: undefined,
   showHelpMap: false,
   requests: [
