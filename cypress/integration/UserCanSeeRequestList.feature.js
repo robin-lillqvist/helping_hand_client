@@ -14,7 +14,7 @@ describe("When there is tasks to be shown", () => {
     cy.route({
       method: "GET",
       url: "**/tasks",
-      response: "fixture:taskIndex_response.json",
+      response: "fixture:task_index_response.json",
     });
     cy.visit("/");
     cy.get("#login").click();
