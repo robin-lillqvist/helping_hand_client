@@ -39,6 +39,7 @@ const rootReducer = (state = initialState, action) => {
         showLogin: true,
         showRegister: false,
         message: "",
+        showHelpMap: false
       };
     case actionTypes.REGISTER_USER:
       return {

@@ -28,7 +28,7 @@ const ClaimTask = props => {
       <Grid>
         <Grid.Column align='center'>
           <Button id='create-request' onClick={getMap.bind(this)}>
-            Offer help
+            Offer Help
           </Button>
         </Grid.Column>
       </Grid>
@@ -71,8 +71,10 @@ const ClaimTask = props => {
   return (
     <>
       {claimButton}
-      <div id='request-list'>{requestDisplay}</div>
-      <div>{mapDisplay}</div>
+      <Grid style={{height: '1000px'}}>
+        <Grid.Column width={14}>{mapDisplay}</Grid.Column>
+        <Grid.Column width={2} id='request-list'>{requestDisplay}</Grid.Column>
+      </Grid>
     </>
   )
 }

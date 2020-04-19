@@ -1,7 +1,7 @@
 import React from "react";
 import { onRegister } from "../modules/authentication";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Button, Container } from "semantic-ui-react";
+import { Form, Button, Container, Modal } from "semantic-ui-react";
 
 const RegisterUser = (props) => {
   const dispatch = useDispatch();
@@ -53,7 +53,9 @@ const RegisterUser = (props) => {
   }
   return (
     <>
-      <Container>{register}</Container>
+      <Modal open={true}>
+        <Container>{register}</Container>
+      </Modal>
     </>
   );
 };

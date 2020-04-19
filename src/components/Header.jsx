@@ -35,9 +35,9 @@ const Header = props => {
     )
   }
   return (
-    <Segment inverted>
+    <Segment inverted color='red' tertiary>
       <Grid>
-        <Grid.Column width={13}><h1 className='title'>Helping hand</h1></Grid.Column>
+        <Grid.Column width={13}><h1 className='title'>Helping Hand</h1></Grid.Column>
         {buttons}
       </Grid>
     </Segment>

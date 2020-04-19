@@ -1,7 +1,7 @@
 import React from 'react'
 import { onLogin } from '../modules/authentication'
 import { useDispatch, useSelector } from 'react-redux'
-import { Form, Button, Container } from 'semantic-ui-react'
+import { Form, Button, Container, Modal } from 'semantic-ui-react'
 
 const Login = props => {
   const dispatch = useDispatch()
@@ -28,11 +28,13 @@ const Login = props => {
 
   return (
     <>
-    <Container
-      textAlign='center'>
-      {login}
-      <Button onClick={() => dispatch({ type: 'CLOSE_LOGIN' })}>Close</Button>
+    <Modal open={true}>
+      <Container
+        textAlign='center'>
+        {login}
+        <Button onClick={() => dispatch({ type: 'CLOSE_LOGIN' })}>Close</Button>
       </Container>
+    </Modal>
     </>
   )
 }
