@@ -9,7 +9,7 @@ const Header = props => {
   const authenticated = useSelector(state => state.authenticated)
   let buttons
   if (authenticated) {
-    buttons = <Grid.Column className='right aligned' width={3}><Button onClick={() => onLogout(dispatch)}>Logout</Button></Grid.Column>
+    buttons = <Grid.Column className='right aligned' width={3}><Button id="Logout" onClick={() => onLogout(dispatch)}>Logout</Button></Grid.Column>
   } else {
     buttons = (
       <>

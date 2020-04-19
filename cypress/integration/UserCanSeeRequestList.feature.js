@@ -1,4 +1,4 @@
-describe("When products are visible", () => {
+describe("When there is tasks to be shown", () => {
   before(() => {
     cy.server();
     cy.route({
@@ -13,44 +13,8 @@ describe("When products are visible", () => {
     });
     cy.route({
       method: "GET",
-      url: "**/products",
-      response: "fixture:products.json",
-    });
-    cy.visit("/");
-    cy.get("#login").click();
-    cy.get("#login-form").within(() => {
-      cy.get("#email").type("user@mail.com");
-      cy.get("#password").type("password");
-      cy.get("#login-button").contains("Login").click();
-    });
-    cy.get("#success-message").should("contain", "Welcome user@mail.com");
-  });
-  it("user can successfully create a request", () => {
-    cy.get("button").contains("Create your request").click();
-    cy.get("#product-list").within(() => {
-      cy.contains("Potatoes"); //product
-      cy.contains("98"); //price
-    });
-  });
-});
-
-describe("When the are NO products", () => {
-  before(() => {
-    cy.server();
-    cy.route({
-      method: "POST",
-      url: "**/**",
-      response: "fixture:login.json",
-    });
-    cy.route({
-      method: "GET",
-      url: "**/auth/**",
-      response: "fixture:login.json",
-    });
-    cy.route({
-      method: "GET",
-      url: "**/products",
-      response: "fixture:empty_products.json",
+      url: "**/tasks",
+      response: "fixture:task_index_response.json",
     });
     cy.visit("/");
     cy.get("#login").click();
@@ -62,8 +26,21 @@ describe("When the are NO products", () => {
     cy.get("#success-message").should("contain", "Welcome user@mail.com");
   });
 
-  it("user cannot add any products", () => {
-    cy.get("button").contains("Create your request").click();
-    cy.get("#product-list").should("contain", "");
+  it("user can see list of tasks", () => {
+    cy.get("button").contains("Offer help").click();
+      cy.get("#task-1").within(() => {  
+        cy.get('#task-1-user').should("contain","testuser2@mail.com");
+        cy.get('#task-product-1').should("contain","Milk");
+        cy.get('#task-product-2').should("contain","Coca-Cola");
+        cy.get('#task-product-3').should("contain","Mustard");
+        cy.get('#task-1-total').should("contain","75.0");
+      })
+      cy.get("#task-9").within(() => {  
+        cy.get('#task-9-user').should("contain","testuser10@mail.com");
+        cy.get('#task-product-1').should("contain","Milk");
+        cy.get('#task-product-2').should("contain","Bread");
+        cy.get('#task-product-3').should("contain","Eggs");
+        cy.get('#task-9-total').should("contain","75.0");
+      })
   });
 });

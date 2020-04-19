@@ -19,12 +19,12 @@ describe("When products are visible", () => {
     cy.route({
       method: "POST",
       url: "**/tasks",
-      response: "fixture:taskList_response.json",
+      response: "fixture:task_list_response.json",
     });
     cy.route({
       method: "PUT",
       url: "**/tasks/1",
-      response: "fixture:taskList_update_response.json",
+      response: "fixture:task_list_update_response.json",
     });
     cy.visit("/");
     cy.get("#login").click();

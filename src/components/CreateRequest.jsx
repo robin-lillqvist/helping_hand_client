@@ -39,7 +39,9 @@ const CreateRequest = props => {
         '/tasks',
         {
           product_id: id,
-          user_id: props.userID
+          user_id: props.userID,
+          lat: '56.2482644',
+          long: '15.5467502'
         },
         { headers: headers }
       )
