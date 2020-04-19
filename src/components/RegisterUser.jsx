@@ -57,7 +57,7 @@ const RegisterUser = (props) => {
   }
   return (
     <>
-      <Modal open={true}>
+      <Modal open={true} size="mini">
         <Container>{register}</Container>
       </Modal>
     </>

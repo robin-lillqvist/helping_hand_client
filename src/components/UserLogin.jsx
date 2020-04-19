@@ -8,33 +8,44 @@ const Login = props => {
   const authenticated = useSelector(state => state.authenticated)
 
   let login
-  if (!authenticated){
+  if (!authenticated) {
     login = (
-        <Form id='login-form' onSubmit={event => onLogin(event, dispatch)}>
-          <Form.Field>
-            <input id='email' name='email' placeholder='Email' autoComplete="new-email"/>
-            <input
-              id='password'
-              name='password'
-              type='password'
-              placeholder='Password'
-              autoComplete="new-password"
-            />
-          </Form.Field>
-          <Button id='login-button' type='submit' value='Login'>Login</Button>
-        </Form>
+      <Form id='login-form' onSubmit={event => onLogin(event, dispatch)}>
+        <Form.Field>
+          <input
+            id='email'
+            name='email'
+            placeholder='Email'
+            autoComplete='new-email'
+          />
+          <input
+            id='password'
+            name='password'
+            type='password'
+            placeholder='Password'
+            autoComplete='new-password'
+          />
+        </Form.Field>
+        <Button id='login-button' type='submit' value='Login'>
+          Login
+        </Button>
+      </Form>
     )
   }
 
   return (
     <>
-    <Modal open={true}>
-      <Container
-        textAlign='center'>
-        {login}
-        <Button onClick={() => dispatch({ type: 'CLOSE_LOGIN' })}>Close</Button>
-      </Container>
-    </Modal>
+      <Modal
+        open={true}
+        size="mini"
+      >
+        <Container textAlign='center'>
+          {login}
+          <Button onClick={() => dispatch({ type: 'CLOSE_LOGIN' })}>
+            Close
+          </Button>
+        </Container>
+      </Modal>
     </>
   )
 }

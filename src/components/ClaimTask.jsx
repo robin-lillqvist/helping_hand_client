@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect, useDispatch } from 'react-redux'
-import { Button, Grid } from 'semantic-ui-react'
+import { Button, Grid, List } from 'semantic-ui-react'
 import DisplayMap from './DisplayMap'
 import axios from 'axios'
 
@@ -45,24 +45,25 @@ const ClaimTask = props => {
       showProducts = task.products.map(product => {
         i++
         return (
-          <div id={`task-product-${i}`} key={product.id} data-id={product.id}>
+          <List.Content className="taskProduct" id={`task-product-${i}`} key={product.id} data-id={product.id}>
             {product.amount} -{product.name} -{product.total}
-          </div>
+          </List.Content>
         )
       })
       return (
         <>
-          <div
+          <List.Item selection verticalAlign='middle'
             id={`task-${task.id}`}
             key={task.id}
             data-id={task.id}
             data-name={task.user.email}
             data-price={task.total}
           >
-            <div id={`task-${task.id}-user`}>{task.user.email}</div>
-            <div id={`task-${task.id}-products`}>{showProducts}</div>
-            <div id={`task-${task.id}-total`}>{task.total}</div>
-          </div>
+            <List.Content className="taskOwner" id={`task-${task.id}-user`}>{task.user.email}</List.Content>
+              {showProducts}
+            <List.Content className="taskTotal" id={`task-${task.id}-total`}>{task.total}</List.Content>
+            <List.Content className="taskClaim" id={task.id}><Button>Claim</Button></List.Content>
+          </List.Item>
         </>
       )
     })
@@ -71,9 +72,11 @@ const ClaimTask = props => {
   return (
     <>
       {claimButton}
-      <Grid.Column width={14}>{mapDisplay}</Grid.Column>
+      <Grid.Column width={10}>{mapDisplay}</Grid.Column>
       <Grid>
-      <Grid.Column floated='right' width={2} id='request-list'>{requestDisplay}</Grid.Column>
+      <Grid.Column floated='right' width={6} id='request-list'>
+      <List animated divided verticalAlign='middle' className="productList">{requestDisplay}</List>
+        </Grid.Column>
       </Grid>
     </>
   )

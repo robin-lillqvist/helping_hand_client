@@ -4,7 +4,7 @@ import { connect, useDispatch } from 'react-redux'
 
 const MapContainer = props => {
   const dispatch = useDispatch()
-  const style = { width: '80%', height: '50%', align: 'center' }
+  const style = {width: '60%', height: '70%'}
   
   const onMarkerClick = (props, marker, e) => {
     dispatch({ 

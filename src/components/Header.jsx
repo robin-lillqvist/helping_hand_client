@@ -10,11 +10,9 @@ const Header = props => {
   let buttons
   if (authenticated) {
     buttons = (
-      <Grid.Column className='right aligned' width={4}>
         <Button id='Logout' onClick={() => onLogout(dispatch)}>
           Logout
         </Button>
-      </Grid.Column>
     )
   } else {
     buttons = (

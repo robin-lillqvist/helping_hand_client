@@ -18,7 +18,8 @@ const rootReducer = (state = initialState, action) => {
     case actionTypes.SHOW_REQUEST_FORM:
       return {
         ...state,
-        showRequestForm: action.showRequestForm
+        showRequestForm: action.showRequestForm,
+        showHelpMap: false
       };
     case actionTypes.SHOW_ORDER_SUCCESS_MESSAGE:
       return {
@@ -70,10 +71,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.payload,
+        authenticated: action.payload.authenticated,
         userID: action.payload.userID,
         showLogin: false,
         showRegister: false,
         showHelpMap: false,
+        showHero: false
       };
     case actionTypes.LOGOUT:
       return {
@@ -84,7 +87,7 @@ const rootReducer = (state = initialState, action) => {
         taskID: null,
         showLogin: false,
         showRegister: false,
-        authenticate: false,
+        authenticated: false,
         userEmail: undefined,
         userID: undefined,
         message: action.message,
@@ -94,6 +97,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         showHelpMap: true,
+        showRequestForm: false
       };
     case actionTypes.SAVE_REQUESTS:
       return {
