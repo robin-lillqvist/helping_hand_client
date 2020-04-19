@@ -71,9 +71,9 @@ const ClaimTask = props => {
   return (
     <>
       {claimButton}
-      <Grid style={{height: '1000px'}}>
-        <Grid.Column width={14}>{mapDisplay}</Grid.Column>
-        <Grid.Column width={2} id='request-list'>{requestDisplay}</Grid.Column>
+      <Grid.Column width={14}>{mapDisplay}</Grid.Column>
+      <Grid>
+      <Grid.Column floated='right' width={2} id='request-list'>{requestDisplay}</Grid.Column>
       </Grid>
     </>
   )

@@ -3,7 +3,7 @@ import { Grid, Segment } from 'semantic-ui-react'
 
 const Footer = () => {
     return (
-    <Segment style={{ marginTop: '-15px'}}>
+    <Segment style={{ marginTop: '-30px'}}>
       <Grid>
         <Grid.Column textAlign='center'><i class="kickstarter icon"></i><span>Find us on Kickstarter</span></Grid.Column>
       </Grid>
