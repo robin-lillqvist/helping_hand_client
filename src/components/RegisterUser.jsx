@@ -41,13 +41,17 @@ const RegisterUser = (props) => {
               autoComplete="new-password"
             ></input>
           </Form.Field>
-          <Button id="register-button" type="submit">
-            Register
-          </Button>
+          <Container textAlign='center'>
+            <Button id="register-button" type="submit">
+              Register
+            </Button>
+          </Container>
         </Form>
-        <Button onClick={() => dispatch({ type: "CLOSE_REGISTRATION" })}>
-          Close
-        </Button>
+        <Container textAlign='center'>
+          <Button onClick={() => dispatch({ type: "CLOSE_REGISTRATION" })}>
+            Close
+          </Button>
+        </Container>
       </>
     );
   }
