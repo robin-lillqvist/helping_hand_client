@@ -17,9 +17,6 @@ const ClaimTask = props => {
     if (!props.showHelpMap) {
       dispatch({ type: 'SHOW_MAP' })
     }
-    // else {
-    //   dispatch({ type: 'HIDE_MAP' })
-    // }
   }
 
   if (props.showHelpMap) {
@@ -37,22 +34,22 @@ const ClaimTask = props => {
       </Grid>
     )
   }
-//Showing Request list on Help page
+
+  //Showing Request list on Help page
   if (props.showHelpMap) {
     requestDisplay = props.requests.map(task => {
-                  let showProducts
-                  let i = 0
-                  showProducts = task.products.map(product => {
-                    i++;
-                    return (
-                      <div id={`task-product-${i}`} key={product.id} data-id={product.id}>
-                        {product.amount} - 
-                        {product.name} - 
-                        {product.total}
-                      </div>
-                    )
-                    
-                  })
+      let showProducts
+      let i = 0
+      
+      //Iterate over the internal products list and show each product
+      showProducts = task.products.map(product => {
+        i++
+        return (
+          <div id={`task-product-${i}`} key={product.id} data-id={product.id}>
+            {product.amount} -{product.name} -{product.total}
+          </div>
+        )
+      })
       return (
         <>
           <div
@@ -74,8 +71,8 @@ const ClaimTask = props => {
   return (
     <>
       {claimButton}
-      <div id="request-list">{requestDisplay}</div>
-      <div>{mapDisplay}</div>      
+      <div id='request-list'>{requestDisplay}</div>
+      <div>{mapDisplay}</div>
     </>
   )
 }
