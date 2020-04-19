@@ -3,7 +3,6 @@ import { connect, useDispatch } from "react-redux";
 import { Button, Grid } from "semantic-ui-react";
 import DisplayMap from "./DisplayMap";
 import axios from 'axios';
-import { Marker, Map } from "google-maps-react";
 
 const ClaimTask = (props) => {
   let claimButton;
@@ -12,14 +11,13 @@ const ClaimTask = (props) => {
   const dispatch = useDispatch()
   
   const getMap = async () => {
-    let response = await axios.get('/tasks', {status: "confirmed"})
-      dispatch({ type: 'GET_TASKS', payload: response.data })
-      debugger
+    let response = await axios.get('/tasks', { status: "confirmed"} )
+      dispatch({ type: 'SAVE_REQUESTS', payload: response.data })
     if (!props.showHelpMap) {
       dispatch({ type: 'SHOW_MAP'})
     }
     else {
-      dispatch({ type: 'SHOW_MAP'})
+      dispatch({ type: 'HIDE_MAP'})
     }
   }
   if (props.showHelpMap) {

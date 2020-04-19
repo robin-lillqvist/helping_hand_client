@@ -7,14 +7,8 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.payload,
-        showHelpMap: false
+        showHelpMap: false,
       };
-      case actionTypes.GET_TASK:
-        return {
-          ...state,
-          ...action.payload,
-          showHelpMap: false
-        };
     case actionTypes.UPDATE_REQUEST:
       return {
         ...state,
@@ -24,8 +18,7 @@ const rootReducer = (state = initialState, action) => {
     case actionTypes.SHOW_REQUEST_FORM:
       return {
         ...state,
-        showRequestForm: action.showRequestForm,
-        message: "",
+        showRequestForm: action.showRequestForm
       };
     case actionTypes.SHOW_ORDER_SUCCESS_MESSAGE:
       return {
@@ -70,7 +63,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         message: action.payload,
-        showHelpMap: false
+        showHelpMap: false,
       };
     case actionTypes.AUTHENTICATE:
       return {
@@ -79,7 +72,7 @@ const rootReducer = (state = initialState, action) => {
         userID: action.payload.userID,
         showLogin: false,
         showRegister: false,
-        showHelpMap: false
+        showHelpMap: false,
       };
     case actionTypes.LOGOUT:
       return {
@@ -88,19 +81,24 @@ const rootReducer = (state = initialState, action) => {
         showRequestForm: false,
         task: { products: [] },
         taskID: null,
-        message: "",
         showLogin: false,
         showRegister: false,
         authenticate: false,
         userEmail: undefined,
         userID: undefined,
         message: action.message,
-        showHelpMap: false
+        showHelpMap: false,
       };
     case actionTypes.SHOW_MAP:
       return {
         ...state,
-        showHelpMap: true
+        showHelpMap: true,
+      };
+    case actionTypes.SAVE_REQUESTS:
+      return {
+        ...state,
+        showHelpMap: true,
+        requests: action.payload
       };
     default:
       return state;

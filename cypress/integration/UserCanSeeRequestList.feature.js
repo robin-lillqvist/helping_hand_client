@@ -13,8 +13,8 @@ describe("When products are visible", () => {
     });
     cy.route({
       method: "GET",
-      url: "**/products",
-      response: "fixture:products.json",
+      url: "**/tasks",
+      response: "fixture:taskIndex_response.json",
     });
     cy.visit("/");
     cy.get("#login").click();
@@ -25,12 +25,8 @@ describe("When products are visible", () => {
     });
     cy.get("#success-message").should("contain", "Welcome user@mail.com");
   });
-  it("user can successfully create a request", () => {
-    cy.get("button").contains("Create your request").click();
-    cy.get("#product-list").within(() => {
-      cy.contains("Potatoes"); //product
-      cy.contains("98"); //price
-    });
+  it("user can see list of tasks", () => {
+    cy.get("button").contains("Offer help").click();
   });
 });
 
