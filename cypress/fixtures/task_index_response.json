@@ -1,57 +1,110 @@
 [
-    {
-        "id": 1,
-        "products": [
-            {
-                "amount": 2,
-                "name": "Milk",
-                "total": "75.0"
-            },
-            {
-                "amount": 2,
-                "name": "Coca-Cola",
-                "total": "25.0"
-            },
-            {
-                "amount": 1,
-                "name": "Mustard",
-                "total": "25.0"
-            }
-        ],
-        "total": "75.0",
-        "long": "18.0467502",
-        "lat": "59.3482644",
-        "user": {
-            "id": 100,
-            "email": "testuser2@mail.com"
-        }
-    },
-    {
-        "id": 9,
-        "products": [
-            {
-                "amount": 1,
-                "name": "Milk",
-                "total": "75.0"
-            },
-            {
-                "amount": 2,
-                "name": "Bread",
-                "total": "25.0"
-            },
-            {
-                "amount": 2,
-                "name": "Eggs",
-                "total": "15.0"
-            }
-            
-        ],
-        "total": "75.0",
-        "long": "15.5467502",
-        "lat": "56.2482644",
-        "user": {
-            "id": 101,
-            "email": "testuser10@mail.com"
-        }
+  {
+    "id": 1,
+    "products": [
+      {
+        "amount": 2,
+        "name": "Milk",
+        "total": "75.0"
+      },
+      {
+        "amount": 2,
+        "name": "Coca-Cola",
+        "total": "25.0"
+      },
+      {
+        "amount": 1,
+        "name": "Mustard",
+        "total": "25.0"
+      }
+    ],
+    "total": "75.0",
+    "long": "18.0467502",
+    "lat": "59.3482644",
+    "user": {
+      "id": 100,
+      "email": "testuser2@mail.com"
     }
+  },
+  {
+    "id": 2,
+    "products": [
+      {
+        "amount": 2,
+        "name": "Milk",
+        "total": "75.0"
+      },
+      {
+        "amount": 2,
+        "name": "Coca-Cola",
+        "total": "25.0"
+      },
+      {
+        "amount": 1,
+        "name": "Mustard",
+        "total": "25.0"
+      }
+    ],
+    "total": "75.0",
+    "long": "18.0467502",
+    "lat": "59.3482644",
+    "user": {
+      "id": 100,
+      "email": "testuser2@mail.com"
+    }
+  },
+  {
+    "id": 3,
+    "products": [
+      {
+        "amount": 2,
+        "name": "Rice",
+        "total": "75.0"
+      },
+      {
+        "amount": 2,
+        "name": "Coca-Cola",
+        "total": "25.0"
+      },
+      {
+        "amount": 1,
+        "name": "Mustard",
+        "total": "25.0"
+      }
+    ],
+    "total": "129.0",
+    "long": "18.0467502",
+    "lat": "59.3482644",
+    "user": {
+      "id": 100,
+      "email": "testuser2@mail.com"
+    }
+  },
+  {
+    "id": 9,
+    "products": [
+      {
+        "amount": 1,
+        "name": "Milk",
+        "total": "75.0"
+      },
+      {
+        "amount": 2,
+        "name": "Bread",
+        "total": "25.0"
+      },
+      {
+        "amount": 2,
+        "name": "Eggs",
+        "total": "15.0"
+      }
+    ],
+    "total": "75.0",
+    "long": "15.5467502",
+    "lat": "56.2482644",
+    "user": {
+      "id": 101,
+      "email": "testuser10@mail.com"
+    }
+  }
 ]
