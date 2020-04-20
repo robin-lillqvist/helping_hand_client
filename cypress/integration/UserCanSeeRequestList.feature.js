@@ -27,7 +27,7 @@ describe("When there is tasks to be shown", () => {
   });
 
   it("user can see list of tasks", () => {
-    cy.get("button").contains("Offer help").click();
+    cy.get("button").contains("Offer Help").click();
       cy.get("#task-1").within(() => {  
         cy.get('#task-1-user').should("contain","testuser2@mail.com");
         cy.get('#task-product-1').should("contain","Milk");
