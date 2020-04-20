@@ -1,0 +1,19 @@
+.productList {
+
+}
+
+.taskOwner {
+  
+  padding-left: 1rem;
+}
+.taskTotal {
+  padding-left: 1rem;
+}
+.taskProduct {
+  padding-left: 1rem;
+  font-weight: 900;
+}
+.taskClaim {
+  padding-left: 1rem;
+  text-align: center;
+}

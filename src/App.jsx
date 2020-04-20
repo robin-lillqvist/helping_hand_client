@@ -1,21 +1,28 @@
 import React from 'react'
+import './App.css'
 import Header from './components/Header'
 import CreateRequest from './components/CreateRequest'
 import { connect } from 'react-redux'
 import UserLogin from './components/UserLogin'
 import RegisterUser from './components/RegisterUser'
-import ClaimTask from './components/ClaimTask';
-import { Grid } from 'semantic-ui-react'
+import ClaimTask from './components/ClaimTask'
+import HeroImage from './components/HeroImage'
+import Footer from './components/Footer'
+import { Button, Grid } from 'semantic-ui-react'
 
 const App = props => {
   return (
     <>
       <Header />
+      {props.showHero && <HeroImage />}
       <CreateRequest />
       <ClaimTask />
-      {props.showLogin && <UserLogin/>}
-      {props.showRegister && <RegisterUser/>}
-      <Grid.Column align='center' id='success-message'>{props.message}</Grid.Column>
+      {props.showLogin && <UserLogin />}
+      {props.showRegister && <RegisterUser />}
+      <Grid.Column align='center' id='success-message'>
+        {props.message}
+      </Grid.Column>
+      <Footer />
     </>
   )
 }
@@ -27,7 +34,8 @@ const mapStateToProps = state => {
     showLogin: state.showLogin,
     showRegister: state.showRegister,
     message: state.message,
-    showHelpMap: state.showHelpMap
+    showHelpMap: state.showHelpMap,
+    showHero: state.showHero
   }
 }
 export default connect(mapStateToProps)(App)
