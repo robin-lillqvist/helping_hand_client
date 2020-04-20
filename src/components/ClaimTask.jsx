@@ -30,14 +30,13 @@ const ClaimTask = props => {
       )
       if (response.status === 200)
         dispatch({
-          type: 'FLASH_MESSAGE',
-          payload: { premiumUser: true }
+          type: 'GREETING',
+          payload: 'You have claimed the task!'
         })
     } catch (error) {
-      debugger
       dispatch({
-        type: 'ERROR_MESSAGE',
-        payload: { errorMessage: error.message }
+        type: 'GREETING',
+        payload: error.message
       })
     }
   }
