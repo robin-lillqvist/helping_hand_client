@@ -62,7 +62,6 @@ const ClaimTask = props => {
             <List.Content className="taskOwner" id={`task-${task.id}-user`}>{task.user.email}</List.Content>
               {showProducts}
             <List.Content className="taskTotal" id={`task-${task.id}-total`}>{task.total}</List.Content>
-            <List.Content className="taskClaim" id={task.id}><Button>Claim</Button></List.Content>
           </List.Item>
         </>
       )
