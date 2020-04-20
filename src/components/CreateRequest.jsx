@@ -7,9 +7,10 @@ import { Button, List, Container, Grid } from 'semantic-ui-react'
 
 const CreateRequest = props => {
   let productDisplay
-  let requestDisplay
+  let requestProductDisplay
   let createButton
   let confirmButton
+  let displayAddressInput
 
   const dispatch = useDispatch()
 
@@ -85,6 +86,13 @@ const CreateRequest = props => {
   }
 
   if (props.showRequestForm) {
+    displayAddressInput = (
+      <>
+        <input value='write something here'></input>
+        <button>confirm address</button>
+      </>
+    )
+
     productDisplay = props.products.map(product => {
       return (
         <Grid.Column align='center'>
@@ -106,7 +114,7 @@ const CreateRequest = props => {
   }
 
   if (props.task.id) {
-    requestDisplay = props.task.products.map(product => {
+    requestProductDisplay = props.task.products.map(product => {
       return (
         <>
           <Grid.Column align='center'>
@@ -128,11 +136,14 @@ const CreateRequest = props => {
 
   return (
     <>
-      {createButton}
-      <List id='product-list'>{productDisplay}</List>
-      <Container id='request-list'>
-        {requestDisplay} {confirmButton}
-      </Container>
+      <div>
+        {createButton}
+        <Container id='task-address'>{displayAddressInput}</Container>
+        <List id='product-list'>{productDisplay}</List>
+        <Container id='request-list'>
+          {requestProductDisplay} {confirmButton}
+        </Container>
+      </div>
     </>
   )
 }
