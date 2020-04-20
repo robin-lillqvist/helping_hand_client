@@ -1,0 +1,29 @@
+[
+    {
+        "id": 3,
+        "products": [
+            {
+                "amount": 1,
+                "name": "Rice",
+                "total": "129.0"
+            },
+            {
+                "amount": 2,
+                "name": "Milk",
+                "total": "30.0"
+            },
+            {
+                "amount": 2,
+                "name": "Rice",
+                "total": "258.0"
+            }
+        ],
+        "total": "417.0",
+        "long": null,
+        "lat": null,
+        "user": {
+            "id": 4,
+            "email": "user55@mail.com"
+        }
+    }
+]

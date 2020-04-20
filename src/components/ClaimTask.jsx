@@ -95,7 +95,7 @@ const ClaimTask = props => {
             <List.Content className='taskTotal' id={`task-${task.id}-total`}>
               {task.total}
             </List.Content>
-            <Button onClick={claimTask.bind(this)}>Claim task</Button>
+            <Button onClick={claimTask.bind(this)} onClick={() => dispatch({ type: 'GREETING' })}>Claim Task</Button>
           </List.Item>
         </>
       )
@@ -121,7 +121,8 @@ const mapStateToProps = state => {
   return {
     showHelpMap: state.showHelpMap,
     userID: state.userID,
-    requests: state.requests
+    requests: state.requests,
+    message: state.message
   }
 }
 export default connect(mapStateToProps)(ClaimTask)
