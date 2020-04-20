@@ -19,6 +19,28 @@ const ClaimTask = props => {
     }
   }
 
+  const claimTask = async event => {
+    let headers = JSON.parse(localStorage.getItem('J-tockAuth-Storage'))
+    let id = event.target.parentElement.dataset.id
+    try {
+      let response = await axios.put(
+        `/tasks/${id}`,
+        { activity: 'claimed' },
+        { headers: headers }
+      )
+      if (response.status === 200)
+        dispatch({
+          type: 'GREETING',
+          payload: 'You have claimed the task!'
+        })
+    } catch (error) {
+      dispatch({
+        type: 'GREETING',
+        payload: error.message
+      })
+    }
+  }
+
   if (props.showHelpMap) {
     mapDisplay = <DisplayMap />
   }
@@ -40,28 +62,40 @@ const ClaimTask = props => {
     requestDisplay = props.requests.map(task => {
       let showProducts
       let i = 0
-      
+
       //Iterate over the internal products list and show each product
       showProducts = task.products.map(product => {
         i++
         return (
-          <List.Content className="taskProduct" id={`task-product-${i}`} key={product.id} data-id={product.id}>
+          <List.Content
+            className='taskProduct'
+            id={`task-product-${i}`}
+            key={product.id}
+            data-id={product.id}
+          >
             {product.amount} -{product.name} -{product.total}
           </List.Content>
         )
       })
       return (
         <>
-          <List.Item selection verticalAlign='middle'
+          <List.Item
+            selection
+            verticalAlign='middle'
             id={`task-${task.id}`}
             key={task.id}
             data-id={task.id}
             data-name={task.user.email}
             data-price={task.total}
           >
-            <List.Content className="taskOwner" id={`task-${task.id}-user`}>{task.user.email}</List.Content>
-              {showProducts}
-            <List.Content className="taskTotal" id={`task-${task.id}-total`}>{task.total}</List.Content>
+            <List.Content className='taskOwner' id={`task-${task.id}-user`}>
+              {task.user.email}
+            </List.Content>
+            {showProducts}
+            <List.Content className='taskTotal' id={`task-${task.id}-total`}>
+              {task.total}
+            </List.Content>
+            <Button onClick={claimTask.bind(this)}>Claim task</Button>
           </List.Item>
         </>
       )
@@ -73,8 +107,10 @@ const ClaimTask = props => {
       {claimButton}
       <Grid.Column width={10}>{mapDisplay}</Grid.Column>
       <Grid>
-      <Grid.Column floated='right' width={6} id='request-list'>
-      <List animated divided verticalAlign='middle' className="productList">{requestDisplay}</List>
+        <Grid.Column floated='right' width={6} id='request-list'>
+          <List animated divided verticalAlign='middle' className='productList'>
+            {requestDisplay}
+          </List>
         </Grid.Column>
       </Grid>
     </>
