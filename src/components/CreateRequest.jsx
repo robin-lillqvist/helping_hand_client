@@ -4,6 +4,7 @@ import { connect, useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchProducts } from '../state/actions/productActions'
 import { Button, List, Container, Grid } from 'semantic-ui-react'
+import Geocode from 'react-geocode'
 
 const CreateRequest = props => {
   let productDisplay
@@ -20,6 +21,18 @@ const CreateRequest = props => {
       dispatch({ type: 'GET_PRODUCT_LIST', payload: response.data })
     }
     dispatch({ type: 'SHOW_REQUEST_FORM', showRequestForm: true })
+  }
+
+  const getCoordsFromAddress = async () => {
+    Geocode.fromAddress('Eiffel Tower').then(
+      response => {
+        const { lat, lng } = response.results[0].geometry.location
+        console.log(lat, lng)
+      },
+      error => {
+        console.error(error)
+      }
+    )
   }
 
   const addToRequest = async event => {
@@ -88,8 +101,8 @@ const CreateRequest = props => {
   if (props.showRequestForm) {
     displayAddressInput = (
       <>
-        <input value='write something here'></input>
-        <button>confirm address</button>
+        <input placeholder='write something here'></input>
+        <button onClick={"do something here"}>confirm address</button>
       </>
     )
 
