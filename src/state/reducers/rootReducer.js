@@ -20,7 +20,8 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         showRequestForm: action.showRequestForm,
-        showHelpMap: false
+        showHelpMap: false,
+        message: ''
       };
     case actionTypes.SHOW_ORDER_SUCCESS_MESSAGE:
       return {
@@ -98,7 +99,8 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         showHelpMap: true,
-        showRequestForm: false
+        showRequestForm: false,
+        message: ''
       };
     case actionTypes.SAVE_REQUESTS:
       return {

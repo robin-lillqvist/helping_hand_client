@@ -95,13 +95,12 @@ const ClaimTask = props => {
             <List.Content className='taskTotal' id={`task-${task.id}-total`}>
               {task.total}
             </List.Content>
-            <Button onClick={claimTask.bind(this)} onClick={() => dispatch({ type: 'GREETING' })}>Claim Task</Button>
+            <Button onClick={claimTask.bind(this)}>Claim Task</Button>
           </List.Item>
         </>
       )
     })
   }
-
   return (
     <>
       {claimButton}
@@ -116,7 +115,6 @@ const ClaimTask = props => {
     </>
   )
 }
-
 const mapStateToProps = state => {
   return {
     showHelpMap: state.showHelpMap,
