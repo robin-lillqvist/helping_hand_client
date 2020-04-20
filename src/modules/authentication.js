@@ -46,7 +46,6 @@ const onRegister = (event, dispatch) => {
         "J-tockAuth-Storage",
         JSON.stringify(response.headers)
       )
-      debugger
       dispatch({
         type: "AUTHENTICATE",
         payload: {

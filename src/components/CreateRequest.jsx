@@ -23,7 +23,6 @@ const CreateRequest = props => {
 
   const addToRequest = async event => {
     let headers = JSON.parse(localStorage.getItem('J-tockAuth-Storage'))
-    debugger
     let id = event.target.parentElement.dataset.id
     let response
     if (props.task.id) {
@@ -46,7 +45,6 @@ const CreateRequest = props => {
         },
         { headers: headers }
       )
-      debugger
     }
     dispatch({ type: 'UPDATE_REQUEST', payload: response.data.task })
   }
