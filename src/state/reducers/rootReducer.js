@@ -66,7 +66,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         message: action.payload,
-        showHelpMap: false,
       };
     case actionTypes.AUTHENTICATE:
       return {
@@ -92,7 +91,7 @@ const rootReducer = (state = initialState, action) => {
         userEmail: undefined,
         userID: undefined,
         message: action.message,
-        showHelpMap: false,
+        showHelpMap: false
       };
     case actionTypes.SHOW_MAP:
       return {
