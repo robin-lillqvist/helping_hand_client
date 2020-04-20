@@ -41,6 +41,12 @@ const onRegister = (event, dispatch) => {
       password_confirmation: event.target.elements.password_confirmation.value,
     })
     .then((response) => {
+
+      localStorage.setItem(
+        "J-tockAuth-Storage",
+        JSON.stringify(response.headers)
+      )
+      debugger
       dispatch({
         type: "AUTHENTICATE",
         payload: {
