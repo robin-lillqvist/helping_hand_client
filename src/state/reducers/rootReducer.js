@@ -8,6 +8,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         ...action.payload,
         showHelpMap: false,
+        message: false
       };
     case actionTypes.UPDATE_REQUEST:
       return {
