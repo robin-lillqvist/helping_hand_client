@@ -6,6 +6,8 @@ import { fetchProducts } from '../state/actions/productActions'
 import { Button, List, Container, Grid } from 'semantic-ui-react'
 import Geocode from 'react-geocode'
 
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY)
+
 const CreateRequest = props => {
   let productDisplay
   let requestProductDisplay
@@ -23,10 +25,15 @@ const CreateRequest = props => {
     dispatch({ type: 'SHOW_REQUEST_FORM', showRequestForm: true })
   }
 
+  const onChangeHandler = event => {
+    dispatch({ type: 'SET_ADDRESS', payload: event.target.value })
+  }
+
   const getCoordsFromAddress = async () => {
-    Geocode.fromAddress('Eiffel Tower').then(
+    Geocode.fromAddress(props.requesterAddress).then(
       response => {
         const { lat, lng } = response.results[0].geometry.location
+        dispatch({ type: 'SET_COORDS', position: { lat, lng } })
         console.log(lat, lng)
       },
       error => {
@@ -54,8 +61,8 @@ const CreateRequest = props => {
         {
           product_id: id,
           user_id: props.userID,
-          lat: '56.2482644',
-          long: '15.5467502'
+          lat: props.position.lat,
+          long: props.position.lng
         },
         { headers: headers }
       )
@@ -101,8 +108,13 @@ const CreateRequest = props => {
   if (props.showRequestForm) {
     displayAddressInput = (
       <>
-        <input placeholder='write something here'></input>
-        <button onClick={"do something here"}>confirm address</button>
+        <input
+          onChange={onChangeHandler.bind(this)}
+          placeholder='write something here'
+        ></input>
+        <button onClick={getCoordsFromAddress.bind(this)}>
+          confirm address
+        </button>
       </>
     )
 
@@ -174,7 +186,9 @@ const mapStateToProps = state => {
     task: state.task,
     taskProducts: state.taskProducts,
     message: state.message,
-    userID: state.userID
+    userID: state.userID,
+    requesterAddress: state.requesterAddress,
+    position: state.position
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreateRequest)
