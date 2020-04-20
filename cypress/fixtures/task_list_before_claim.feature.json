@@ -1,0 +1,26 @@
+[
+  {
+    "id": 14,
+    "products": [
+      { "amount": 2, "name": "Milk", "total": "30.0" },
+      { "amount": 2, "name": "Eggs", "total": "138.0" },
+      { "amount": 2, "name": "Rice", "total": "258.0" }
+    ],
+    "total": "426.0",
+    "long": "15.5467502",
+    "lat": "56.2482644",
+    "user": { "id": 12, "email": "robin@mail.com" }
+  },
+  {
+    "id": 15,
+    "products": [
+      { "amount": 3, "name": "Milk", "total": "45.0" },
+      { "amount": 1, "name": "Eggs", "total": "69.0" },
+      { "amount": 2, "name": "Rice", "total": "258.0" }
+    ],
+    "total": "372.0",
+    "long": "15.5467502",
+    "lat": "56.2482644",
+    "user": { "id": 17, "email": "robin2@mail.com" }
+  }
+]

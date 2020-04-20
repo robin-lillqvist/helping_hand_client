@@ -20,7 +20,8 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         showRequestForm: action.showRequestForm,
-        showHelpMap: false
+        showHelpMap: false,
+        message: ''
       };
     case actionTypes.SHOW_ORDER_SUCCESS_MESSAGE:
       return {
@@ -66,7 +67,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         message: action.payload,
-        showHelpMap: false,
       };
     case actionTypes.AUTHENTICATE:
       return {
@@ -93,12 +93,14 @@ const rootReducer = (state = initialState, action) => {
         userID: undefined,
         message: action.message,
         showHelpMap: false,
+        showHero: true
       };
     case actionTypes.SHOW_MAP:
       return {
         ...state,
         showHelpMap: true,
-        showRequestForm: false
+        showRequestForm: false,
+        message: ''
       };
     case actionTypes.SAVE_REQUESTS:
       return {

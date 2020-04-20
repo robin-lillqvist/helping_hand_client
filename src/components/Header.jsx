@@ -10,9 +10,9 @@ const Header = props => {
   let buttons
   if (authenticated) {
     buttons = (
-        <Button id='Logout' onClick={() => onLogout(dispatch)}>
-          Logout
-        </Button>
+      <Button id='Logout' onClick={() => onLogout(dispatch)}>
+        Logout
+      </Button>
     )
   } else {
     buttons = (
@@ -40,6 +40,7 @@ const Header = props => {
         <Grid.Column className='left aligned eight wide column'>
           <h1 className='title'>Helping Hand</h1>
         </Grid.Column>
+
         <Grid.Column className='right aligned eight wide column'>
           {buttons}
         </Grid.Column>

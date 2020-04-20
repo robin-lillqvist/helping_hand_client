@@ -8,21 +8,21 @@ import RegisterUser from './components/RegisterUser'
 import ClaimTask from './components/ClaimTask'
 import HeroImage from './components/HeroImage'
 import Footer from './components/Footer'
-import { Button, Grid } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 
 const App = props => {
   return (
     <>
       <Header />
+      <Grid.Column align='center' id='success-message'>
+        {props.message}
+      </Grid.Column>
       {props.showHero && <HeroImage />}
       <CreateRequest />
       <ClaimTask />
       {props.showLogin && <UserLogin />}
       {props.showRegister && <RegisterUser />}
-      <Grid.Column align='center' id='success-message'>
-        {props.message}
-      </Grid.Column>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
