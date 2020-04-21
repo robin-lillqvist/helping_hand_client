@@ -1,6 +1,5 @@
 describe("User can submit destination", () => {
   beforeEach(() => {
-    cy.viewport("iphone-x");
     cy.server();
     cy.route({
       method: "GET",
@@ -34,10 +33,10 @@ describe("User can submit destination", () => {
       url: "**/tasks/1",
       response: "fixture:task_list_updated_total.json",
     });
-    // cy.get("#product-1").within(() => {
-    cy.get("button#1").should("exist");
-    cy.get("button#1").click();
-    // });
+    cy.get("#product-1").within(() => {
+      cy.get("button#1").should("exist");
+      cy.get("button#1").click();
+    });
     cy.get("#request-list").within(() => {
       cy.get("#Potatoes").should("contain", "1 x Potatoes");
       cy.get("#orderTotal").should("contain", "98.0");
@@ -100,7 +99,7 @@ describe("User can submit destination", () => {
       response: "fixture:task_list_4_items_updated_total.json",
     });
     cy.get("#product-6").within(() => {
-      for (var i = 1; i < 6; i++) {
+      for (let i = 1; i < 6; i++) {
         cy.get("button#6").click();
       }
     });
