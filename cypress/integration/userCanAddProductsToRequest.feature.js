@@ -2,16 +2,6 @@ describe("When products are visible", () => {
   before(() => {
     cy.server();
     cy.route({
-      method: "POST",
-      url: "**/auth/sign_in",
-      response: "fixture:login.json",
-    });
-    cy.route({
-      method: "GET",
-      url: "**/auth/validate_token",
-      response: "fixture:login.json",
-    });
-    cy.route({
       method: "GET",
       url: "**/products",
       response: "fixture:products.json",
@@ -26,14 +16,7 @@ describe("When products are visible", () => {
       url: "**/tasks/1",
       response: "fixture:task_list_update_response.json",
     });
-    cy.visit("/");
-    cy.get("#login").click();
-    cy.get("#login-form").within(() => {
-      cy.get("#email").type("user@mail.com");
-      cy.get("#password").type("password");
-      cy.get("#login-button").contains("Login").click();
-    });
-    cy.get("#success-message").should("contain", "Welcome user@mail.com");
+    cy.login();
   });
 
   it("user can successfully add products", () => {

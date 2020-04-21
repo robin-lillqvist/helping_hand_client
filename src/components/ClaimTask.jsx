@@ -63,39 +63,35 @@ const ClaimTask = props => {
       let showProducts
       let i = 0
 
-      //Iterate over the internal products list and show each product
-      showProducts = task.products.map(product => {
-        i++
-        return (
-          <List.Content
-            className='taskProduct'
-            id={`task-product-${i}`}
-            key={product.id}
-            data-id={product.id}
-          >
-            {product.amount} -{product.name} -{product.total}
-          </List.Content>
-        )
-      })
+                //Iterate over the internal products list and show each product
+                showProducts = task.products.map(product => {
+                  i++
+                  return (
+                    <List.Content
+                      className='taskProduct'
+                      id={`task-product-${i}`}
+                      key={`task-product-${i}`}
+                      data-id={product.id}
+                    >{product.amount} {product.name} {product.total}
+                    </List.Content>
+                  )
+                })
       return (
         <>
           <List.Item
-            selection
-            verticalAlign='middle'
             id={`task-${task.id}`}
-            key={task.id}
+            key={`task-${task.id}`}
             data-id={task.id}
             data-name={task.user.email}
             data-price={task.total}
-          >
-            <List.Content className='taskOwner' id={`task-${task.id}-user`}>
+          ><List.Content className='taskOwner' key={`task-${task.id}-user`} id={`task-${task.id}-user`}>
               {task.user.email}
             </List.Content>
             {showProducts}
-            <List.Content className='taskTotal' id={`task-${task.id}-total`}>
+            <List.Content className='taskTotal' key={`task-${task.id}-total`} id={`task-${task.id}-total`}>
               {task.total}
             </List.Content>
-            <Button onClick={claimTask.bind(this)}>Claim Task</Button>
+            <Button id={`task${task.id}-button`} key={`task-${task.id}-button`} onClick={claimTask.bind(this)}>Claim Task</Button>
           </List.Item>
         </>
       )
@@ -107,7 +103,7 @@ const ClaimTask = props => {
       <Grid.Column width={10}>{mapDisplay}</Grid.Column>
       <Grid>
         <Grid.Column floated='right' width={6} id='request-list'>
-          <List animated divided verticalAlign='middle' className='productList'>
+          <List animated divided className='productList'>
             {requestDisplay}
           </List>
         </Grid.Column>

@@ -2,28 +2,11 @@ describe("When there is tasks to be shown", () => {
   before(() => {
     cy.server();
     cy.route({
-      method: "POST",
-      url: "**/auth/sign_in",
-      response: "fixture:login.json",
-    });
-    cy.route({
-      method: "GET",
-      url: "**/auth/validate_token",
-      response: "fixture:login.json",
-    });
-    cy.route({
       method: "GET",
       url: "**/tasks",
       response: "fixture:task_index_response.json",
     });
-    cy.visit("/");
-    cy.get("#login").click();
-    cy.get("#login-form").within(() => {
-      cy.get("#email").type("user@mail.com");
-      cy.get("#password").type("password");
-      cy.get("#login-button").contains("Login").click();
-    });
-    cy.get("#success-message").should("contain", "Welcome user@mail.com");
+    cy.login();
   });
 
   it("user can see list of tasks", () => {

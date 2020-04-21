@@ -1,0 +1,68 @@
+{
+  "results": [
+    {
+      "address_components": [
+        {
+          "long_name": "4",
+          "short_name": "4",
+          "types": ["street_number"]
+        },
+        {
+          "long_name": "Pendlargatan",
+          "short_name": "Pendlargatan",
+          "types": ["route"]
+        },
+        {
+          "long_name": "Älvsjö",
+          "short_name": "Älvsjö",
+          "types": ["political", "sublocality", "sublocality_level_1"]
+        },
+        {
+          "long_name": "Älvsjö",
+          "short_name": "Älvsjö",
+          "types": ["postal_town"]
+        },
+        {
+          "long_name": "Stockholms län",
+          "short_name": "Stockholms län",
+          "types": ["administrative_area_level_1", "political"]
+        },
+        {
+          "long_name": "Sweden",
+          "short_name": "SE",
+          "types": ["country", "political"]
+        },
+        {
+          "long_name": "125 31",
+          "short_name": "125 31",
+          "types": ["postal_code"]
+        }
+      ],
+      "formatted_address": "Pendlargatan 4, 125 31 Älvsjö, Sweden",
+      "geometry": {
+        "location": {
+          "lat": 59.2792631,
+          "lng": 18.0105456
+        },
+        "location_type": "ROOFTOP",
+        "viewport": {
+          "northeast": {
+            "lat": 59.2806120802915,
+            "lng": 18.0118945802915
+          },
+          "southwest": {
+            "lat": 59.27791411970849,
+            "lng": 18.0091966197085
+          }
+        }
+      },
+      "place_id": "ChIJ4ef7mw53X0YRuDXLuzTprWY",
+      "plus_code": {
+        "compound_code": "72H6+P6 Älvsjö, Sweden",
+        "global_code": "9FFW72H6+P6"
+      },
+      "types": ["street_address"]
+    }
+  ],
+  "status": "OK"
+}

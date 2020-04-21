@@ -34,10 +34,17 @@ const CreateRequest = props => {
       response => {
         const { lat, lng } = response.results[0].geometry.location
         dispatch({ type: 'SET_COORDS', position: { lat, lng } })
-        console.log(lat, lng)
+        dispatch({ type: 'GREETING', payload: 'Your address is confirmed' })
       },
       error => {
-        console.error(error)
+        dispatch({
+          type: 'SET_COORDS',
+          position: { lat: undefined, lng: undefined }
+        })
+        dispatch({
+          type: 'GREETING',
+          payload: 'Your address could not be confirmed'
+        })
       }
     )
   }
@@ -109,10 +116,11 @@ const CreateRequest = props => {
     displayAddressInput = (
       <>
         <input
+          id='addressInput'
           onChange={onChangeHandler.bind(this)}
           placeholder='write something here'
         ></input>
-        <button onClick={getCoordsFromAddress.bind(this)}>
+        <button id='addressConfirm' onClick={getCoordsFromAddress.bind(this)}>
           confirm address
         </button>
       </>
@@ -120,7 +128,7 @@ const CreateRequest = props => {
 
     productDisplay = props.products.map(product => {
       return (
-        <Grid.Column align='center'>
+        <Grid.Column key={`${product.id}`} align='center'>
           <List
             id={`product-${product.id}`}
             key={product.id}
@@ -129,9 +137,13 @@ const CreateRequest = props => {
             data-price={product.price}
           >
             {product.name} {product.price}
-            <Button key={product.id} onClick={addToRequest.bind(this)}>
-              Add
-            </Button>
+            {props.position.lat !== null ? (
+              <Button key={product.id} onClick={addToRequest.bind(this)}>
+                Add
+              </Button>
+            ) : (
+              <></>
+            )}
           </List>
         </Grid.Column>
       )
