@@ -1,5 +1,6 @@
 describe("User can submit destination", () => {
   beforeEach(() => {
+    cy.viewport("iphone-x");
     cy.server();
     cy.route({
       method: "GET",
@@ -34,18 +35,17 @@ describe("User can submit destination", () => {
       response: "fixture:task_list_updated_total.json",
     });
     // cy.get("#product-1").within(() => {
-      cy.get("button#1").should("exist");
-      cy.get("button#1").click();
+    cy.get("button#1").should("exist");
+    cy.get("button#1").click();
     // });
     cy.get("#request-list").within(() => {
       cy.get("#Potatoes").should("contain", "1 x Potatoes");
       cy.get("#orderTotal").should("contain", "98.0");
     });
     cy.get("#product-6").within(() => {
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
+      for (var i = 1; i < 5; i++) {
+        cy.get("button#6").click();
+      }
     });
     cy.route({
       method: "PUT",
@@ -99,20 +99,22 @@ describe("User can submit destination", () => {
       url: "**/tasks/1",
       response: "fixture:task_list_4_items_updated_total.json",
     });
-    // cy.get("#product-6").within(() => {
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-    // });
+    cy.get("#product-6").within(() => {
+      for (var i = 1; i < 6; i++) {
+        cy.get("button#6").click();
+      }
+    });
     cy.route({
       method: "PUT",
       url: "**/tasks/1",
       response: "fixture:task_confirmation_too_few_items_response.json",
-      status: 403
+      status: 403,
     });
     cy.get("#confirm-task").click();
-    cy.get("#success-message").should("contain","You have to pick at least 5 products.");
+    cy.get("#success-message").should(
+      "contain",
+      "You have to pick at least 5 products."
+    );
   });
 
   it("Unsuccessfully - too many items", () => {
@@ -126,7 +128,6 @@ describe("User can submit destination", () => {
       },
     });
     cy.get("#create-request").click();
-    cy.get("#product-1").should("not.exist");
     cy.get("#addressInput").type("Rome");
     cy.get("#addressConfirm").click();
     cy.route({
@@ -134,57 +135,21 @@ describe("User can submit destination", () => {
       url: "**/tasks/1",
       response: "fixture:task_list_41_items_updated_total.json",
     });
-    // cy.get("#product-6").within(() => {
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-      cy.get("button#6").click();
-    // });
+    cy.get("#product-6").within(() => {
+      for (var i = 1; i < 42; i++) {
+        cy.get("button#6").click();
+      }
+    });
     cy.route({
       method: "PUT",
       url: "**/tasks/1",
       response: "fixture:task_confirmation_too_many_items_response.json",
-      status: 403
+      status: 403,
     });
     cy.get("#confirm-task").click();
-    cy.get("#success-message").should("contain","You have selected too many products.");
+    cy.get("#success-message").should(
+      "contain",
+      "You have selected too many products."
+    );
   });
-
 });

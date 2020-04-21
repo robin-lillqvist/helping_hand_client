@@ -144,7 +144,7 @@ const CreateRequest = props => {
     if (props.position.lat) {
       productDisplay = props.products.map(product => {
         return (
-          <Grid.Column key={`${product.id}`} align='center'>
+          <Grid.Column key={product.id} align='center'>
             <List
               id={`product-${product.id}`}
               key={`product-${product.id}`}
