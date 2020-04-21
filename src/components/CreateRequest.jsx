@@ -81,26 +81,34 @@ const CreateRequest = props => {
 
   const submitTask = async event => {
     let headers = JSON.parse(localStorage.getItem('J-tockAuth-Storage'))
-    let response
     if (props.task.id) {
-      response = await axios.put(
-        `/tasks/${props.task.id}`,
-        {
-          activity: 'confirmed',
-          user_id: props.userID
-        },
-        { headers: headers }
-      )
+      try {
+        let response = await axios.put(
+          `/tasks/${props.task.id}`,
+          {
+            activity: 'confirmed',
+            user_id: props.userID
+          },
+          { headers: headers }
+        )
+        debugger
+        dispatch({
+          type: 'GREETING',
+          payload: response.data.message
+        })
+        dispatch({
+          type: 'RESET_PAGE',
+          showRequestForm: false,
+          task: { products: [] }
+        })
+      } catch (error) {
+        debugger
+        dispatch({
+          type: 'GREETING',
+          payload: error.response.data.error_message
+        })
+      }
     }
-    dispatch({
-      type: 'GREETING',
-      payload: response.data.message
-    })
-    dispatch({
-      type: 'RESET_PAGE',
-      showRequestForm: false,
-      task: { products: [] }
-    })
   }
 
   if (props.userID) {
@@ -172,7 +180,7 @@ const CreateRequest = props => {
     confirmButton = (
       <>
         <Grid.Column align='center'>
-          <div id="orderTotal">{props.task.total}</div>
+          <div id='orderTotal'>{props.task.total}</div>
           <Button id='confirm-task' onClick={submitTask.bind(this)}>
             Place Order
           </Button>
