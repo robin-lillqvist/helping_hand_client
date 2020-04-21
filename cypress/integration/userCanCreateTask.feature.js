@@ -118,7 +118,7 @@ describe("User can submit destination", () => {
   it("Unsuccessfully - too many items", () => {
     cy.route({
       method: "GET",
-      url: "https://maps.google.com/maps/api/geocode/json?**",
+      url: "https://maps.googleapis.com/maps/api/geocode/json?**",
       response: "fixture:address_to_coords_bad_address_response.json",
       params: {
         address: "Rome",

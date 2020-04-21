@@ -91,7 +91,6 @@ const CreateRequest = props => {
           },
           { headers: headers }
         )
-        debugger
         dispatch({
           type: 'GREETING',
           payload: response.data.message
@@ -102,7 +101,6 @@ const CreateRequest = props => {
           task: { products: [] }
         })
       } catch (error) {
-        debugger
         dispatch({
           type: 'GREETING',
           payload: error.response.data.error_message
@@ -149,13 +147,14 @@ const CreateRequest = props => {
           <Grid.Column key={`${product.id}`} align='center'>
             <List
               id={`product-${product.id}`}
-              key={product.id}
+              key={`product-${product.id}`}
+              data-cy={`product-${product.id}`}
               data-id={product.id}
               data-name={product.name}
               data-price={product.price}
             >
               {product.name} {product.price}
-              <Button key={product.id} onClick={addToRequest.bind(this)}>
+              <Button id={product.id} key={product.id} onClick={addToRequest.bind(this)}>
                 Add
               </Button>
             </List>
