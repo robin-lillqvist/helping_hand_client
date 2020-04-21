@@ -17,7 +17,7 @@ describe("User can submit destination", () => {
   it("Successfully", () => {
     cy.route({
       method: "GET",
-      url: "https://maps.googleapis.com/maps/api/geocode/json?**",
+      url: "https://maps.google.com/maps/api/geocode/json?**",
       response: "fixture:address_to_coords_response.json",
       params: {
         address: "Rome",
@@ -62,8 +62,8 @@ describe("User can submit destination", () => {
   it("Unsuccessfully - Bad address", () => {
     cy.route({
       method: "GET",
-      url: "https://maps.googleapis.com/maps/api/geocode/json?**",
-      response: "fixture:address_to_coords_bad_address_response.json",
+      url: "https://maps.google.com/maps/api/geocode/json?**",
+      response: "fixture:address_to_coords_response.json",
       params: {
         address: "kjfhjgfjhgfjhf",
         key: process.env.REACT_APP_GOOGLE_APIKEY,
@@ -83,7 +83,7 @@ describe("User can submit destination", () => {
   it("Unsuccessfully - too few items", () => {
     cy.route({
       method: "GET",
-      url: "https://maps.googleapis.com/maps/api/geocode/json?**",
+      url: "https://maps.google.com/maps/api/geocode/json?**",
       response: "fixture:address_to_coords_bad_address_response.json",
       params: {
         address: "Rome",
@@ -118,7 +118,7 @@ describe("User can submit destination", () => {
   it("Unsuccessfully - too many items", () => {
     cy.route({
       method: "GET",
-      url: "https://maps.googleapis.com/maps/api/geocode/json?**",
+      url: "https://maps.google.com/maps/api/geocode/json?**",
       response: "fixture:address_to_coords_bad_address_response.json",
       params: {
         address: "Rome",
