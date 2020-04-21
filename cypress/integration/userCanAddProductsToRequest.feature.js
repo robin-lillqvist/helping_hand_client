@@ -20,7 +20,19 @@ describe("When products are visible", () => {
   });
 
   it("user can successfully add products", () => {
-    cy.get("button").contains("Create your request").click();
+    cy.route({
+      method: "GET",
+      url: "https://maps.googleapis.com/maps/api/geocode/json?**",
+      response: "fixture:address_to_coords_bad_address_response.json",
+      params: {
+        address: "Rome",
+        key: process.env.REACT_APP_GOOGLE_APIKEY,
+      },
+    });
+    cy.get("#create-request").click();
+    cy.get("#product-1").should("not.exist");
+    cy.get("#addressInput").type("Rome");
+    cy.get("#addressConfirm").click();
     cy.get("#product-1").within(() => {
       cy.contains("Potatoes"); //product
       cy.contains("98"); //price
