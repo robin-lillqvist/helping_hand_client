@@ -33,19 +33,19 @@ describe("User can submit destination", () => {
       url: "**/tasks/1",
       response: "fixture:task_list_updated_total.json",
     });
-    cy.get("#product-1").within(() => {
-      cy.get("button").should("exist");
-      cy.get("button").click();
-    });
+    // cy.get("#product-1").within(() => {
+      cy.get("button#1").should("exist");
+      cy.get("button#1").click();
+    // });
     cy.get("#request-list").within(() => {
       cy.get("#Potatoes").should("contain", "1 x Potatoes");
       cy.get("#orderTotal").should("contain", "98.0");
     });
     cy.get("#product-6").within(() => {
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
     });
     cy.route({
       method: "PUT",
@@ -99,12 +99,12 @@ describe("User can submit destination", () => {
       url: "**/tasks/1",
       response: "fixture:task_list_4_items_updated_total.json",
     });
-    cy.get("#product-6").within(() => {
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-    });
+    // cy.get("#product-6").within(() => {
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+    // });
     cy.route({
       method: "PUT",
       url: "**/tasks/1",
@@ -134,49 +134,49 @@ describe("User can submit destination", () => {
       url: "**/tasks/1",
       response: "fixture:task_list_41_items_updated_total.json",
     });
-    cy.get("#product-6").within(() => {
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-      cy.get("button").click();
-    });
+    // cy.get("#product-6").within(() => {
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+      cy.get("button#6").click();
+    // });
     cy.route({
       method: "PUT",
       url: "**/tasks/1",
