@@ -30,10 +30,11 @@ describe("When products are visible", () => {
       },
     });
     cy.get("#create-request").click();
-    cy.get("#Potatoes").should("not.exist");
+    cy.get("#product-1").should("not.exist");
     cy.get("#addressInput").type("Rome");
     cy.get("#addressConfirm").click();
-    cy.get("#Potatoes").within(() => {
+    cy.wait(1000)
+    cy.get("#product-1").within(() => {
       cy.contains("Potatoes"); //product
       cy.contains("98"); //price
       cy.get("button").should("contain", "Add").click();
@@ -41,7 +42,7 @@ describe("When products are visible", () => {
     cy.get("#request-list").within(() => {
       cy.contains("Potatoes"); //product
     });
-    cy.get("#Shampoo").within(() => {
+    cy.get("#product-2").within(() => {
       cy.contains("Shampoo"); //product
       cy.contains("130"); //price
       cy.get("button").should("contain", "Add").click();

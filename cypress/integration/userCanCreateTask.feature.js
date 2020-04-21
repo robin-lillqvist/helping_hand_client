@@ -25,15 +25,16 @@ describe("User can submit destination", () => {
       },
     });
     cy.get("#create-request").click();
-    cy.get("#Potatoes").should("not.exist");
+    cy.get("#product-1").should("not.exist");
     cy.get("#addressInput").type("Rome");
     cy.get("#addressConfirm").click();
+    cy.wait(1000);
     cy.route({
       method: "PUT",
       url: "**/tasks/1",
       response: "fixture:task_list_updated_total.json",
     });
-    cy.get("#Potatoes").within(() => {
+    cy.get("#product-1").within(() => {
       cy.get("button#1").should("exist");
       cy.get("button#1").click();
     });
@@ -41,7 +42,7 @@ describe("User can submit destination", () => {
       cy.get("#Potatoes").should("contain", "1 x Potatoes");
       cy.get("#orderTotal").should("contain", "98.0");
     });
-    cy.get("#Butter").within(() => {
+    cy.get("#product-6").within(() => {
       for (var i = 1; i < 5; i++) {
         cy.get("button#6").click();
       }
@@ -72,7 +73,7 @@ describe("User can submit destination", () => {
     cy.get("#product-1").should("not.exist");
     cy.get("#addressInput").type("kjfhjgfjhgfjhf");
     cy.get("#addressConfirm").click();
-
+    cy.wait(1000);
     cy.get("#success-message").should(
       "contain",
       "Your address could not be confirmed"
@@ -90,15 +91,16 @@ describe("User can submit destination", () => {
       },
     });
     cy.get("#create-request").click();
-    cy.get("#Potatoes").should("not.exist");
+    cy.get("#product-1").should("not.exist");
     cy.get("#addressInput").type("Rome");
     cy.get("#addressConfirm").click();
+    cy.wait(1000);
     cy.route({
       method: "PUT",
       url: "**/tasks/1",
       response: "fixture:task_list_4_items_updated_total.json",
     });
-    cy.get("#Butter").within(() => {
+    cy.get("#product-6").within(() => {
       for (let i = 1; i < 6; i++) {
         cy.get("button#6").click();
       }
@@ -129,12 +131,13 @@ describe("User can submit destination", () => {
     cy.get("#create-request").click();
     cy.get("#addressInput").type("Rome");
     cy.get("#addressConfirm").click();
+    cy.wait(1000);
     cy.route({
       method: "PUT",
       url: "**/tasks/1",
       response: "fixture:task_list_41_items_updated_total.json",
     });
-    cy.get("#Butter").within(() => {
+    cy.get("#product-6").within(() => {
       for (var i = 1; i < 42; i++) {
         cy.get("button#6").click();
       }

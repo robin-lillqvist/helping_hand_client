@@ -146,9 +146,9 @@ const CreateRequest = props => {
         return (
           <Grid.Column key={product.id} align='center'>
             <List
-              id={product.name}
-              key={product.name}
-              data-cy={product.name}
+              id={`product-${product.id}`}
+              key={`product-${product.id}`}
+              data-cy={`product-${product.id}`}
               data-id={product.id}
               data-name={product.name}
               data-price={product.price}
