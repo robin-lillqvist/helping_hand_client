@@ -23,12 +23,6 @@ const rootReducer = (state = initialState, action) => {
         showHelpMap: false,
         message: ''
       };
-    case actionTypes.SHOW_ORDER_SUCCESS_MESSAGE:
-      return {
-        ...state,
-        showSuccessMessage: action.showSuccessMessage,
-        message: action.message,
-      };
     case actionTypes.RESET_PAGE:
       return {
         ...state,

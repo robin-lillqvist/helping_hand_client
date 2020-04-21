@@ -11,11 +11,6 @@ describe("User can submit destination", () => {
       url: "**/tasks",
       response: "fixture:task_list_response.json",
     });
-    cy.route({
-      method: "PUT",
-      url: "**/tasks/1",
-      response: "fixture:task_list_update_response.json",
-    });
     cy.login();
   });
 
@@ -31,13 +26,34 @@ describe("User can submit destination", () => {
       },
     });
     cy.get("#create-request").click();
-    cy.get("#product-1").within(() => {
-      cy.get('button').should('not.exist');
-    });
+    cy.get("#product-1").should("not.exist");
     cy.get("#addressInput").type("Rome");
     cy.get("#addressConfirm").click();
-    cy.get("#product-1").within(() => {
-      cy.get('button').should('exist');
+    cy.route({
+      method: "PUT",
+      url: "**/tasks/1",
+      response: "fixture:task_list_updated_total.json",
     });
+    cy.get("#product-1").within(() => {
+      cy.get("button").should("exist");
+      cy.get("button").click();
+    });
+    cy.get("#request-list").within(() => {
+      cy.get("#Potatoes").should('contain','1 x Potatoes')
+      cy.get("#orderTotal").should('contain','98.0')
+    });
+    cy.get("#product-6").within(() => {
+      cy.get("button").click();
+      cy.get("button").click();
+      cy.get("button").click();
+      cy.get("button").click();
+    });
+    cy.route({
+      method: "PUT",
+      url: "**/tasks/1",
+      response: "fixture:task_confirmation_response.json",
+    });
+    cy.get("#confirm-task").click();
+    cy.get("#success-message").should("contain", "Your task has been confirmed");
   });
 });

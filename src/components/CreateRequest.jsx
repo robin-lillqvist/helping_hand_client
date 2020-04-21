@@ -3,7 +3,7 @@ import axios from 'axios'
 import { connect, useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchProducts } from '../state/actions/productActions'
-import { Button, List, Container, Grid } from 'semantic-ui-react'
+import { Button, List, Container, Grid, Input } from 'semantic-ui-react'
 import Geocode from 'react-geocode'
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY)
@@ -62,6 +62,7 @@ const CreateRequest = props => {
         },
         { headers: headers }
       )
+      dispatch({ type: 'GREETING', payload: response.data.message })
     } else {
       response = await axios.post(
         '/tasks',
@@ -73,6 +74,7 @@ const CreateRequest = props => {
         },
         { headers: headers }
       )
+      dispatch({ type: 'GREETING', payload: response.data.message })
     }
     dispatch({ type: 'UPDATE_REQUEST', payload: response.data.task })
   }
@@ -90,11 +92,12 @@ const CreateRequest = props => {
         { headers: headers }
       )
     }
+    debugger
     dispatch({
-      type: 'SHOW_ORDER_SUCCESS_MESSAGE',
-      showSuccessMessage: true,
-      message: response.data.message
+      type: 'GREETING',
+      payload: response.data.message
     })
+    debugger
     dispatch({
       type: 'RESET_PAGE',
       showRequestForm: false,
@@ -115,39 +118,45 @@ const CreateRequest = props => {
   if (props.showRequestForm) {
     displayAddressInput = (
       <>
-        <input
-          id='addressInput'
-          onChange={onChangeHandler.bind(this)}
-          placeholder='write something here'
-        ></input>
-        <button id='addressConfirm' onClick={getCoordsFromAddress.bind(this)}>
-          confirm address
-        </button>
+        <Grid.Column key='addressInputGrid' align='center'>
+          <div>
+            <Input
+              id='addressInput'
+              onChange={onChangeHandler.bind(this)}
+              placeholder='write something here'
+            ></Input>
+          </div>
+          <div>
+            <Button
+              id='addressConfirm'
+              onClick={getCoordsFromAddress.bind(this)}
+            >
+              confirm address
+            </Button>
+          </div>
+        </Grid.Column>
       </>
     )
-
-    productDisplay = props.products.map(product => {
-      return (
-        <Grid.Column key={`${product.id}`} align='center'>
-          <List
-            id={`product-${product.id}`}
-            key={product.id}
-            data-id={product.id}
-            data-name={product.name}
-            data-price={product.price}
-          >
-            {product.name} {product.price}
-            {props.position.lat !== null ? (
+    if (props.position.lat) {
+      productDisplay = props.products.map(product => {
+        return (
+          <Grid.Column key={`${product.id}`} align='center'>
+            <List
+              id={`product-${product.id}`}
+              key={product.id}
+              data-id={product.id}
+              data-name={product.name}
+              data-price={product.price}
+            >
+              {product.name} {product.price}
               <Button key={product.id} onClick={addToRequest.bind(this)}>
                 Add
               </Button>
-            ) : (
-              <></>
-            )}
-          </List>
-        </Grid.Column>
-      )
-    })
+            </List>
+          </Grid.Column>
+        )
+      })
+    }
   }
 
   if (props.task.id) {
@@ -155,19 +164,22 @@ const CreateRequest = props => {
       return (
         <>
           <Grid.Column align='center'>
-            <Container id={product.id}>
-              {product.name} {product.amount}
+            <Container key={product.name} id={product.name}>
+              <span>{product.amount}</span> x <span>{product.name}</span>
             </Container>
           </Grid.Column>
         </>
       )
     })
     confirmButton = (
-      <Grid.Column align='center'>
-        <Button id='confirm-task' onClick={submitTask.bind(this)}>
-          Place Order
-        </Button>
-      </Grid.Column>
+      <>
+        <Grid.Column align='center'>
+          <div id="orderTotal">{props.task.total}</div>
+          <Button id='confirm-task' onClick={submitTask.bind(this)}>
+            Place Order
+          </Button>
+        </Grid.Column>
+      </>
     )
   }
 
