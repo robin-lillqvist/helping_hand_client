@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
 import { connect, useDispatch } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { fetchProducts } from '../state/actions/productActions'
+// import { bindActionCreators } from 'redux'
+// import { fetchProducts } from '../state/actions/productActions'
 import { Button, List, Container, Grid, Input } from 'semantic-ui-react'
 import Geocode from 'react-geocode'
+import {
+  getProducts,
+  getCoordsFromAddress,
+  submitTask
+} from '../state/actions/taskActions'
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY)
 
@@ -17,36 +22,12 @@ const CreateRequest = props => {
 
   const dispatch = useDispatch()
 
-  const getProducts = async () => {
-    if (props.products.length === 0) {
-      let response = await axios.get('/products')
-      dispatch({ type: 'GET_PRODUCT_LIST', payload: response.data })
-    }
-    dispatch({ type: 'SHOW_REQUEST_FORM', showRequestForm: true })
-  }
+  useEffect(() => {
+    getProducts(props, dispatch)
+  }, [])
 
   const onChangeHandler = event => {
     dispatch({ type: 'SET_ADDRESS', payload: event.target.value })
-  }
-
-  const getCoordsFromAddress = async () => {
-    Geocode.fromAddress(props.requesterAddress).then(
-      response => {
-        const { lat, lng } = response.results[0].geometry.location
-        dispatch({ type: 'SET_COORDS', position: { lat, lng } })
-        dispatch({ type: 'GREETING', payload: 'Your address is confirmed' })
-      },
-      error => {
-        dispatch({
-          type: 'SET_COORDS',
-          position: { lat: undefined, lng: undefined }
-        })
-        dispatch({
-          type: 'GREETING',
-          payload: 'Your address could not be confirmed'
-        })
-      }
-    )
   }
 
   const addToRequest = async event => {
@@ -79,46 +60,6 @@ const CreateRequest = props => {
     dispatch({ type: 'UPDATE_REQUEST', payload: response.data.task })
   }
 
-  const submitTask = async event => {
-    let headers = JSON.parse(localStorage.getItem('J-tockAuth-Storage'))
-    if (props.task.id) {
-      try {
-        let response = await axios.put(
-          `/tasks/${props.task.id}`,
-          {
-            activity: 'confirmed',
-            user_id: props.userID
-          },
-          { headers: headers }
-        )
-        dispatch({
-          type: 'GREETING',
-          payload: response.data.message
-        })
-        dispatch({
-          type: 'RESET_PAGE',
-          showRequestForm: false,
-          task: { products: [] }
-        })
-      } catch (error) {
-        dispatch({
-          type: 'GREETING',
-          payload: error.response.data.error_message
-        })
-      }
-    }
-  }
-
-  if (props.userID) {
-    createButton = (
-      <Grid.Column align='center'>
-        <Button id='create-request' onClick={getProducts.bind(this)}>
-          Create your request
-        </Button>
-      </Grid.Column>
-    )
-  }
-
   if (props.showRequestForm) {
     displayAddressInput = (
       <>
@@ -126,14 +67,14 @@ const CreateRequest = props => {
           <div>
             <Input
               id='addressInput'
-              onChange={onChangeHandler.bind(this)}
+              onBlur={onChangeHandler.bind(this)}
               placeholder='write something here'
             ></Input>
           </div>
           <div>
             <Button
               id='addressConfirm'
-              onClick={getCoordsFromAddress.bind(this)}
+              onClick={() => getCoordsFromAddress(props, dispatch)}
             >
               confirm address
             </Button>
@@ -154,7 +95,11 @@ const CreateRequest = props => {
               data-price={product.price}
             >
               {product.name} {product.price}
-              <Button id={product.id} key={product.id} onClick={addToRequest.bind(this)}>
+              <Button
+                id={product.id}
+                key={product.id}
+                onClick={addToRequest.bind(this)}
+              >
                 Add
               </Button>
             </List>
@@ -180,7 +125,10 @@ const CreateRequest = props => {
       <>
         <Grid.Column align='center'>
           <div id='orderTotal'>{props.task.total}</div>
-          <Button id='confirm-task' onClick={submitTask.bind(this)}>
+          <Button
+            id='confirm-task'
+            onClick={() => submitTask(this, props, dispatch)}
+          >
             Place Order
           </Button>
         </Grid.Column>
@@ -202,12 +150,6 @@ const CreateRequest = props => {
   )
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchProducts: bindActionCreators(fetchProducts, dispatch)
-  }
-}
-
 const mapStateToProps = state => {
   return {
     products: state.products,
@@ -220,4 +162,4 @@ const mapStateToProps = state => {
     position: state.position
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(CreateRequest)
+export default connect(mapStateToProps)(CreateRequest)

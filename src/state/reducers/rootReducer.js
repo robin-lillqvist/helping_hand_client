@@ -99,7 +99,6 @@ const rootReducer = (state = initialState, action) => {
     case actionTypes.SAVE_REQUESTS:
       return {
         ...state,
-        showHelpMap: true,
         requests: action.payload
       };
       case actionTypes.SET_ADDRESS:
