@@ -25,7 +25,7 @@ describe("User can submit destination", () => {
       },
     });
     cy.get("#create-request").click();
-    cy.get("#product-1").should("not.exist");
+    cy.get("#Potatoes").should("not.exist");
     cy.get("#addressInput").type("Rome");
     cy.get("#addressConfirm").click();
     cy.route({
@@ -33,7 +33,7 @@ describe("User can submit destination", () => {
       url: "**/tasks/1",
       response: "fixture:task_list_updated_total.json",
     });
-    cy.get("#product-1").within(() => {
+    cy.get("#Potatoes").within(() => {
       cy.get("button#1").should("exist");
       cy.get("button#1").click();
     });
@@ -41,7 +41,7 @@ describe("User can submit destination", () => {
       cy.get("#Potatoes").should("contain", "1 x Potatoes");
       cy.get("#orderTotal").should("contain", "98.0");
     });
-    cy.get("#product-6").within(() => {
+    cy.get("#Butter").within(() => {
       for (var i = 1; i < 5; i++) {
         cy.get("button#6").click();
       }
@@ -90,7 +90,7 @@ describe("User can submit destination", () => {
       },
     });
     cy.get("#create-request").click();
-    cy.get("#product-1").should("not.exist");
+    cy.get("#Potatoes").should("not.exist");
     cy.get("#addressInput").type("Rome");
     cy.get("#addressConfirm").click();
     cy.route({
@@ -98,7 +98,7 @@ describe("User can submit destination", () => {
       url: "**/tasks/1",
       response: "fixture:task_list_4_items_updated_total.json",
     });
-    cy.get("#product-6").within(() => {
+    cy.get("#Butter").within(() => {
       for (let i = 1; i < 6; i++) {
         cy.get("button#6").click();
       }
@@ -134,7 +134,7 @@ describe("User can submit destination", () => {
       url: "**/tasks/1",
       response: "fixture:task_list_41_items_updated_total.json",
     });
-    cy.get("#product-6").within(() => {
+    cy.get("#Butter").within(() => {
       for (var i = 1; i < 42; i++) {
         cy.get("button#6").click();
       }
