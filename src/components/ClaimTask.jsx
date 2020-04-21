@@ -13,7 +13,7 @@ const ClaimTask = props => {
 
   useEffect(() => {
     getConfirmedTasks(dispatch)
-  }, [])
+  }, [dispatch])
 
   if (props.showHelpMap) {
     mapDisplay = <DisplayMap />

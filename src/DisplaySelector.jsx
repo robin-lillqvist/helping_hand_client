@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect, useDispatch } from 'react-redux'
-import { Button, List, Container, Grid, Input } from 'semantic-ui-react'
+import { Button, Grid } from 'semantic-ui-react'
 
 function Display (props) {
   let createButton

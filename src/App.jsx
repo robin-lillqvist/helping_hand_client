@@ -15,13 +15,13 @@ const App = props => {
   return (
     <>
       <Header />
-      <DisplaySelector/>
+      <DisplaySelector />
       <Grid.Column align='center' id='success-message'>
         {props.message}
       </Grid.Column>
       {props.showHero && <HeroImage />}
-      <CreateRequest />
-      <ClaimTask />
+      {props.showRequestForm && <CreateRequest />}
+      {props.showHelpMap && <ClaimTask />}
       {props.showLogin && <UserLogin />}
       {props.showRegister && <RegisterUser />}
       {/* <Footer /> */}
