@@ -92,12 +92,10 @@ const CreateRequest = props => {
         { headers: headers }
       )
     }
-    debugger
     dispatch({
       type: 'GREETING',
       payload: response.data.message
     })
-    debugger
     dispatch({
       type: 'RESET_PAGE',
       showRequestForm: false,

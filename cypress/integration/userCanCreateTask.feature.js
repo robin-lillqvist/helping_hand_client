@@ -14,14 +14,13 @@ describe("User can submit destination", () => {
     cy.login();
   });
 
-  it("successfully", () => {
-    let destination = "Rome";
+  it("Successfully", () => {
     cy.route({
       method: "GET",
       url: "https://maps.googleapis.com/maps/api/geocode/json?**",
       response: "fixture:address_to_coords_response.json",
       params: {
-        address: destination,
+        address: "Rome",
         key: process.env.REACT_APP_GOOGLE_APIKEY,
       },
     });
@@ -39,8 +38,8 @@ describe("User can submit destination", () => {
       cy.get("button").click();
     });
     cy.get("#request-list").within(() => {
-      cy.get("#Potatoes").should('contain','1 x Potatoes')
-      cy.get("#orderTotal").should('contain','98.0')
+      cy.get("#Potatoes").should("contain", "1 x Potatoes");
+      cy.get("#orderTotal").should("contain", "98.0");
     });
     cy.get("#product-6").within(() => {
       cy.get("button").click();
@@ -54,6 +53,27 @@ describe("User can submit destination", () => {
       response: "fixture:task_confirmation_response.json",
     });
     cy.get("#confirm-task").click();
-    cy.get("#success-message").should("contain", "Your task has been confirmed");
+    cy.get("#success-message").should("contain","Your task has been confirmed");
+  });
+
+  it("Unsuccessfully", () => {
+    cy.route({
+      method: "GET",
+      url: "https://maps.googleapis.com/maps/api/geocode/json?**",
+      response: "fixture:address_to_coords_bad_address_response.json",
+      params: {
+        address: "kjfhjgfjhgfjhf",
+        key: process.env.REACT_APP_GOOGLE_APIKEY,
+      },
+    });
+    cy.get("#create-request").click();
+    cy.get("#product-1").should("not.exist");
+    cy.get("#addressInput").type("kjfhjgfjhgfjhf");
+    cy.get("#addressConfirm").click();
+
+    cy.get("#success-message").should(
+      "contain",
+      "Your address could not be confirmed"
+    );
   });
 });
