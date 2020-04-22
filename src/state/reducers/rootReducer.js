@@ -8,7 +8,8 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         ...action.payload,
         showHelpMap: false,
-        message: false
+        message: false,
+        showProfile: false
       };
     case actionTypes.UPDATE_REQUEST:
       return {
@@ -87,14 +88,16 @@ const rootReducer = (state = initialState, action) => {
         userID: undefined,
         message: action.message,
         showHelpMap: false,
-        showHero: true
+        showHero: true,
+        showProfile: false
       };
     case actionTypes.SHOW_MAP:
       return {
         ...state,
         showHelpMap: true,
         showRequestForm: false,
-        message: ''
+        message: '',
+        showProfile: false
       };
     case actionTypes.SAVE_REQUESTS:
       return {
@@ -110,6 +113,13 @@ const rootReducer = (state = initialState, action) => {
         return {
           ...state,
           position: action.position
+        };
+      case actionTypes.VIEW_PROFILE:
+        return {
+          ...state,
+          showProfile: true,
+          showHelpMap: false,
+          showRequestForm: false
         };
       
     default:

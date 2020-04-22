@@ -21,7 +21,8 @@ const initialState = {
     }
   ],
   requesterAddress: '',
-  position: {lat: null, lng: null}
+  position: {lat: null, lng: null},
+  showProfile: false
 };
 
 export default initialState;
