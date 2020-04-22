@@ -2,16 +2,6 @@ describe("When products are visible", () => {
   before(() => {
     cy.server();
     cy.route({
-      method: "POST",
-      url: "**/auth/sign_in",
-      response: "fixture:login.json",
-    });
-    cy.route({
-      method: "GET",
-      url: "**/auth/validate_token",
-      response: "fixture:login.json",
-    });
-    cy.route({
       method: "GET",
       url: "**/products",
       response: "fixture:products.json",
@@ -26,18 +16,24 @@ describe("When products are visible", () => {
       url: "**/tasks/1",
       response: "fixture:task_list_update_response.json",
     });
-    cy.visit("/");
-    cy.get("#login").click();
-    cy.get("#login-form").within(() => {
-      cy.get("#email").type("user@mail.com");
-      cy.get("#password").type("password");
-      cy.get("#login-button").contains("Login").click();
-    });
-    cy.get("#success-message").should("contain", "Welcome user@mail.com");
+    cy.login();
   });
 
   it("user can successfully add products", () => {
-    cy.get("button").contains("Create your request").click();
+    cy.route({
+      method: "GET",
+      url: "https://maps.googleapis.com/maps/api/geocode/json?**",
+      response: "fixture:address_to_coords_bad_address_response.json",
+      params: {
+        address: "Rome",
+        key: process.env.REACT_APP_GOOGLE_APIKEY,
+      },
+    });
+    cy.get("#create-request").click();
+    cy.get("#product-1").should("not.exist");
+    cy.get("#addressInput").type("Rome");
+    cy.get("#addressConfirm").click();
+    cy.wait(1000)
     cy.get("#product-1").within(() => {
       cy.contains("Potatoes"); //product
       cy.contains("98"); //price

@@ -20,6 +20,8 @@ const initialState = {
       user: { id: 2, email: "robin2@mail.com", }
     }
   ],
+  requesterAddress: '',
+  position: {lat: null, lng: null}
 };
 
 export default initialState;

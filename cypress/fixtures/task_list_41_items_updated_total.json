@@ -1,0 +1,14 @@
+{
+  "task": {
+    "id": 1,
+    "products": [
+      {
+        "amount": 41,
+        "name": "Butter",
+        "total": "2460.0"
+      }
+    ],
+    "total": "2460.0"
+  },
+  "message": "The product has been added to your request"
+}

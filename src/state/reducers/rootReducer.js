@@ -23,12 +23,6 @@ const rootReducer = (state = initialState, action) => {
         showHelpMap: false,
         message: ''
       };
-    case actionTypes.SHOW_ORDER_SUCCESS_MESSAGE:
-      return {
-        ...state,
-        showSuccessMessage: action.showSuccessMessage,
-        message: action.message,
-      };
     case actionTypes.RESET_PAGE:
       return {
         ...state,
@@ -105,9 +99,19 @@ const rootReducer = (state = initialState, action) => {
     case actionTypes.SAVE_REQUESTS:
       return {
         ...state,
-        showHelpMap: true,
         requests: action.payload
       };
+      case actionTypes.SET_ADDRESS:
+      return {
+        ...state,
+        requesterAddress: action.payload
+      };
+      case actionTypes.SET_COORDS:
+        return {
+          ...state,
+          position: action.position
+        };
+      
     default:
       return state;
   }
