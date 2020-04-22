@@ -10,7 +10,7 @@ const Login = props => {
   let login
   if (!authenticated) {
     login = (
-      <Form id='login-form' onSubmit={(event) => onLogin(event, dispatch)}>
+      <Form id='login-form' onSubmit={event => onLogin(event, dispatch)}>
         <Form.Field>
           <input
             id='email'
@@ -18,6 +18,8 @@ const Login = props => {
             placeholder='Email'
             autoComplete='new-email'
           />
+        </Form.Field>
+        <Form.Field>
           <input
             id='password'
             name='password'
@@ -35,10 +37,7 @@ const Login = props => {
 
   return (
     <>
-      <Modal
-        open={true}
-        size="mini"
-      >
+      <Modal open={true} size='mini' style={{ padding: '20px' }}>
         <Container textAlign='center'>
           {login}
           <Button onClick={() => dispatch({ type: 'CLOSE_LOGIN' })}>
