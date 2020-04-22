@@ -34,6 +34,7 @@ describe("User can submit destination", () => {
       url: "**/tasks/1",
       response: "fixture:task_list_updated_total.json",
     });
+    //try to put wait in here as well and see if semaphore likes that.
     cy.get("#product-1").within(() => {
       cy.get("button#1").should("exist");
       cy.get("button#1").click();
@@ -52,6 +53,7 @@ describe("User can submit destination", () => {
       url: "**/tasks/1",
       response: "fixture:task_confirmation_response.json",
     });
+    //try to put wait in here as well and see if semaphore likes that.
     cy.get("#confirm-task").click();
     cy.get("#success-message").should(
       "contain",

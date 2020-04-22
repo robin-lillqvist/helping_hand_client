@@ -24,7 +24,7 @@ const CreateRequest = props => {
 
   useEffect(() => {
     getProducts(props, dispatch)
-  }, [getProducts])
+  }, [dispatch])
 
   const onChangeHandler = event => {
     dispatch({ type: 'SET_ADDRESS', payload: event.target.value })

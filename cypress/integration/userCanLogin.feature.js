@@ -14,7 +14,7 @@ describe("User can login", () => {
     cy.visit("/");
   });
 
-  it("Sucessfully", () => {
+  it("Successfully", () => {
     cy.get("#login").click();
     cy.get("#login-form").within(() => {
       cy.get("#email").type("user@mail.com");
