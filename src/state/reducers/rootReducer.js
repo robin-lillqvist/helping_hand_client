@@ -119,7 +119,8 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           showProfile: true,
           showHelpMap: false,
-          showRequestForm: false
+          showRequestForm: false,
+          message: false
         };
       
     default:
