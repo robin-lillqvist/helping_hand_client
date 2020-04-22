@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { connect, useDispatch } from 'react-redux'
-// import { bindActionCreators } from 'redux'
-// import { fetchProducts } from '../state/actions/productActions'
 import { Button, List, Container, Grid, Input } from 'semantic-ui-react'
 import Geocode from 'react-geocode'
 import {
