@@ -4,38 +4,57 @@ import { connect, useDispatch } from 'react-redux'
 
 const MapContainer = props => {
   const dispatch = useDispatch()
-  const style = {width: '60%', height: '70%'}
-  
-  const onMarkerClick = (props, marker, e) => {
-    dispatch({ 
-      type: 'MARKER_CLICK', selectedPlace: props, activeMarker: marker, showingInfoWindow: true
-    })
+  const style = { width: '60%', height: '70%' }
+
+  const onChildClick = (key, childProps) => {
+    dispatch({ type: 'CHANGE_MARKER_WINDOW', payload: !props.showMarkerWindow })
   }
-  
+
+  closeModal = () => {
+    dispatch({ type: 'CHANGE_MARKER_WINDOW', payload: false })
+  }
+
   return (
-    <Map
-      centerAroundCurrentLocation
-      google={props.google}
-      style={style}
-      zoom={17}
-    >
-      {props.requests.map(request => (
-        <Marker
-          title="Testing once more"
-          name='Testing'
-          key={request.id}
-          position={{ lat: request.lat, lng: request.long }}
-          onClick={onMarkerClick.bind(this)}
-        />
-      ))}
-      <InfoWindow><div>Hello</div></InfoWindow>
-    </Map>
+    <>
+      <Popup
+        open={this.state.showMarkerWindow}
+        closeOnDocumentClick={true}
+        onClose={this.closeModal}
+        // onClick={this.hideElements}
+      >
+        <div className='modal'>
+          <EntryPopup
+            id={this.state.id}
+            datapointClass={this.state.datapointClass}
+            closeModal={this.closeModal}
+          />
+        </div>
+      </Popup>
+
+      <Map
+        centerAroundCurrentLocation
+        google={props.google}
+        style={style}
+        zoom={17}
+      >
+        {props.requests.map(request => (
+          <Marker
+            title={request.user.email}
+            name={request.user.email}
+            key={request.id}
+            position={{ lat: request.lat, lng: request.long }}
+            onClick={onChildClick.bind(this)}
+          />
+        ))}
+      </Map>
+    </>
   )
 }
 
 const mapStateToProps = state => {
   return {
-    requests: state.requests
+    requests: state.requests,
+    showMarkerWindow: state.showMarkerWindow
   }
 }
 const Google = GoogleApiWrapper({
