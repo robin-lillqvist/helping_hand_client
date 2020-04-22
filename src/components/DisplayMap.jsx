@@ -1,36 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Marker, Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react'
 import { connect, useDispatch } from 'react-redux'
-
 const MapContainer = props => {
   const dispatch = useDispatch()
   const style = { width: '60%', height: '70%' }
-
-  const onChildClick = (key, childProps) => {
-    dispatch({ type: 'CHANGE_MARKER_WINDOW', payload: !props.showMarkerWindow })
+  const [showPopUp, setShowPopUp] = useState(false)
+  const [activeRequest, setActiveMarker] = useState({})
+  const onMarkerClick = (props, request) => {
+    setActiveMarker(request)
+    debugger
+    setShowPopUp(true)
   }
-
-  closeModal = () => {
-    dispatch({ type: 'CHANGE_MARKER_WINDOW', payload: false })
-  }
-
   return (
     <>
-      <Popup
-        open={this.state.showMarkerWindow}
-        closeOnDocumentClick={true}
-        onClose={this.closeModal}
-        // onClick={this.hideElements}
-      >
-        <div className='modal'>
-          <EntryPopup
-            id={this.state.id}
-            datapointClass={this.state.datapointClass}
-            closeModal={this.closeModal}
-          />
-        </div>
-      </Popup>
-
+      {showPopUp &&
+        <InfoWindow 
+          visible={showPopUp}
+          marker={activeRequest}
+        >
+          <div>
+            <p>Hello</p>
+          </div>
+        </InfoWindow>
+      }
       <Map
         centerAroundCurrentLocation
         google={props.google}
@@ -42,21 +34,22 @@ const MapContainer = props => {
             title={request.user.email}
             name={request.user.email}
             key={request.id}
+            id={"marker-" + request.id}
             position={{ lat: request.lat, lng: request.long }}
-            onClick={onChildClick.bind(this)}
+            onClick={onMarkerClick}
           />
         ))}
       </Map>
     </>
   )
 }
-
 const mapStateToProps = state => {
   return {
     requests: state.requests,
     showMarkerWindow: state.showMarkerWindow
   }
 }
+
 const Google = GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GOOGLE_API_KEY
 })(MapContainer)
