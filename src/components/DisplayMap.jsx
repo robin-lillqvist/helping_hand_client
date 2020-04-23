@@ -1,41 +1,90 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Marker, Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react'
+import { Button, List } from 'semantic-ui-react'
 import { connect, useDispatch } from 'react-redux'
+import { claimTaskMap } from '../state/actions/taskActions'
+import InfoWindowEx from './InfoWindowEx'
 
 const MapContainer = props => {
   const dispatch = useDispatch()
-  const style = {width: '60%', height: '70%'}
-  
+  const style = { width: '100%', height: '80vh' }
+  const [activeMarker, setActiveMarker] = useState({})
+  const [selectedPlace, setSelectedPlace] = useState({})
+
   const onMarkerClick = (props, marker, e) => {
-    dispatch({ 
-      type: 'MARKER_CLICK', selectedPlace: props, activeMarker: marker, showingInfoWindow: true
+    setActiveMarker(marker)
+    setSelectedPlace(props)
+  }
+
+  let showRequest
+  let taskProducts
+
+  if (selectedPlace.id) {
+    showRequest = props.requests.find(
+      request => request.id === selectedPlace.id
+    )
+    taskProducts = showRequest.products.map(product => {
+      return (
+        <List.Item
+          className='showProducts'
+          id={`showProduct-${product.name}`}
+          key={`showProduct-${product.name}`}
+        >
+          <span>{product.amount}</span>
+          <span>{product.name}</span>
+          <span>{product.total}</span>
+        </List.Item>
+      )
     })
   }
-  
   return (
-    <Map
-      centerAroundCurrentLocation
-      google={props.google}
-      style={style}
-      zoom={17}
-    >
-      {props.requests.map(request => (
-        <Marker
-          title="Testing once more"
-          name='Testing'
-          key={request.id}
-          position={{ lat: request.lat, lng: request.long }}
-          onClick={onMarkerClick.bind(this)}
-        />
-      ))}
-      <InfoWindow><div>Hello</div></InfoWindow>
-    </Map>
+    <>
+      <Map
+        centerAroundCurrentLocation
+        key='google-map'
+        google={props.google}
+        style={style}
+        zoom={15}
+      >
+        {props.requests.map(request => (
+          <Marker
+            title={request.user.email}
+            name={request.user.email}
+            key={request.id}
+            id={request.id}
+            position={{ lat: request.lat, lng: request.long }}
+            onClick={onMarkerClick}
+          ></Marker>
+        ))}
+        <InfoWindowEx visible={true} marker={activeMarker}>
+          <div id={`selectedPlace-${selectedPlace.id}`}>
+            {selectedPlace.id && <p>Name: {showRequest.user.email}</p>}
+            {selectedPlace.id && (
+              <p>
+                Products: <List>{taskProducts}</List>
+              </p>
+            )}
+            {selectedPlace.id && <p>TaskID: {showRequest.id}</p>}
+            {selectedPlace.id && <p>SelectedPlace: {selectedPlace.id}</p>}
+            {selectedPlace.id && (
+              <Button
+                id={showRequest.id}
+                key={showRequest.id}
+                onClick={(event) => claimTaskMap(event, dispatch)}
+              >
+                Claim Task
+              </Button>
+            )}
+          </div>
+        </InfoWindowEx>
+      </Map>
+    </>
   )
 }
-
 const mapStateToProps = state => {
   return {
-    requests: state.requests
+    requests: state.requests,
+    showMarkerWindow: state.showMarkerWindow
   }
 }
 const Google = GoogleApiWrapper({

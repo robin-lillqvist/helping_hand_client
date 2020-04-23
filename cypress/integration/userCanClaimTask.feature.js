@@ -8,7 +8,7 @@ describe("When tasks are visible", () => {
     });
     cy.route({
       method: "PUT",
-      url: "**/tasks/3",
+      url: "**/tasks/2",
       response: "fixture:task_list_claimed_response.json",
     });
     cy.login();
@@ -16,9 +16,9 @@ describe("When tasks are visible", () => {
 
   it("user can successfully claim a task", () => {
     cy.get("button").contains("Offer Help").click();
-    cy.get("#task-3").within(() => {
-      cy.contains("Rice"); //task
-      cy.contains("129.0"); //total
+    cy.get("#task-2").within(() => {
+      cy.contains("Milk"); //task
+      cy.contains("75.0"); //total
       cy.get("button").should("contain", "Claim Task").click();
     });
     cy.get("#success-message").should("contain", "You have claimed the task!");

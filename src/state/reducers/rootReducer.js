@@ -111,7 +111,11 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           position: action.position
         };
-      
+        case actionTypes.CHANGE_MARKER_WINDOW:
+          return {
+            ...state,
+            showMarkerWindow: action.payload
+          };
     default:
       return state;
   }
