@@ -1,41 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Marker, Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react'
 import { connect, useDispatch } from 'react-redux'
-
 const MapContainer = props => {
   const dispatch = useDispatch()
-  const style = {width: '60%', height: '70%'}
+  const style = { width: '100%', height: '100%' }
   
+  const [activeMarker, setActiveMarker] = useState({})
+  const [selectedPlace, setSelectedPlace] = useState({})
+
   const onMarkerClick = (props, marker, e) => {
-    dispatch({ 
-      type: 'MARKER_CLICK', selectedPlace: props, activeMarker: marker, showingInfoWindow: true
-    })
+    setActiveMarker(marker)
+    setSelectedPlace(props)
+    // setShowPopUp(true)
+    debugger
   }
-  
   return (
-    <Map
-      centerAroundCurrentLocation
-      google={props.google}
-      style={style}
-      zoom={17}
-    >
-      {props.requests.map(request => (
-        <Marker
-          title="Testing once more"
-          name='Testing'
-          key={request.id}
-          position={{ lat: request.lat, lng: request.long }}
-          onClick={onMarkerClick.bind(this)}
-        />
-      ))}
-      <InfoWindow><div>Hello</div></InfoWindow>
-    </Map>
+    <>
+      <Map
+        centerAroundCurrentLocation
+        key='google-map'
+        google={props.google}
+        style={style}
+        zoom={15}
+      >
+        {props.requests.map(request => (
+          <Marker
+            title={request.user.email}
+            name={request.user.email}
+            key={'marker-' + request.id}
+            id={'marker-' + request.id}
+            position={{ lat: request.lat, lng: request.long }}
+            onClick={onMarkerClick}
+          ></Marker>
+        ))}
+        <InfoWindow visible={true} marker={activeMarker}>
+          <div>
+            <p>{selectedPlace.title}</p>
+          </div>
+        </InfoWindow>
+      </Map>
+    </>
   )
 }
-
 const mapStateToProps = state => {
   return {
-    requests: state.requests
+    requests: state.requests,
+    showMarkerWindow: state.showMarkerWindow
   }
 }
 const Google = GoogleApiWrapper({
