@@ -1,6 +1,7 @@
 import React from 'react'
 import image from '../images/user-blank.jpg'
-import { Image, Container, Grid } from 'semantic-ui-react'
+import { Image, Container, Grid, List, Card } from 'semantic-ui-react'
+import axios from 'axios'
 
  
 
@@ -17,10 +18,20 @@ const ProfilePage = () => {
               NAME:
             </Container>
             <Container style={{marginTop: "2px"}}>
-              ACTIVE REQUESTS
+              <List>
+                ACTIVE REQUESTS
+                <List.Content>
+                  <Card>alk;dsflkja;sd</Card>
+                </List.Content>
+              </List>
             </Container>
             <Container style={{marginTop: "2px"}}>
-              ACTIVE TASKS
+              <List>
+                ACTIVE TASKS
+                <List.Content>
+                  <Card>a;lskdfkla</Card>      
+                </List.Content>
+              </List>
             </Container>
           </Grid.Column>
         </Grid>
