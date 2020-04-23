@@ -13,6 +13,7 @@ function Display (props) {
       <Grid>
         <Grid.Column align='center'>
           <Button
+            color='blue'
             id='create-request'
             onClick={() =>
               dispatch({ type: 'SHOW_MAP', showRequestForm: true })
@@ -29,6 +30,7 @@ function Display (props) {
     createButton = (
       <Grid.Column align='center'>
         <Button
+          color='blue'
           id='create-request'
           onClick={() =>
             dispatch({ type: 'SHOW_REQUEST_FORM', showRequestForm: true })

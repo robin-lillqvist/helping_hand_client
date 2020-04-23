@@ -18,6 +18,7 @@ const Header = props => {
     buttons = (
       <>
         <Button
+          color='blue'
           name='login'
           id='login'
           onClick={() => props.dispatch({ type: LOGIN_USER })}
@@ -25,6 +26,7 @@ const Header = props => {
           Login
         </Button>
         <Button
+          color='blue'
           name='register'
           id='register'
           onClick={() => props.dispatch({ type: REGISTER_USER })}

@@ -62,15 +62,17 @@ const CreateRequest = props => {
     displayAddressInput = (
       <>
         <Grid.Column key='addressInputGrid' align='center'>
-          <div className="margin">
+          <div className='margin'>
             <Input
+              color='blue'
               id='addressInput'
               onBlur={onChangeHandler.bind(this)}
               placeholder='Please type your address'
             ></Input>
           </div>
-          <div className="margin">
+          <div className='margin'>
             <Button
+              color='blue'
               id='addressConfirm'
               onClick={() => getCoordsFromAddress(props, dispatch)}
             >
