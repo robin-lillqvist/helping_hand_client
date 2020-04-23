@@ -20,7 +20,7 @@ const CreateRequest = props => {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
+  useEffect((props) => {
     getProducts(props, dispatch)
   }, [dispatch])
 
