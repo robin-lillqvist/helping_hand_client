@@ -10,8 +10,10 @@ const MapContainer = props => {
 
   const [activeMarker, setActiveMarker] = useState({})
   const [selectedPlace, setSelectedPlace] = useState({})
+  const [selectedPlaceID, setSelectedPlaceID] = useState(0)
 
   const onMarkerClick = (props, marker, e) => {
+    debugger
     setActiveMarker(marker)
     setSelectedPlace(props)
   }
@@ -19,14 +21,14 @@ const MapContainer = props => {
   let taskProducts
   let taskEmail
   if (selectedPlace.id) {
-    taskEmail = props.requests[selectedPlace.id].user.email
-    taskProducts = props.requests[selectedPlace.id].products.map(product => {
+    taskProducts = props.requests.find(products => products.id === [selectedPlace.id]).products.map(product => {
       return (
         <List.Item
           className='showProducts'
           id={`showProduct-${product.name}`}
           key={`showProduct-${product.name}`}
-        ><span>{product.amount}</span>
+        >
+          <span>{product.amount}</span>
           <span>{product.name}</span>
           <span>{product.total}</span>
         </List.Item>
@@ -44,6 +46,7 @@ const MapContainer = props => {
         zoom={15}
       >
         {props.requests.map(request => (
+          
           <Marker
             title={request.user.email}
             name={request.user.email}
@@ -55,9 +58,11 @@ const MapContainer = props => {
         ))}
         <InfoWindow visible={true} marker={activeMarker}>
           <div>
-            <p>Name: {taskEmail}</p>
-            <p>Products: </p>
-            <List>{taskProducts}</List>
+            <p>Name: Robin Lillqvist</p>
+            <p>
+              Products:
+              <List>{taskProducts}</List>
+            </p>
             <Button
               id={selectedPlace.id}
               key={selectedPlace.id}
