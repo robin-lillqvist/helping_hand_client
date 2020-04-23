@@ -13,5 +13,6 @@ describe("When there is tasks to be shown", () => {
   it("user can see list of tasks", () => {
       cy.wait(1000)
     cy.get('area[title="testuser2@mail.com"]').click({ force: true });
+    
   });
 });
