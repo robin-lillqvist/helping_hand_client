@@ -1,70 +1,67 @@
-We need to update this.
+# ![Helping Hand] (Visitior interface)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Welcome to our Application! 
 
-## Available Scripts
+Currently we two apps that are connected to each other. 
+The [visitors interface](https://github.com/CraftAcademy/helping_hand_client) and of course the [API](https://github.com/CraftAcademy/helping_hand_backend).
 
-In the project directory, you can run:
+# The MVP product
+**The MVP product will include a way for a visitor to:**
+* Users can register and login
+* User can create help request
+* User can claim help requests
+* User can see his profile
+* User can use Google maps with different functionalities.
 
-### `yarn start`
+## Authors
+| [Jaime Cruz](https://github.com/JaimeCrz) | [Robin](https://github.com/robin-lillqvist) | [Carlos](https://github.com/Carltesio) | [Pierre](https://github.com/pierre-1) | [Janko](https://github.com/MadFarmer101) | [Blake](https://github.com/blake-futchi) |
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Built with
+* React v.16.12.0
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Testing framework
+* Cypress
 
-### `yarn test`
+## Launched using
+* Netlify
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Dependencies
+* React
+* cypress
+* axios
+* google-maps-react
+* j-tockauth
+* react-dom
+* react-geocode
+* react-lazy-hero
+* react-redux
+* redux
+* redux-thunk
+* semantic-ui-react
+* enzyme
 
-### `yarn build`
+## Setup
+Due to the use of encrypted credentials this Repo can not be cloned. However if you own a google maps api key do the following:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Clone this repository and set up the [API](https://github.com/CraftAcademy/helping_hand_backend).
+- Create an .env file with your google api key like => REACT_APP_GOOGLE_API_KEY="Your_api_key_here".
+- Run the following commands:
+- yarn install
+- yarn start
+- and remember to start the rails server! (rails s)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Updates / Improvements
+* Adding Swish.
+* Using BankID for bankID.
+* Cooperation with ICA's and other grocery stores API's.
 
-### `yarn eject`
+## License
+MIT-license
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Acknowledgements
+- This fantastic team!.
+- Material provided by [Craft Academy](https://github.com/CraftAcademy)
+- [Oliver Ochman](https://github.com/oliverochman) for going on bug-quests with us.
+- [Thomas Ochman](https://github.com/tochman) for helping us when it was necessary.
+- [Faraz Naeem](https://github.com/faraznaeem) for the good spirit during the bootcamp.
