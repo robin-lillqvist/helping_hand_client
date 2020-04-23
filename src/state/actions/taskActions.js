@@ -7,6 +7,7 @@ const getConfirmedTasks = async (dispatch) => {
 };
 
 const claimTask = async (event, dispatch) => {
+  debugger;
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
   let id = event.target.parentElement.dataset.id;
   try {
@@ -20,6 +21,30 @@ const claimTask = async (event, dispatch) => {
         type: "GREETING",
         payload: "You have claimed the task!",
       });
+  } catch (error) {
+    dispatch({
+      type: "GREETING",
+      payload: error.message,
+    });
+  }
+};
+
+const claimTaskMap = async (event, dispatch) => {
+  debugger;
+  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
+  let id = event.target.id;
+  try {
+    let response = await axios.put(
+      `/tasks/${id}`,
+      { activity: "claimed" },
+      { headers: headers }
+    );
+    if (response.status === 200) {
+      dispatch({
+        type: "GREETING",
+        payload: "You have claimed the task!",
+      });
+    }
   } catch (error) {
     dispatch({
       type: "GREETING",
@@ -91,4 +116,5 @@ export {
   getProducts,
   getCoordsFromAddress,
   submitTask,
+  claimTaskMap,
 };

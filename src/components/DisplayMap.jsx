@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Marker, Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react'
 import { Button, List } from 'semantic-ui-react'
 import { connect, useDispatch } from 'react-redux'
-import { claimTask } from '../state/actions/taskActions'
+import { claimTaskMap } from '../state/actions/taskActions'
+import InfoWindowEx from './InfoWindowEx'
 
 const MapContainer = props => {
   const dispatch = useDispatch()
@@ -55,7 +56,7 @@ const MapContainer = props => {
             onClick={onMarkerClick}
           ></Marker>
         ))}
-        <InfoWindow visible={true} marker={activeMarker}>
+        <InfoWindowEx visible={true} marker={activeMarker}>
           <div id={`selectedPlace-${selectedPlace.id}`}>
             {selectedPlace.id && <p>Name: {showRequest.user.email}</p>}
             {selectedPlace.id && (
@@ -69,13 +70,13 @@ const MapContainer = props => {
               <Button
                 id={showRequest.id}
                 key={showRequest.id}
-                onClick={e => claimTask(e, dispatch)}
+                onClick={(event) => claimTaskMap(event, dispatch)}
               >
                 Claim Task
               </Button>
             )}
           </div>
-        </InfoWindow>
+        </InfoWindowEx>
       </Map>
     </>
   )
