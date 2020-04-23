@@ -25,15 +25,16 @@ const MapContainer = props => {
         )}
         <Map
           centerAroundCurrentLocation
+          key="google-map"
           google={props.google}
           style={style}
-          zoom={17}
+          zoom={15}
         >
           {props.requests.map(request => (
             <Marker
               title={request.user.email}
               name={request.user.email}
-              key={request.id}
+              key={'marker-' + request.id}
               id={'marker-' + request.id}
               position={{ lat: request.lat, lng: request.long }}
               onClick={() => onMarkerClick()}

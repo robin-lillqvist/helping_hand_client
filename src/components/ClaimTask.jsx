@@ -24,7 +24,7 @@ const ClaimTask = props => {
     requestDisplay = props.requests.map(task => {
       let showProducts
       let i = 0
-
+      let task_id =
       //Iterate over the internal products list and show each product
       showProducts = task.products.map(product => {
         i++
@@ -40,7 +40,7 @@ const ClaimTask = props => {
         )
       })
       return (
-        <>
+        <React.Fragment key={`task-${task.id}`}>
           <List.Item
             id={`task-${task.id}`}
             key={`task-${task.id}`}
@@ -71,7 +71,7 @@ const ClaimTask = props => {
               Claim Task
             </Button>
           </List.Item>
-        </>
+        </React.Fragment>
       )
     })
   }
