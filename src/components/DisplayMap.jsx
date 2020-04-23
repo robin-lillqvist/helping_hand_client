@@ -7,21 +7,22 @@ import { claimTask } from '../state/actions/taskActions'
 const MapContainer = props => {
   const dispatch = useDispatch()
   const style = { width: '100%', height: '80vh' }
-
   const [activeMarker, setActiveMarker] = useState({})
   const [selectedPlace, setSelectedPlace] = useState({})
-  const [selectedPlaceID, setSelectedPlaceID] = useState(0)
 
   const onMarkerClick = (props, marker, e) => {
-    debugger
     setActiveMarker(marker)
     setSelectedPlace(props)
   }
 
+  let showRequest
   let taskProducts
-  let taskEmail
+
   if (selectedPlace.id) {
-    taskProducts = props.requests.find(products => products.id === [selectedPlace.id]).products.map(product => {
+    showRequest = props.requests.find(
+      request => request.id === selectedPlace.id
+    )
+    taskProducts = showRequest.products.map(product => {
       return (
         <List.Item
           className='showProducts'
@@ -35,7 +36,6 @@ const MapContainer = props => {
       )
     })
   }
-
   return (
     <>
       <Map
@@ -46,7 +46,6 @@ const MapContainer = props => {
         zoom={15}
       >
         {props.requests.map(request => (
-          
           <Marker
             title={request.user.email}
             name={request.user.email}
@@ -58,18 +57,23 @@ const MapContainer = props => {
         ))}
         <InfoWindow visible={true} marker={activeMarker}>
           <div>
-            <p>Name: Robin Lillqvist</p>
-            <p>
-              Products:
-              <List>{taskProducts}</List>
-            </p>
-            <Button
-              id={selectedPlace.id}
-              key={selectedPlace.id}
-              onClick={e => claimTask(e, dispatch)}
-            >
-              Claim Task
-            </Button>
+            {selectedPlace.id && <p>Name: {showRequest.user.email}</p>}
+            {selectedPlace.id && (
+              <p>
+                Products: <List>{taskProducts}</List>
+              </p>
+            )}
+            {selectedPlace.id && <p>TaskID: {showRequest.id}</p>}
+            {selectedPlace.id && <p>SelectedPlace: {selectedPlace.id}</p>}
+            {selectedPlace.id && (
+              <Button
+                id={showRequest.id}
+                key={showRequest.id}
+                onClick={e => claimTask(e, dispatch)}
+              >
+                Claim Task
+              </Button>
+            )}
           </div>
         </InfoWindow>
       </Map>
