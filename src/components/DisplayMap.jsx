@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Marker, Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react'
+import { Marker, Map, GoogleApiWrapper } from 'google-maps-react'
 import { Button, List } from 'semantic-ui-react'
 import { connect, useDispatch } from 'react-redux'
 import { claimTaskMap } from '../state/actions/taskActions'
@@ -20,9 +20,7 @@ const MapContainer = props => {
   let taskProducts
 
   if (selectedPlace.id) {
-    showRequest = props.requests.find(
-      request => request.id === selectedPlace.id
-    )
+    showRequest = props.requests.find(request => request.id === selectedPlace.id)
     taskProducts = showRequest.products.map(product => {
       return (
         <List.Item

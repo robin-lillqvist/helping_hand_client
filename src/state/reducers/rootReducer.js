@@ -8,7 +8,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         ...action.payload,
         showHelpMap: false,
-        message: false
+        message: "",
       };
     case actionTypes.UPDATE_REQUEST:
       return {
@@ -20,8 +20,8 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         showRequestForm: action.showRequestForm,
-        showHelpMap: false,
-        message: ''
+        showHelpMap: "",
+        message: "",
       };
     case actionTypes.RESET_PAGE:
       return {
@@ -36,7 +36,7 @@ const rootReducer = (state = initialState, action) => {
         showLogin: true,
         showRegister: false,
         message: "",
-        showHelpMap: false
+        showHelpMap: false,
       };
     case actionTypes.REGISTER_USER:
       return {
@@ -71,7 +71,7 @@ const rootReducer = (state = initialState, action) => {
         showLogin: false,
         showRegister: false,
         showHelpMap: false,
-        showHero: false
+        showHero: false,
       };
     case actionTypes.LOGOUT:
       return {
@@ -87,35 +87,35 @@ const rootReducer = (state = initialState, action) => {
         userID: undefined,
         message: action.message,
         showHelpMap: false,
-        showHero: true
+        showHero: true,
       };
     case actionTypes.SHOW_MAP:
       return {
         ...state,
         showHelpMap: true,
         showRequestForm: false,
-        message: ''
+        message: "",
       };
     case actionTypes.SAVE_REQUESTS:
       return {
         ...state,
-        requests: action.payload
+        requests: action.payload,
       };
-      case actionTypes.SET_ADDRESS:
+    case actionTypes.SET_ADDRESS:
       return {
         ...state,
-        requesterAddress: action.payload
+        requesterAddress: action.payload,
       };
-      case actionTypes.SET_COORDS:
-        return {
-          ...state,
-          position: action.position
-        };
-        case actionTypes.CHANGE_MARKER_WINDOW:
-          return {
-            ...state,
-            showMarkerWindow: action.payload
-          };
+    case actionTypes.SET_COORDS:
+      return {
+        ...state,
+        position: action.position,
+      };
+    case actionTypes.CHANGE_MARKER_WINDOW:
+      return {
+        ...state,
+        showMarkerWindow: action.payload,
+      };
     default:
       return state;
   }

@@ -22,7 +22,7 @@ const CreateRequest = props => {
 
   useEffect(() => {
     getProducts(props, dispatch)
-  }, [dispatch])
+  }, [props.showRequestForm])
 
   const onChangeHandler = event => {
     dispatch({ type: 'SET_ADDRESS', payload: event.target.value })
@@ -62,14 +62,14 @@ const CreateRequest = props => {
     displayAddressInput = (
       <>
         <Grid.Column key='addressInputGrid' align='center'>
-          <div>
+          <div className="margin">
             <Input
               id='addressInput'
               onBlur={onChangeHandler.bind(this)}
-              placeholder='write something here'
+              placeholder='Please type your address'
             ></Input>
           </div>
-          <div>
+          <div className="margin">
             <Button
               id='addressConfirm'
               onClick={() => getCoordsFromAddress(props, dispatch)}

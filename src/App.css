@@ -12,3 +12,15 @@
   padding-left: 1rem;
   text-align: center;
 }
+
+.buttons {
+  display: inline-block;
+}
+
+#success-message {
+  text-align: center;
+}
+
+.margin {
+  margin: 20px;
+}

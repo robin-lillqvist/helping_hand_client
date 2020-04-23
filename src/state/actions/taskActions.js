@@ -38,6 +38,7 @@ const claimTaskMap = async (event, dispatch) => {
       { headers: headers }
     );
     if (response.status === 200) {
+      debugger
       dispatch({
         type: "GREETING",
         payload: "You have claimed the task!",
@@ -46,7 +47,7 @@ const claimTaskMap = async (event, dispatch) => {
   } catch (error) {
     dispatch({
       type: "GREETING",
-      payload: error.message,
+      payload: error.response.data.error_message,
     });
   }
 };

@@ -16,9 +16,6 @@ const App = props => {
     <>
       <Header />
       <DisplaySelector />
-      <Grid.Column align='center' id='success-message'>
-        {props.message}
-      </Grid.Column>
       {props.showHero && <HeroImage />}
       {props.showRequestForm && <CreateRequest />}
       {props.showHelpMap && <ClaimTask />}
