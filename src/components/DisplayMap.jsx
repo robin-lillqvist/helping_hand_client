@@ -56,7 +56,7 @@ const MapContainer = props => {
           ></Marker>
         ))}
         <InfoWindow visible={true} marker={activeMarker}>
-          <div>
+          <div id={`selectedPlace-${selectedPlace.id}`}>
             {selectedPlace.id && <p>Name: {showRequest.user.email}</p>}
             {selectedPlace.id && (
               <p>

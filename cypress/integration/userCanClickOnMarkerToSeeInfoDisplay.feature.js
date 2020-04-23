@@ -10,9 +10,16 @@ describe("When there is tasks to be shown", () => {
     cy.get("button").contains("Offer Help").click();
   });
 
-  it("user can see list of tasks", () => {
+  it("user can see specific task in map", () => {
       cy.wait(1000)
     cy.get('area[title="testuser2@mail.com"]').click({ force: true });
-    
+    cy.get('#selectedPlace-6').within(() => {
+      cy.contains("testuser2@mail.com"); 
+      cy.contains("Rice"); 
+      cy.contains("Coca-Cola"); 
+      cy.contains("Mustard"); 
+      cy.get("button").should("contain", "Claim Task").click();
+    });
+    cy.get("#success-message").should("contain", "You have claimed the task!");
   });
 });
