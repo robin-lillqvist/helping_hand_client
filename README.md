@@ -1,4 +1,4 @@
-# ![Helping Hand] (Visitior interface)
+# [Helping Hand](https://helpinghandproject.netlify.app/) (User interface / Web application)
 
 # Welcome to our Application! 
 
