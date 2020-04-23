@@ -5,9 +5,21 @@ import axios from 'axios'
 
  
 
-const ProfilePage = () => {
+const ProfilePage = props => {
 
-    return (
+  const viewProfileData = async => {
+  let headers = JSON.parse(localStorage.getItem('J-tockAuth-Storage'))
+  let id = id
+  let response
+  let product
+  let displayProfileData
+  
+  if (props.user.id) {
+    response = axios.get(
+      '/profiles',
+      { headers: headers }
+    )
+    displayProfileData = (
       <Container style={{marginTop: "15px"}}>
         <Grid columns={2} divided>
           <Grid.Column align='center'>
@@ -21,7 +33,7 @@ const ProfilePage = () => {
               <List>
                 ACTIVE REQUESTS
                 <List.Content>
-                  <Card>alk;dsflkja;sd</Card>
+                  <Card>{product.name} {product.price}</Card>
                 </List.Content>
               </List>
             </Container>
@@ -36,8 +48,13 @@ const ProfilePage = () => {
           </Grid.Column>
         </Grid>
       </Container>
-    )
-  }
+    )}
  
+  return (
+    <>
+    <div>{displayProfileData}</div>
+    </>
+  ) }
+}
 export default ProfilePage
 
