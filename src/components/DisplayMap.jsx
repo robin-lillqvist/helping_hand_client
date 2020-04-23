@@ -3,9 +3,11 @@ import { Marker, Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react'
 import { connect, useDispatch } from 'react-redux'
 const MapContainer = props => {
   const dispatch = useDispatch()
-  const style = { width: '60%', height: '70%' }
+
+  const style = { width: '100%', height: '100%' }
   const [showPopUp, setShowPopUp] = useState(false)
   const [activeRequest, setActiveMarker] = useState({})
+
   const onMarkerClick = (props, request) => {
     setActiveMarker(request)
     debugger
@@ -13,33 +15,32 @@ const MapContainer = props => {
   }
   return (
     <>
-      {showPopUp &&
-        <InfoWindow 
-          visible={showPopUp}
-          marker={activeRequest}
+      <div>
+        {showPopUp && (
+          <InfoWindow visible={showPopUp} marker={activeRequest}>
+            <div>
+              <p>Hello</p>
+            </div>
+          </InfoWindow>
+        )}
+        <Map
+          centerAroundCurrentLocation
+          google={props.google}
+          style={style}
+          zoom={17}
         >
-          <div>
-            <p>Hello</p>
-          </div>
-        </InfoWindow>
-      }
-      <Map
-        centerAroundCurrentLocation
-        google={props.google}
-        style={style}
-        zoom={17}
-      >
-        {props.requests.map(request => (
-          <Marker
-            title={request.user.email}
-            name={request.user.email}
-            key={request.id}
-            id={"marker-" + request.id}
-            position={{ lat: request.lat, lng: request.long }}
-            onClick={onMarkerClick}
-          />
-        ))}
-      </Map>
+          {props.requests.map(request => (
+            <Marker
+              title={request.user.email}
+              name={request.user.email}
+              key={request.id}
+              id={'marker-' + request.id}
+              position={{ lat: request.lat, lng: request.long }}
+              onClick={() => onMarkerClick()}
+            />
+          ))}
+        </Map>
+      </div>
     </>
   )
 }
