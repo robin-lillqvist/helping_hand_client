@@ -7,7 +7,6 @@ const getConfirmedTasks = async (dispatch) => {
 };
 
 const claimTask = async (event, dispatch) => {
-  debugger;
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
   let id = event.target.parentElement.dataset.id;
   try {
@@ -30,7 +29,6 @@ const claimTask = async (event, dispatch) => {
 };
 
 const claimTaskMap = async (event, dispatch) => {
-  debugger;
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
   let id = event.target.id;
   try {
