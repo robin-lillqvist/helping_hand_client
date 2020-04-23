@@ -9,10 +9,10 @@ const ProfilePage = () => {
     return (
       <Container style={{marginTop: "15px"}}>
         <Grid columns={2} divided>
-          <Grid.Column>
+          <Grid.Column align='center'>
             <Image src={image} size='small' />
           </Grid.Column>
-          <Grid.Column>
+          <Grid.Column align ='center'>
             <Container>
               NAME:
             </Container>
@@ -29,3 +29,4 @@ const ProfilePage = () => {
   }
  
 export default ProfilePage
+
