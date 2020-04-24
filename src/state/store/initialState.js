@@ -9,6 +9,8 @@ const initialState = {
   showRegister: false,
   authenticated: false,
   userEmail: undefined,
+  fullName: undefined,
+  phone: undefined,
   userID: undefined,
   showHelpMap: false,
   requests: [

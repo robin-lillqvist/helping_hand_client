@@ -30,6 +30,8 @@ describe("When products are visible", () => {
       },
     });
     cy.get("#create-request").click();
+    cy.get("#nameInput").type("Kalle Kuling");
+    cy.get("#phoneInput").type("0736922311");
     cy.get("#product-1").should("not.exist");
     cy.get("#addressInput").type("Rome");
     cy.get("#addressConfirm").click();
@@ -50,8 +52,8 @@ describe("When products are visible", () => {
     cy.get("#request-list").within(() => {
       cy.contains("Potatoes"); //product
       cy.contains("Shampoo"); //product
-      cy.get("button").should("contain", "Place Order").click();
     });
+    cy.get("button#confirm-task").should("contain", "Place Order").click();
     cy.get("#success-message").should(
       "contain",
       "The product has been added to your request"
