@@ -23,6 +23,7 @@ const initialState = {
   requesterAddress: '',
   position: {lat: null, lng: null},
   showMarkerWindow: false,
+  showProfile: false
 };
 
 export default initialState;

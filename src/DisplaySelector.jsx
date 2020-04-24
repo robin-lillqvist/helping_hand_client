@@ -51,7 +51,8 @@ const mapStateToProps = state => {
     message: state.message,
     userID: state.userID,
     requesterAddress: state.requesterAddress,
-    position: state.position
+    position: state.position,
+    showProfile: state.showProfile
   }
 }
 

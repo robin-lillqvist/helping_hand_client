@@ -10,6 +10,8 @@ import HeroImage from './components/HeroImage'
 import Footer from './components/Footer'
 import { Grid } from 'semantic-ui-react'
 import DisplaySelector from './DisplaySelector'
+import ProfilePage from './components/UserProfile'
+
 
 const App = props => {
   return (
@@ -19,6 +21,7 @@ const App = props => {
       <Grid.Column align='center' id='success-message'>
         {props.message}
       </Grid.Column>
+      {props.showProfile && <ProfilePage />}
       {props.showHero && <HeroImage />}
       {props.showRequestForm && <CreateRequest />}
       {props.showHelpMap && <ClaimTask />}
@@ -37,7 +40,8 @@ const mapStateToProps = state => {
     showRegister: state.showRegister,
     message: state.message,
     showHelpMap: state.showHelpMap,
-    showHero: state.showHero
+    showHero: state.showHero,
+    showProfile: state.showProfile
   }
 }
 export default connect(mapStateToProps)(App)
