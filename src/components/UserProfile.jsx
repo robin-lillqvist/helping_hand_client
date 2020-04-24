@@ -12,7 +12,6 @@ const ProfilePage = props => {
   }, [dispatch])
 
   let viewProfileData
-  debugger
   if((props.claimed_tasks !== null) && props.authenticated){
     viewProfileData = props.claimed_tasks.map(claimedTask => {
       return (

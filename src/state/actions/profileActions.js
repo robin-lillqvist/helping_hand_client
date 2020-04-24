@@ -5,13 +5,11 @@ const getProfile = async (dispatch) => {
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
   try {
     let response = await axios.get("/profiles", { headers: headers });
-    debugger;
     dispatch({
       type: "VIEW_PROFILE",
       payload: response.data
     });
   } catch (error) {
-    debugger
     dispatch({
       type: "GREETING",
       payload: error.message,
