@@ -11,7 +11,6 @@ import { Grid } from 'semantic-ui-react'
 import DisplaySelector from './DisplaySelector'
 import ProfilePage from './components/UserProfile'
 
-
 const App = props => {
   return (
     <>
