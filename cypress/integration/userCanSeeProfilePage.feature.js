@@ -1,4 +1,4 @@
-describe("User can login", () => {
+describe("User can click on profile page", () => {
   beforeEach(() => {
     cy.server();
     cy.route({
@@ -22,7 +22,7 @@ describe("User can login", () => {
       cy.get("#login-button").contains("Login").click();
     });
     cy.get("#success-message").should("contain", "Welcome user@mail.com");
-    cy.get("button#Profile").click()
-    cy.get("#user-profile").should('contain', 'You do')
+    cy.get("button#Profile").click();
+    cy.get("#user-profile").should("contain", "You're awesome");
   });
 });

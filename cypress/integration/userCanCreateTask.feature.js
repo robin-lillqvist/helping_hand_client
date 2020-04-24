@@ -42,6 +42,8 @@ describe("User can submit destination", () => {
     });
     cy.get("#request-list").within(() => {
       cy.get("#Potatoes").should("contain", "1 x Potatoes");
+    });
+    cy.get("#confirm-button").within(() => {
       cy.get("#orderTotal").should("contain", "98.0");
     });
     cy.get("#product-6").within(() => {

@@ -153,8 +153,8 @@ const CreateRequest = props => {
           <>
             <Grid.Column align='center'>
               <Container key={product.name} id={product.name}>
-                <span className='products-amount'>{product.amount}</span> x
-                <span className='products-amount'>{product.quantity}</span>
+                <span className='products-amount'>{product.amount} x</span>
+                <span className='products-amount'> {product.quantity}</span>
                 <span className='products-name'>{product.name}</span>
               </Container>
             </Grid.Column>
