@@ -75,20 +75,7 @@ const rootReducer = (state = initialState, action) => {
       };
     case actionTypes.LOGOUT:
       return {
-        ...state,
-        products: [],
-        showRequestForm: false,
-        task: { products: [] },
-        taskID: null,
-        showLogin: false,
-        showRegister: false,
-        authenticated: false,
-        userEmail: undefined,
-        userID: undefined,
-        message: action.message,
-        showHelpMap: false,
-        showHero: true,
-        showProfile: false
+        ...initialState
       };
     case actionTypes.SHOW_MAP:
       return {

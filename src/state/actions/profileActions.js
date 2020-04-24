@@ -7,7 +7,7 @@ const getProfile = async (dispatch) => {
     let response = await axios.get("/profiles", { headers: headers });
     dispatch({
       type: "VIEW_PROFILE",
-      payload: response.data
+      payload: response.data,
     });
   } catch (error) {
     dispatch({
