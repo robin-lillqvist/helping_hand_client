@@ -122,10 +122,11 @@ const rootReducer = (state = initialState, action) => {
       case actionTypes.VIEW_PROFILE:
         return {
           ...state,
-          showProfile: true,
+          ...action.payload,
           showHelpMap: false,
           showRequestForm: false,
-          message: false
+          showProfile: true,
+          message: ''
         };
       
     default:

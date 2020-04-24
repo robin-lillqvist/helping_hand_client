@@ -1,25 +1,13 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import image from '../images/user-blank.jpg'
 import { Image, Container, Grid, List, Card } from 'semantic-ui-react'
-import axios from 'axios'
-
- 
 
 const ProfilePage = props => {
 
-  const viewProfileData = async => {
-  let headers = JSON.parse(localStorage.getItem('J-tockAuth-Storage'))
-  let id = id
-  let response
-  let product
-  let displayProfileData
-  
-  if (props.user.id) {
-    response = axios.get(
-      '/profiles',
-      { headers: headers }
-    )
-    displayProfileData = (
+  let viewProfileData = props.claimedTasks.map(claimedTask => {
+    return (
+      <>
       <Container style={{marginTop: "15px"}}>
         <Grid columns={2} divided>
           <Grid.Column align='center'>
@@ -33,7 +21,7 @@ const ProfilePage = props => {
               <List>
                 ACTIVE REQUESTS
                 <List.Content>
-                  <Card>{product.name} {product.price}</Card>
+                  <Card>{claimedTask.id}</Card>
                 </List.Content>
               </List>
             </Container>
@@ -48,13 +36,15 @@ const ProfilePage = props => {
           </Grid.Column>
         </Grid>
       </Container>
-    )}
- 
-  return (
-    <>
-    <div>{displayProfileData}</div>
-    </>
-  ) }
-}
-export default ProfilePage
-
+      </>
+    );
+  });
+  return <div id="user-profile">{viewProfileData}</div>;
+};
+const mapStateToProps = state => {
+  return {
+    showProfile: state.showProfile,
+    claimedTasks: state.claimedTasks
+  };
+};
+export default connect(mapStateToProps)(ProfilePage);
