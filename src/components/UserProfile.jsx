@@ -1,7 +1,15 @@
 import React, { useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
 import image from '../images/user-blank.jpg'
-import { Image, Container, Grid, List, Card, Button } from 'semantic-ui-react'
+import {
+  Image,
+  Container,
+  Grid,
+  List,
+  Card,
+  Button,
+  GridColumn
+} from 'semantic-ui-react'
 import { getProfile } from '../state/actions/profileActions'
 
 const ProfilePage = props => {
@@ -13,28 +21,57 @@ const ProfilePage = props => {
 
   let viewProfileClaimedTasks
   let viewProfileCreatedTasks
+  let claimedTaskProducts
+  let createdTaskProducts
+
   if (
     props.claimed_tasks.length > 0 &&
     typeof props.claimed_tasks !== 'string' &&
     props.authenticated
   ) {
     viewProfileClaimedTasks = props.claimed_tasks.map(claimedTask => {
+      claimedTaskProducts = claimedTask.products.map(product => {
+        return (
+          <div className='claimedTaskProduct'>
+            <Grid columns={3} divided>
+              <Grid.Column className='profileTaskProducts'>
+                {product['amount']}
+              </Grid.Column>
+              <Grid.Column className='profileTaskProducts'>
+                {product['name']}
+              </Grid.Column>
+              <Grid.Column className='profileTaskProducts'>
+                {product['total']}
+              </Grid.Column>
+            </Grid>
+          </div>
+        )
+      })
+
       return (
         <>
-          <List.Content style={{ marginTop: '2px' }}>
+          <List.Content style={{ marginTop: '20px' }}>
             <Card>
               <Card.Content>
-                <Card.Meta>Deliver to: {claimedTask.address}</Card.Meta>
+                <Card.Meta>Deliver to: {claimedTask.name}</Card.Meta>
+                <Card.Meta>{claimedTask.address}</Card.Meta>
                 <Card.Meta>Status: {claimedTask.status}</Card.Meta>
               </Card.Content>
               <Card.Content>
                 <Card.Description>
-                  <strong>Products: {claimedTask.products}</strong>
+                  <strong>Products: </strong>
+                </Card.Description>
+              </Card.Content>
+              <Card.Content>
+                <Card.Description>
+                  <div className='claimedTaskProduct-list'>
+                    {claimedTaskProducts}
+                  </div>
                 </Card.Description>
               </Card.Content>
               <Card.Content extra>
                 <Button basic color='red'>
-                  Remove
+                  Decline
                 </Button>
               </Card.Content>
             </Card>
@@ -50,17 +87,42 @@ const ProfilePage = props => {
     props.authenticated
   ) {
     viewProfileCreatedTasks = props.created_tasks.map(createdTask => {
+      createdTaskProducts = createdTask.products.map(product => {
+        return (
+          <div className='createdTaskProduct'>
+            <Grid columns={3} divided>
+              <Grid.Column className='profileTaskProducts'>
+                {product['amount']}
+              </Grid.Column>
+              <Grid.Column className='profileTaskProducts'>
+                {product['name']}
+              </Grid.Column>
+              <Grid.Column className='profileTaskProducts'>
+                {product['total']}
+              </Grid.Column>
+            </Grid>
+          </div>
+        )
+      })
       return (
         <>
-          <List.Content style={{ marginTop: '2px' }}>
-            <Card>
+          <List.Content style={{ marginTop: '20px' }}>
+            <Card >
               <Card.Content>
-                <Card.Meta>Deliver to: {createdTask.address}</Card.Meta>
+                <Card.Meta>Deliver to: {createdTask.name}</Card.Meta>
+                <Card.Meta>{createdTask.address}</Card.Meta>
                 <Card.Meta>Status: {createdTask.status}</Card.Meta>
               </Card.Content>
               <Card.Content>
                 <Card.Description>
-                  <strong>Products: {createdTask.products}</strong>
+                  <strong>Products: </strong>
+                </Card.Description>
+              </Card.Content>
+              <Card.Content>
+                <Card.Description>
+                  <div className='claimedTaskProduct-list'>
+                    {createdTaskProducts}
+                  </div>
                 </Card.Description>
               </Card.Content>
               <Card.Content extra>
@@ -77,9 +139,9 @@ const ProfilePage = props => {
 
   return (
     <div id='user-profile'>
-      <div>
+      <div >
         <Container style={{ marginTop: '15px' }}>
-          <Grid columns={2} divided>
+          <Grid columns={2} stackable>
             <Grid.Column align='center'>
               <Image src={image} size='small' />
             </Grid.Column>
@@ -91,18 +153,18 @@ const ProfilePage = props => {
           </Grid>
         </Container>
       </div>
-      <div>
+      <div style={{ marginTop: '20px' }}>
         <Container style={{ marginTop: '15px' }}>
-          <Grid columns={2}>
+          <Grid columns={2} stackable>
             <Grid.Column align='center'>
               <Container style={{ marginTop: '2px' }}>
-                Your Requests
+                You requested:
                 <List>{viewProfileCreatedTasks}</List>
               </Container>
             </Grid.Column>
             <Grid.Column align='center'>
               <Container style={{ marginTop: '2px' }}>
-                Actice Tasks
+                You wanted to help:
                 <List>{viewProfileClaimedTasks}</List>
               </Container>
             </Grid.Column>

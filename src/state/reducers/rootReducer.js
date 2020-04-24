@@ -21,6 +21,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         showRequestForm: action.showRequestForm,
         showHelpMap: false,
+        showProfile: false,
         message: "",
       };
     case actionTypes.RESET_PAGE:
