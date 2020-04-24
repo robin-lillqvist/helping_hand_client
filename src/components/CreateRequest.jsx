@@ -1,7 +1,14 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { connect, useDispatch } from 'react-redux'
-import { Button, List, Container, Grid, Input, Card } from 'semantic-ui-react'
+import {
+  Button,
+  Segment,
+  Container,
+  Grid,
+  Input,
+  Card
+} from 'semantic-ui-react'
 import Geocode from 'react-geocode'
 import {
   getProducts,
@@ -163,13 +170,18 @@ const CreateRequest = props => {
       requestProductDisplay = props.task.products.map(product => {
         return (
           <>
-            <Grid.Column align='center'>
-              <Container key={product.name} id={product.name}>
-                <span className='products-amount'>{product.amount} x</span>
-                <span className='products-amount'> {product.quantity}</span>
+            <Grid.Row style={{padding: '2px'}}>
+              <Grid.Column
+                compact
+                style={{ textAlign: 'center' }}
+                key={product.name}
+                id={product.name}
+              >
+                <span className='products-quantity'>{product.quantity} x</span>
+                <span className='products-amount'> {product.amount}</span>
                 <span className='products-name'>{product.name}</span>
-              </Container>
-            </Grid.Column>
+              </Grid.Column>
+            </Grid.Row>
           </>
         )
       })
@@ -209,7 +221,9 @@ const CreateRequest = props => {
             {productDisplay}
           </div>
         </Container>
-        <Container id='request-list'>{requestProductDisplay}</Container>
+        <Container id='request-list'>
+          <Grid style={{marginBottom: '20px',marginTop: '20px',  }}>{requestProductDisplay}</Grid>
+        </Container>
         <Container id='confirm-button'>{confirmButton}</Container>
       </div>
     </>

@@ -25,3 +25,14 @@
   background-color: aliceblue;
   padding: 0px!important;
 }
+
+#request-list {
+  text-align: center!important;
+}
+
+.products-quantity, .products-amount, .products-name {
+  margin: 2px;
+  margin-bottom: 0px;
+  font-weight: 900;
+  font-size: 
+}
