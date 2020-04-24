@@ -6,27 +6,27 @@ const getConfirmedTasks = async (dispatch) => {
   dispatch({ type: "SAVE_REQUESTS", payload: response.data });
 };
 
-const claimTask = async (event, dispatch) => {
-  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
-  let id = event.target.parentElement.dataset.id;
-  try {
-    let response = await axios.put(
-      `/tasks/${id}`,
-      { activity: "claimed" },
-      { headers: headers }
-    );
-    if (response.status === 200)
+  const claimTask = async (event, dispatch) => {
+    let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
+    let id = event.target.parentElement.dataset.id;
+    try {
+      let response = await axios.put(
+        `/tasks/${id}`,
+        { activity: "claimed" },
+        { headers: headers }
+      );
+      if (response.status === 200)
+        dispatch({
+          type: "GREETING",
+          payload: "You have claimed the task!",
+        });
+    } catch (error) {
       dispatch({
         type: "GREETING",
-        payload: "You have claimed the task!",
+        payload: error.message,
       });
-  } catch (error) {
-    dispatch({
-      type: "GREETING",
-      payload: error.message,
-    });
-  }
-};
+    }
+  };
 
 const claimTaskMap = async (event, dispatch) => {
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
@@ -47,6 +47,51 @@ const claimTaskMap = async (event, dispatch) => {
     dispatch({
       type: "GREETING",
       payload: error.message,
+    });
+  }
+};
+
+const declineTask = async (event, dispatch) => {
+  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
+  let id = event.target.id;
+  try {
+    let response = await axios.put(
+      `/profiles/${id}`,
+      { activity: "confirmed" },
+      { headers: headers }
+    );
+    if (response.status === 200)
+      dispatch({
+        type: "GREETING",
+        payload: "You have declined the task!",
+      });
+  } catch (error) {
+    dispatch({
+      type: "GREETING",
+      payload: error.message,
+    });
+  }
+};
+
+const destroyTask = async (event, dispatch) => {
+  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
+  let id = event.target.id;
+  try {
+    let response = await axios.delete(
+      `/tasks/${id}`,
+      { headers: headers }
+    );
+    if (response.status === 200) {
+      dispatch({
+        type: "GREETING",
+        payload: "You have removed your request!",
+      });
+    }
+  } catch (error) {
+    debugger
+    dispatch({
+      type: "GREETING",
+      payload: error.response.data.error_message,
     });
   }
 };
@@ -116,4 +161,6 @@ export {
   getCoordsFromAddress,
   submitTask,
   claimTaskMap,
+  declineTask,
+  destroyTask
 };

@@ -12,3 +12,16 @@
   padding-left: 1rem;
   text-align: center;
 }
+
+.profileTaskProducts {
+  background-color: aliceblue;
+}
+
+.taskCard{
+  margin-top: 10px;
+}
+
+.taskProducts {
+  background-color: aliceblue;
+  padding: 0px!important;
+}

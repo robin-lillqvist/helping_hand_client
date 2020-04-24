@@ -9,18 +9,19 @@ const rootReducer = (state = initialState, action) => {
         ...action.payload,
         showHelpMap: false,
         message: false,
+        showProfile: false,
       };
     case actionTypes.UPDATE_REQUEST:
       return {
         ...state,
         task: action.payload,
-        taskID: action.payload.id,
       };
     case actionTypes.SHOW_REQUEST_FORM:
       return {
         ...state,
         showRequestForm: action.showRequestForm,
         showHelpMap: false,
+        showProfile: false,
         message: "",
       };
     case actionTypes.RESET_PAGE:
@@ -75,19 +76,7 @@ const rootReducer = (state = initialState, action) => {
       };
     case actionTypes.LOGOUT:
       return {
-        ...state,
-        products: [],
-        showRequestForm: false,
-        task: { products: [] },
-        showLogin: false,
-        showRegister: false,
-        authenticated: false,
-        userEmail: undefined,
-        userID: undefined,
-        message: action.message,
-        showHelpMap: false,
-        showHero: true,
-        position: {lat: null, lng: null},
+        ...initialState,
       };
     case actionTypes.SHOW_MAP:
       return {
@@ -95,6 +84,7 @@ const rootReducer = (state = initialState, action) => {
         showHelpMap: true,
         showRequestForm: false,
         message: "",
+        showProfile: false,
       };
     case actionTypes.SAVE_REQUESTS:
       return {
@@ -106,6 +96,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         requesterAddress: action.payload,
       };
+    case actionTypes.SET_NAME:
+      return {
+        ...state,
+        fullName: action.payload,
+      };
+    case actionTypes.SET_PHONE:
+      return {
+        ...state,
+        phone: action.payload,
+      };
     case actionTypes.SET_COORDS:
       return {
         ...state,
@@ -116,15 +116,14 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         showMarkerWindow: action.payload,
       };
-    case actionTypes.SET_NAME:
+    case actionTypes.VIEW_PROFILE:
       return {
         ...state,
-        fullName: action.payload,
-      };
-    case actionTypes.SET_PHONE:
-      return {
-        ...state,
-        phone: action.payload,
+        ...action.payload,
+        showHelpMap: false,
+        showRequestForm: false,
+        showProfile: true,
+        message: "",
       };
     default:
       return state;

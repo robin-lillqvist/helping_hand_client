@@ -132,13 +132,14 @@ const CreateRequest = props => {
               data-name={product.name}
               data-price={product.price}
             >
-              {product.name} {product.price}
+              <span className="qu">{product.name}</span>
+              <span>{product.quantity}</span>
+              <span>{product.price}</span>
               <Button
                 id={product.id}
                 key={product.id}
                 onClick={addToRequest.bind(this)}
-              >
-                Add
+              >Add
               </Button>
             </List>
           </Grid.Column>
@@ -152,7 +153,9 @@ const CreateRequest = props => {
           <>
             <Grid.Column align='center'>
               <Container key={product.name} id={product.name}>
-                <span>{product.amount}</span> x <span>{product.name}</span>
+                <span className='products-amount'>{product.amount} x</span>
+                <span className='products-amount'> {product.quantity}</span>
+                <span className='products-name'>{product.name}</span>
               </Container>
             </Grid.Column>
           </>
@@ -161,6 +164,7 @@ const CreateRequest = props => {
       confirmButton = (
         <>
           <Grid.Column align='center'>
+            <div id='orderTotal'>{props.task.total}</div>
             <Button
               id='confirm-task'
               onClick={() => submitTask(this, props, dispatch)}
@@ -181,10 +185,7 @@ const CreateRequest = props => {
         <Container id='task-phone'>{phoneInput}</Container>
         <Container id='task-address'>{displayAddressInput}</Container>
         <List id='product-list'>{productDisplay}</List>
-        <Container id='request-list'>
-          {requestProductDisplay}
-          <div id='orderTotal'>{props.task.total}</div>
-        </Container>
+        <Container id='request-list'>{requestProductDisplay}</Container>
         <Container id='confirm-button'>{confirmButton}</Container>
       </div>
     </>
