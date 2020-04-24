@@ -36,7 +36,7 @@ describe("User can submit destination", () => {
       url: "**/tasks/1",
       response: "fixture:task_list_updated_total.json",
     });
-    cy.get("#product-1").within(() => {
+    cy.get("#button-1").within(() => {
       cy.get("button#1").should("exist");
       cy.get("button#1").click();
     });
@@ -46,7 +46,7 @@ describe("User can submit destination", () => {
     cy.get("#confirm-button").within(() => {
       cy.get("#orderTotal").should("contain", "98.0");
     });
-    cy.get("#product-6").within(() => {
+    cy.get("#button-6").within(() => {
       for (var i = 1; i < 5; i++) {
         cy.get("button#6").click();
       }
@@ -108,7 +108,7 @@ describe("User can submit destination", () => {
       url: "**/tasks/1",
       response: "fixture:task_list_4_items_updated_total.json",
     });
-    cy.get("#product-6").within(() => {
+    cy.get("#button-6").within(() => {
       for (let i = 1; i < 5; i++) {
         cy.get("button#6").click();
       }
@@ -147,7 +147,7 @@ describe("User can submit destination", () => {
       url: "**/tasks/1",
       response: "fixture:task_list_41_items_updated_total.json",
     });
-    cy.get("#product-6").within(() => {
+    cy.get("#button-6").within(() => {
       for (var i = 1; i < 42; i++) {
         cy.get("button#6").click();
       }

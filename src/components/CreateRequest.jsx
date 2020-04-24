@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { connect, useDispatch } from 'react-redux'
-import { Button, List, Container, Grid, Input } from 'semantic-ui-react'
+import { Button, List, Container, Grid, Input, Card } from 'semantic-ui-react'
 import Geocode from 'react-geocode'
 import {
   getProducts,
@@ -117,8 +117,9 @@ const CreateRequest = props => {
     if (props.position.lat) {
       productDisplay = props.products.map(product => {
         return (
-          <Grid.Column key={product.id} align='center'>
-            <List
+          <Card key={product.id} color='red' style={{ maxWidth: '150px' }}>
+            <Card.Content
+              style={{ textAlign: 'center' }}
               id={`product-${product.id}`}
               key={`product-${product.id}`}
               data-cy={`product-${product.id}`}
@@ -126,19 +127,35 @@ const CreateRequest = props => {
               data-name={product.name}
               data-price={product.price}
             >
-              <span className="qu">{product.name}</span>
-              <span>{product.quantity}</span>
-              <span>{product.price}</span>
+              <Card.Header>{product.name}</Card.Header>
+              <Card.Description>{product.quantity}</Card.Description>
+              <Card.Description>{product.price} SEK</Card.Description>
+            </Card.Content>
+            <Card.Content
+              extra
+              style={{ textAlign: 'center' }}
+              id={`button-${product.id}`}
+              key={`button-${product.id}`}
+              data-cy={`button-${product.id}`}
+              data-id={product.id}
+              data-name={product.name}
+              data-price={product.price}
+            >
               <Button
+                style={{
+                  backgroundColor: '#e67276',
+                  color: 'white',
+                  marginBottom: '5px'
+                }}
+                size='tiny'
                 id={product.id}
                 key={product.id}
                 onClick={addToRequest.bind(this)}
-                style={{ marginLeft: '10px' }}
               >
                 Add
               </Button>
-            </List>
-          </Grid.Column>
+            </Card.Content>
+          </Card>
         )
       })
     }
@@ -148,7 +165,7 @@ const CreateRequest = props => {
           <>
             <Grid.Column align='center'>
               <Container key={product.name} id={product.name}>
-              <span className='products-amount'>{product.amount} x</span>
+                <span className='products-amount'>{product.amount} x</span>
                 <span className='products-amount'> {product.quantity}</span>
                 <span className='products-name'>{product.name}</span>
               </Container>
@@ -187,7 +204,11 @@ const CreateRequest = props => {
         <Container id='task-address' style={{ marginBottom: '10px' }}>
           {displayAddressInput}
         </Container>
-        <List id='product-list'>{productDisplay}</List>
+        <Container>
+          <div id='product-list' class='ui centered cards'>
+            {productDisplay}
+          </div>
+        </Container>
         <Container id='request-list'>{requestProductDisplay}</Container>
         <Container id='confirm-button'>{confirmButton}</Container>
       </div>
