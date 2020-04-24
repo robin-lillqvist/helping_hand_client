@@ -42,10 +42,4 @@ const mapStateToProps = state => {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchProfile: bindActionCreators(fetchProfile, dispatch)
-//   }
-// }
-
 export default connect(mapStateToProps)(App)

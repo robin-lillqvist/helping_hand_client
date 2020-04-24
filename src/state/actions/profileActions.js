@@ -1,5 +1,4 @@
 import axios from "axios";
-// import { VIEW_PROFILE } from "./actionTypes";
 
 const getProfile = async (dispatch) => {
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
