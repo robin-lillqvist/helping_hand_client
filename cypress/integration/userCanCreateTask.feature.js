@@ -25,6 +25,8 @@ describe("User can submit destination", () => {
       },
     });
     cy.get("#create-request").click();
+    cy.get("#nameInput").type("Kalle Kuling");
+    cy.get("#phoneInput").type("0736922311");
     cy.get("#product-1").should("not.exist");
     cy.get("#addressInput").type("Rome");
     cy.get("#addressConfirm").click();
@@ -52,7 +54,7 @@ describe("User can submit destination", () => {
       url: "**/tasks/1",
       response: "fixture:task_confirmation_response.json",
     });
-    cy.get("#confirm-task").click();
+    cy.get("button#confirm-task").should("contain", "Place Order").click();
     cy.get("#success-message").should(
       "contain",
       "Your task has been confirmed"
@@ -70,6 +72,8 @@ describe("User can submit destination", () => {
       },
     });
     cy.get("#create-request").click();
+    cy.get("#nameInput").type("Kalle Kuling");
+    cy.get("#phoneInput").type("0736922311");
     cy.get("#product-1").should("not.exist");
     cy.get("#addressInput").type("kjfhjgfjhgfjhf");
     cy.get("#addressConfirm").click();
@@ -91,6 +95,8 @@ describe("User can submit destination", () => {
       },
     });
     cy.get("#create-request").click();
+    cy.get("#nameInput").type("Kalle Kuling");
+    cy.get("#phoneInput").type("0736922311");
     cy.get("#product-1").should("not.exist");
     cy.get("#addressInput").type("Rome");
     cy.get("#addressConfirm").click();
@@ -129,6 +135,8 @@ describe("User can submit destination", () => {
       },
     });
     cy.get("#create-request").click();
+    cy.get("#nameInput").type("Kalle Kuling");
+    cy.get("#phoneInput").type("0736922311");
     cy.get("#addressInput").type("Rome");
     cy.get("#addressConfirm").click();
     cy.wait(1000);

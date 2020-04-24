@@ -24,7 +24,7 @@ const CreateRequest = props => {
 
   useEffect(() => {
     getProducts(props, dispatch)
-  }, [dispatch])
+  }, [props, dispatch])
 
   const onChangeName = event => {
     dispatch({ type: 'SET_NAME', payload: event.target.value })
@@ -64,7 +64,6 @@ const CreateRequest = props => {
         },
         { headers: headers }
       )
-      debugger
       dispatch({ type: 'GREETING', payload: response.data.message })
     }
     dispatch({ type: 'UPDATE_REQUEST', payload: response.data.task })
@@ -162,7 +161,6 @@ const CreateRequest = props => {
       confirmButton = (
         <>
           <Grid.Column align='center'>
-            <div id='orderTotal'>{props.task.total}</div>
             <Button
               id='confirm-task'
               onClick={() => submitTask(this, props, dispatch)}
@@ -183,7 +181,10 @@ const CreateRequest = props => {
         <Container id='task-phone'>{phoneInput}</Container>
         <Container id='task-address'>{displayAddressInput}</Container>
         <List id='product-list'>{productDisplay}</List>
-        <Container id='request-list'>{requestProductDisplay}</Container>
+        <Container id='request-list'>
+          {requestProductDisplay}
+          <div id='orderTotal'>{props.task.total}</div>
+        </Container>
         <Container id='confirm-button'>{confirmButton}</Container>
       </div>
     </>
@@ -199,7 +200,9 @@ const mapStateToProps = state => {
     message: state.message,
     userID: state.userID,
     requesterAddress: state.requesterAddress,
-    position: state.position
+    position: state.position,
+    fullName: state.fullName,
+    phone: state.phone
   }
 }
 export default connect(mapStateToProps)(CreateRequest)
