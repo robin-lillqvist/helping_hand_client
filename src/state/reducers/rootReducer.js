@@ -15,7 +15,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         task: action.payload,
-        taskID: action.payload.id,
       };
     case actionTypes.SHOW_REQUEST_FORM:
       return {
@@ -123,14 +122,12 @@ const rootReducer = (state = initialState, action) => {
         return {
           ...state,
           ...action.payload,
+          // profile: action.payload,
           showHelpMap: false,
           showRequestForm: false,
           showProfile: true,
           message: '',
-          claimedTasks: action.claimedTasks,
-          createdTasks: action.createdTasks
         };
-      
     default:
       return state;
   }
