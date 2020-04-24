@@ -126,7 +126,9 @@ const rootReducer = (state = initialState, action) => {
           showHelpMap: false,
           showRequestForm: false,
           showProfile: true,
-          message: ''
+          message: '',
+          claimedTasks: action.claimedTasks,
+          createdTasks: action.createdTasks
         };
       
     default:

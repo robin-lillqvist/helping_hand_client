@@ -12,13 +12,9 @@ import Footer from './components/Footer'
 import { Grid } from 'semantic-ui-react'
 import DisplaySelector from './DisplaySelector'
 import ProfilePage from './components/UserProfile'
-import {fetchProfile} from './state/actions/profileActions.js'
 
 
 const App = props => {
-  props.fetchProfile()
-  let getProfile = <ProfilePage />
-
   return (
     <>
       <Header />
@@ -26,7 +22,6 @@ const App = props => {
       <Grid.Column align='center' id='success-message'>
         {props.message}
       </Grid.Column>
-      {getProfile}
       {props.showProfile && <ProfilePage />}
       {props.showHero && <HeroImage />}
       {props.showRequestForm && <CreateRequest />}
@@ -51,10 +46,10 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchProfile: bindActionCreators(fetchProfile, dispatch)
-  }
-}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     fetchProfile: bindActionCreators(fetchProfile, dispatch)
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps)(App)
