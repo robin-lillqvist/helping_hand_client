@@ -114,13 +114,21 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           position: action.position
         };
+        case actionTypes.CHANGE_MARKER_WINDOW:
+          return {
+            ...state,
+            showMarkerWindow: action.payload
+          };
       case actionTypes.VIEW_PROFILE:
         return {
           ...state,
-          showProfile: true,
+          ...action.payload,
           showHelpMap: false,
           showRequestForm: false,
-          message: false
+          showProfile: true,
+          message: '',
+          claimedTasks: action.claimedTasks,
+          createdTasks: action.createdTasks
         };
       
     default:

@@ -2,7 +2,8 @@ import React from 'react'
 import './App.css'
 import Header from './components/Header'
 import CreateRequest from './components/CreateRequest'
-import { connect } from 'react-redux'
+import { connect} from 'react-redux'
+import { bindActionCreators } from 'redux'
 import UserLogin from './components/UserLogin'
 import RegisterUser from './components/RegisterUser'
 import ClaimTask from './components/ClaimTask'
@@ -44,4 +45,11 @@ const mapStateToProps = state => {
     showProfile: state.showProfile
   }
 }
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     fetchProfile: bindActionCreators(fetchProfile, dispatch)
+//   }
+// }
+
 export default connect(mapStateToProps)(App)

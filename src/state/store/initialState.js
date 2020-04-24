@@ -22,7 +22,9 @@ const initialState = {
   ],
   requesterAddress: '',
   position: {lat: null, lng: null},
-  showProfile: false
+  showMarkerWindow: false,
+  claimedTasks: [],
+  createdTasks: []
 };
 
 export default initialState;
