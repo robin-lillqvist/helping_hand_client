@@ -28,30 +28,6 @@ const getConfirmedTasks = async (dispatch) => {
     }
   };
 
-  const declineTask = async (event, dispatch) => {
-    let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
-    let id = event.target.id;
-    try {
-      let response = await axios.put(
-        `/profiles/${id}`,
-        { activity: "confirmed" },
-        { headers: headers }
-      );
-      if (response.status === 200)
-        dispatch({
-          type: "GREETING",
-          payload: "You have declined the task!",
-        });
-    } catch (error) {
-      dispatch({
-        type: "GREETING",
-        payload: error.message,
-      });
-    }
-  };
-
-
-
 const claimTaskMap = async (event, dispatch) => {
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
   let id = event.target.id;
@@ -71,6 +47,51 @@ const claimTaskMap = async (event, dispatch) => {
     dispatch({
       type: "GREETING",
       payload: error.message,
+    });
+  }
+};
+
+const declineTask = async (event, dispatch) => {
+  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
+  let id = event.target.id;
+  try {
+    let response = await axios.put(
+      `/profiles/${id}`,
+      { activity: "confirmed" },
+      { headers: headers }
+    );
+    if (response.status === 200)
+      dispatch({
+        type: "GREETING",
+        payload: "You have declined the task!",
+      });
+  } catch (error) {
+    dispatch({
+      type: "GREETING",
+      payload: error.message,
+    });
+  }
+};
+
+const destroyTask = async (event, dispatch) => {
+  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
+  let id = event.target.id;
+  try {
+    let response = await axios.delete(
+      `/tasks/${id}`,
+      { headers: headers }
+    );
+    if (response.status === 200) {
+      dispatch({
+        type: "GREETING",
+        payload: "You have removed your request!",
+      });
+    }
+  } catch (error) {
+    debugger
+    dispatch({
+      type: "GREETING",
+      payload: error.response.data.error_message,
     });
   }
 };
@@ -140,5 +161,6 @@ export {
   getCoordsFromAddress,
   submitTask,
   claimTaskMap,
-  declineTask
+  declineTask,
+  destroyTask
 };

@@ -3,7 +3,7 @@ import { connect, useDispatch } from 'react-redux'
 import image from '../images/user-blank.jpg'
 import { Image, Container, Grid, List, Card, Button } from 'semantic-ui-react'
 import { getProfile } from '../state/actions/profileActions'
-import { declineTask } from '../state/actions/taskActions'
+import { declineTask, destroyTask } from '../state/actions/taskActions'
 
 const ProfilePage = props => {
   const dispatch = useDispatch()
@@ -125,8 +125,14 @@ const ProfilePage = props => {
                 </Card.Description>
               </Card.Content>
               <Card.Content extra>
-                <Button basic color='red'>
-                  Remove
+                <Button
+                  basic
+                  color='red'
+                  id={createdTask.id}
+                  key={createdTask.id}
+                  onClick={e => destroyTask(e, dispatch)}
+                >
+                  Decline
                 </Button>
               </Card.Content>
             </Card>
@@ -163,7 +169,7 @@ const ProfilePage = props => {
             </Grid.Column>
             <Grid.Column align='center'>
               <Container style={{ marginTop: '2px' }}>
-              <h3>You wanted to help:</h3>
+                <h3>You wanted to help:</h3>
                 <List>{viewProfileClaimedTasks}</List>
               </Container>
             </Grid.Column>

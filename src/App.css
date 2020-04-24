@@ -20,3 +20,8 @@
 .taskCard{
   margin-top: 10px;
 }
+
+.taskProducts {
+  background-color: aliceblue;
+  padding: 0px!important;
+}
