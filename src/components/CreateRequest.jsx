@@ -17,6 +17,8 @@ const CreateRequest = props => {
   let createButton
   let confirmButton
   let displayAddressInput
+  let nameInput
+  let phoneInput
 
   const dispatch = useDispatch()
 
@@ -24,7 +26,13 @@ const CreateRequest = props => {
     getProducts(props, dispatch)
   }, [dispatch])
 
-  const onChangeHandler = event => {
+  const onChangeName = event => {
+    dispatch({ type: 'SET_NAME', payload: event.target.value })
+  }
+  const onChangePhone = event => {
+    dispatch({ type: 'SET_PHONE', payload: event.target.value })
+  }
+  const onChangeAddress = event => {
     dispatch({ type: 'SET_ADDRESS', payload: event.target.value })
   }
 
@@ -48,25 +56,58 @@ const CreateRequest = props => {
         {
           product_id: id,
           user_id: props.userID,
+          name: props.fullName,
+          phone: props.phone,
+          address: props.requesterAddress,
           lat: props.position.lat,
           long: props.position.lng
         },
         { headers: headers }
       )
+      debugger
       dispatch({ type: 'GREETING', payload: response.data.message })
     }
     dispatch({ type: 'UPDATE_REQUEST', payload: response.data.task })
   }
 
   if (props.showRequestForm) {
+    nameInput = (
+      <>
+        <Grid.Column key='addressInputGrid' align='center'>
+          <div>
+            <Input
+              id='nameInput'
+              onBlur={onChangeName.bind(this)}
+              placeholder='write something here'
+              label='Name'
+            ></Input>
+          </div>
+        </Grid.Column>
+      </>
+    )
+    phoneInput = (
+      <>
+        <Grid.Column key='addressInputGrid' align='center'>
+          <div>
+            <Input
+              id='phoneInput'
+              onBlur={onChangePhone.bind(this)}
+              placeholder='write something here'
+              label='Phone'
+            ></Input>
+          </div>
+        </Grid.Column>
+      </>
+    )
     displayAddressInput = (
       <>
         <Grid.Column key='addressInputGrid' align='center'>
           <div>
             <Input
               id='addressInput'
-              onBlur={onChangeHandler.bind(this)}
+              onBlur={onChangeAddress.bind(this)}
               placeholder='write something here'
+              label='Address'
             ></Input>
           </div>
           <div>
@@ -105,44 +146,45 @@ const CreateRequest = props => {
         )
       })
     }
-  }
 
-  if (props.task.id) {
-    requestProductDisplay = props.task.products.map(product => {
-      return (
+    if (props.task.id) {
+      requestProductDisplay = props.task.products.map(product => {
+        return (
+          <>
+            <Grid.Column align='center'>
+              <Container key={product.name} id={product.name}>
+                <span>{product.amount}</span> x <span>{product.name}</span>
+              </Container>
+            </Grid.Column>
+          </>
+        )
+      })
+      confirmButton = (
         <>
           <Grid.Column align='center'>
-            <Container key={product.name} id={product.name}>
-              <span>{product.amount}</span> x <span>{product.name}</span>
-            </Container>
+            <div id='orderTotal'>{props.task.total}</div>
+            <Button
+              id='confirm-task'
+              onClick={() => submitTask(this, props, dispatch)}
+            >
+              Place Order
+            </Button>
           </Grid.Column>
         </>
       )
-    })
-    confirmButton = (
-      <>
-        <Grid.Column align='center'>
-          <div id='orderTotal'>{props.task.total}</div>
-          <Button
-            id='confirm-task'
-            onClick={() => submitTask(this, props, dispatch)}
-          >
-            Place Order
-          </Button>
-        </Grid.Column>
-      </>
-    )
+    }
   }
 
   return (
     <>
       <div>
         {createButton}
+        <Container id='task-name'>{nameInput}</Container>
+        <Container id='task-phone'>{phoneInput}</Container>
         <Container id='task-address'>{displayAddressInput}</Container>
         <List id='product-list'>{productDisplay}</List>
-        <Container id='request-list'>
-          {requestProductDisplay} {confirmButton}
-        </Container>
+        <Container id='request-list'>{requestProductDisplay}</Container>
+        <Container id='confirm-button'>{confirmButton}</Container>
       </div>
     </>
   )
