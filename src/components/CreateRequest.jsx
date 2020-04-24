@@ -132,13 +132,14 @@ const CreateRequest = props => {
               data-name={product.name}
               data-price={product.price}
             >
-              {product.name} {product.price}
+              <span className="qu">{product.name}</span>
+              <span>{product.quantity}</span>
+              <span>{product.price}</span>
               <Button
                 id={product.id}
                 key={product.id}
                 onClick={addToRequest.bind(this)}
-              >
-                Add
+              >Add
               </Button>
             </List>
           </Grid.Column>
@@ -152,7 +153,8 @@ const CreateRequest = props => {
           <>
             <Grid.Column align='center'>
               <Container key={product.name} id={product.name}>
-                <span className='products-amount'>{product.amount}</span> x 
+                <span className='products-amount'>{product.amount}</span> x
+                <span className='products-amount'>{product.quantity}</span>
                 <span className='products-name'>{product.name}</span>
               </Container>
             </Grid.Column>

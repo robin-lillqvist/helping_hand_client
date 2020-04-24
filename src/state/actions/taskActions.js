@@ -28,6 +28,30 @@ const getConfirmedTasks = async (dispatch) => {
     }
   };
 
+  const declineTask = async (event, dispatch) => {
+    let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
+    let id = event.target.id;
+    try {
+      let response = await axios.put(
+        `/profiles/${id}`,
+        { activity: "confirmed" },
+        { headers: headers }
+      );
+      if (response.status === 200)
+        dispatch({
+          type: "GREETING",
+          payload: "You have declined the task!",
+        });
+    } catch (error) {
+      dispatch({
+        type: "GREETING",
+        payload: error.message,
+      });
+    }
+  };
+
+
+
 const claimTaskMap = async (event, dispatch) => {
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
   let id = event.target.id;
@@ -116,4 +140,5 @@ export {
   getCoordsFromAddress,
   submitTask,
   claimTaskMap,
+  declineTask
 };

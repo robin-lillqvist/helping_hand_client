@@ -1,16 +1,9 @@
 import React, { useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
 import image from '../images/user-blank.jpg'
-import {
-  Image,
-  Container,
-  Grid,
-  List,
-  Card,
-  Button,
-  GridColumn
-} from 'semantic-ui-react'
+import { Image, Container, Grid, List, Card, Button } from 'semantic-ui-react'
 import { getProfile } from '../state/actions/profileActions'
+import { declineTask } from '../state/actions/taskActions'
 
 const ProfilePage = props => {
   const dispatch = useDispatch()
@@ -70,7 +63,13 @@ const ProfilePage = props => {
                 </Card.Description>
               </Card.Content>
               <Card.Content extra>
-                <Button basic color='red'>
+                <Button
+                  basic
+                  color='red'
+                  id={claimedTask.id}
+                  key={claimedTask.id}
+                  onClick={e => declineTask(e, dispatch)}
+                >
                   Decline
                 </Button>
               </Card.Content>
@@ -107,7 +106,7 @@ const ProfilePage = props => {
       return (
         <>
           <List.Content style={{ marginTop: '20px' }}>
-            <Card >
+            <Card>
               <Card.Content>
                 <Card.Meta>Deliver to: {createdTask.name}</Card.Meta>
                 <Card.Meta>{createdTask.address}</Card.Meta>
@@ -139,16 +138,16 @@ const ProfilePage = props => {
 
   return (
     <div id='user-profile'>
-      <div >
+      <div>
         <Container style={{ marginTop: '15px' }}>
           <Grid columns={2} stackable>
             <Grid.Column align='center'>
               <Image src={image} size='small' />
             </Grid.Column>
             <Grid.Column align='center'>
-              <Container>Name: John Doe</Container>
-              <Container>Address: John Doe Street 2</Container>
-              <Container>Phone: 732327892</Container>
+              <Container>
+                <h1>You're awesome</h1> <h1>{props.userEmail}</h1>
+              </Container>
             </Grid.Column>
           </Grid>
         </Container>
@@ -158,13 +157,13 @@ const ProfilePage = props => {
           <Grid columns={2} stackable>
             <Grid.Column align='center'>
               <Container style={{ marginTop: '2px' }}>
-                You requested:
+                <h3>You requested:</h3>
                 <List>{viewProfileCreatedTasks}</List>
               </Container>
             </Grid.Column>
             <Grid.Column align='center'>
               <Container style={{ marginTop: '2px' }}>
-                You wanted to help:
+              <h3>You wanted to help:</h3>
                 <List>{viewProfileClaimedTasks}</List>
               </Container>
             </Grid.Column>
@@ -180,7 +179,8 @@ const mapStateToProps = state => {
     showProfile: state.showProfile,
     authenticated: state.authenticated,
     claimed_tasks: state.claimed_tasks,
-    created_tasks: state.created_tasks
+    created_tasks: state.created_tasks,
+    userEmail: state.userEmail
   }
 }
 export default connect(mapStateToProps)(ProfilePage)

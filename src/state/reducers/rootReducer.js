@@ -96,16 +96,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         requesterAddress: action.payload,
       };
-    case actionTypes.SET_COORDS:
-      return {
-        ...state,
-        position: action.position,
-      };
-    case actionTypes.CHANGE_MARKER_WINDOW:
-      return {
-        ...state,
-        showMarkerWindow: action.payload,
-      };
     case actionTypes.SET_NAME:
       return {
         ...state,
@@ -130,7 +120,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.payload,
-        // profile: action.payload,
         showHelpMap: false,
         showRequestForm: false,
         showProfile: true,
