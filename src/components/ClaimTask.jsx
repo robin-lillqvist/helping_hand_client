@@ -24,7 +24,6 @@ const ClaimTask = props => {
     requestDisplay = props.requests.map(task => {
       let showProducts
       let i = 0
-      let task_id =
       //Iterate over the internal products list and show each product
       showProducts = task.products.map(product => {
         i++

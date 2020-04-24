@@ -64,11 +64,12 @@ const getCoordsFromAddress = async (props, dispatch) => {
       const { lat, lng } = response.results[0].geometry.location;
       dispatch({ type: "SET_COORDS", position: { lat, lng } });
       dispatch({ type: "GREETING", payload: "Your address is confirmed" });
+      dispatch({ type: 'SET_ADDRESS', payload: response.results[0].formatted_address })
     },
     (error) => {
       dispatch({
         type: "SET_COORDS",
-        position: { lat: undefined, lng: undefined },
+        position: { lat: null, lng: null },
       });
       dispatch({
         type: "GREETING",

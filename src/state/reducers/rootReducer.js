@@ -9,7 +9,7 @@ const rootReducer = (state = initialState, action) => {
         ...action.payload,
         showHelpMap: false,
         message: false,
-        showProfile: false
+        showProfile: false,
       };
     case actionTypes.UPDATE_REQUEST:
       return {
@@ -21,7 +21,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         showRequestForm: action.showRequestForm,
         showHelpMap: false,
-        message: ''
+        message: "",
       };
     case actionTypes.RESET_PAGE:
       return {
@@ -36,7 +36,7 @@ const rootReducer = (state = initialState, action) => {
         showLogin: true,
         showRegister: false,
         message: "",
-        showHelpMap: false
+        showHelpMap: false,
       };
     case actionTypes.REGISTER_USER:
       return {
@@ -71,50 +71,70 @@ const rootReducer = (state = initialState, action) => {
         showLogin: false,
         showRegister: false,
         showHelpMap: false,
-        showHero: false
+        showHero: false,
       };
     case actionTypes.LOGOUT:
       return {
-        ...initialState
+        ...initialState,
       };
     case actionTypes.SHOW_MAP:
       return {
         ...state,
         showHelpMap: true,
         showRequestForm: false,
-        message: '',
-        showProfile: false
+        message: "",
+        showProfile: false,
       };
     case actionTypes.SAVE_REQUESTS:
       return {
         ...state,
-        requests: action.payload
+        requests: action.payload,
       };
-      case actionTypes.SET_ADDRESS:
+    case actionTypes.SET_ADDRESS:
       return {
         ...state,
-        requesterAddress: action.payload
+        requesterAddress: action.payload,
       };
-      case actionTypes.SET_COORDS:
-        return {
-          ...state,
-          position: action.position
-        };
-        case actionTypes.CHANGE_MARKER_WINDOW:
-          return {
-            ...state,
-            showMarkerWindow: action.payload
-          };
-      case actionTypes.VIEW_PROFILE:
-        return {
-          ...state,
-          ...action.payload,
-          // profile: action.payload,
-          showHelpMap: false,
-          showRequestForm: false,
-          showProfile: true,
-          message: '',
-        };
+    case actionTypes.SET_COORDS:
+      return {
+        ...state,
+        position: action.position,
+      };
+    case actionTypes.CHANGE_MARKER_WINDOW:
+      return {
+        ...state,
+        showMarkerWindow: action.payload,
+      };
+    case actionTypes.SET_NAME:
+      return {
+        ...state,
+        fullName: action.payload,
+      };
+    case actionTypes.SET_PHONE:
+      return {
+        ...state,
+        phone: action.payload,
+      };
+    case actionTypes.SET_COORDS:
+      return {
+        ...state,
+        position: action.position,
+      };
+    case actionTypes.CHANGE_MARKER_WINDOW:
+      return {
+        ...state,
+        showMarkerWindow: action.payload,
+      };
+    case actionTypes.VIEW_PROFILE:
+      return {
+        ...state,
+        ...action.payload,
+        // profile: action.payload,
+        showHelpMap: false,
+        showRequestForm: false,
+        showProfile: true,
+        message: "",
+      };
     default:
       return state;
   }

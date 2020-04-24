@@ -21,43 +21,58 @@ const ProfilePage = props => {
     viewProfileClaimedTasks = props.claimed_tasks.map(claimedTask => {
       return (
         <>
-          <Card>
-            {claimedTask.name}
-            {claimedTask.id}
-            {claimedTask.name}
-          </Card>
+          <List.Content>
+            <Card>
+              <Card.Content>
+                <Card.Header>Your help request</Card.Header>
+                <Card.Meta>Deliver to: {claimedTask.address}</Card.Meta>
+                <Card.Meta>Status: {claimedTask.status}</Card.Meta>
+              </Card.Content>
+              <Card.Content>
+                <Card.Description>
+                  <strong>Products: {claimedTask.products}</strong>
+                </Card.Description>
+              </Card.Content>
+              <Card.Content extra>
+                <Button basic color='red'>
+                  Remove
+                </Button>
+              </Card.Content>
+            </Card>
+          </List.Content>
         </>
       )
     })
   }
 
   if (
-    props.claimed_tasks.length > 0 &&
-    typeof props.claimed_tasks !== 'string' &&
+    props.created_tasks.length > 0 &&
+    typeof props.created_tasks !== 'string' &&
     props.authenticated
   ) {
     viewProfileCreatedTasks = props.created_tasks.map(createdTask => {
-      
+      debugger
       return (
         <>
-          <Card>
-            <Card.Content>
-              <Card.Header>{createdTask.address}</Card.Header>
-              <Card.Meta>{createdTask.status}</Card.Meta>
-              <Card.Description>
-                Steve wants to add you to the group{' '}
-                <strong>best friends</strong>
-              </Card.Description>
-            </Card.Content>
-            <Card.Content extra>
+          <List.Content>
+            <Card>
+              <Card.Content>
+                <Card.Header>Your help request</Card.Header>
+                <Card.Meta>Deliver to: {createdTask.address}</Card.Meta>
+                <Card.Meta>Status: {createdTask.status}</Card.Meta>
+              </Card.Content>
+              <Card.Content>
+                <Card.Description>
+                  <strong>Products: {createdTask.products}</strong>
+                </Card.Description>
+              </Card.Content>
+              <Card.Content extra>
                 <Button basic color='red'>
-                  Decline
+                  Remove
                 </Button>
-            </Card.Content>
-            {createdTask.name}
-            {createdTask.id}
-            {createdTask.name}
-          </Card>
+              </Card.Content>
+            </Card>
+          </List.Content>
         </>
       )
     })
@@ -75,26 +90,27 @@ const ProfilePage = props => {
               <Container>Name: John Doe</Container>
               <Container>Address: John Doe Street 2</Container>
               <Container>Phone: 732327892</Container>
-              <Container style={{ marginTop: '2px' }}>
-                <List>
-                  Active Requests
-                  <List.Content>
-                    <Card>{viewProfileCreatedTasks}</Card>
-                  </List.Content>
-                </List>
-              </Container>
-              <Container style={{ marginTop: '2px' }}>
-                <List>
-                  Actice Tasks
-                  <List.Content>{viewProfileClaimedTasks}</List.Content>
-                </List>
-              </Container>
             </Grid.Column>
           </Grid>
         </Container>
       </div>
       <div>
-        <Container style={{ marginTop: '15px' }}></Container>
+        <Container style={{ marginTop: '15px' }}>
+          <Grid columns={2}>
+            <Grid.Column align='center'>
+              <Container style={{ marginTop: '2px' }}>
+                Your Requests
+                <List>{viewProfileCreatedTasks}</List>
+              </Container>
+            </Grid.Column>
+            <Grid.Column align='center'>
+              <Container style={{ marginTop: '2px' }}>
+                Actice Tasks
+                <List>{viewProfileClaimedTasks}</List>
+              </Container>
+            </Grid.Column>
+          </Grid>
+        </Container>
       </div>
     </div>
   )
