@@ -2,11 +2,9 @@ import React from 'react'
 import { onLogin } from '../modules/authentication'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form, Button, Container, Modal } from 'semantic-ui-react'
-
 const Login = props => {
   const dispatch = useDispatch()
   const authenticated = useSelector(state => state.authenticated)
-
   let login
   if (!authenticated) {
     login = (
@@ -29,7 +27,7 @@ const Login = props => {
               autoComplete='new-password'
             />
           </Form.Field>
-          <Button id='login-button' type='submit' value='Login'>
+          <Button id='login-button' type='submit' value='Login' style={{backgroundColor: '#e67276', color: 'white'}}>
             Login
           </Button>
         </Form>
@@ -42,7 +40,6 @@ const Login = props => {
       </>
     )
   }
-
   return (
     <>
       <Modal open={true} size='mini' style={{ padding: '20px' }}>
@@ -51,5 +48,4 @@ const Login = props => {
     </>
   )
 }
-
 export default Login

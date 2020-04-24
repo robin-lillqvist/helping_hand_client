@@ -46,7 +46,7 @@ const claimTaskMap = async (event, dispatch) => {
   } catch (error) {
     dispatch({
       type: "GREETING",
-      payload: error.message,
+      payload: error.response.data.error_message,
     });
   }
 };
