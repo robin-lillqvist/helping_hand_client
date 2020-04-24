@@ -21,10 +21,9 @@ const ProfilePage = props => {
     viewProfileClaimedTasks = props.claimed_tasks.map(claimedTask => {
       return (
         <>
-          <List.Content>
+          <List.Content style={{ marginTop: '2px' }}>
             <Card>
               <Card.Content>
-                <Card.Header>Your help request</Card.Header>
                 <Card.Meta>Deliver to: {claimedTask.address}</Card.Meta>
                 <Card.Meta>Status: {claimedTask.status}</Card.Meta>
               </Card.Content>
@@ -51,13 +50,11 @@ const ProfilePage = props => {
     props.authenticated
   ) {
     viewProfileCreatedTasks = props.created_tasks.map(createdTask => {
-      debugger
       return (
         <>
-          <List.Content>
+          <List.Content style={{ marginTop: '2px' }}>
             <Card>
               <Card.Content>
-                <Card.Header>Your help request</Card.Header>
                 <Card.Meta>Deliver to: {createdTask.address}</Card.Meta>
                 <Card.Meta>Status: {createdTask.status}</Card.Meta>
               </Card.Content>
