@@ -132,7 +132,7 @@ const ProfilePage = props => {
                   key={createdTask.id}
                   onClick={e => destroyTask(e, dispatch)}
                 >
-                  Decline
+                  Remove
                 </Button>
               </Card.Content>
             </Card>
