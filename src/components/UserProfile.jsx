@@ -3,7 +3,7 @@ import { connect, useDispatch } from 'react-redux'
 import image from '../images/user-blank.jpg'
 import { Image, Container, Grid, List, Card, Button } from 'semantic-ui-react'
 import { getProfile } from '../state/actions/profileActions'
-import { declineTask, destroyTask } from '../state/actions/taskActions'
+import { declineTask, destroyTask, acceptTask, deliverTask } from '../state/actions/taskActions'
 
 const ProfilePage = props => {
   const dispatch = useDispatch()
@@ -23,6 +23,7 @@ const ProfilePage = props => {
     props.authenticated
   ) {
     viewProfileClaimedTasks = props.claimed_tasks.map(claimedTask => {
+      debugger
       claimedTaskProducts = claimedTask.products.map(product => {
         return (
           <div className='claimedTaskProduct'>
@@ -63,15 +64,26 @@ const ProfilePage = props => {
                 </Card.Description>
               </Card.Content>
               <Card.Content extra>
-                <Button
-                  basic
-                  color='red'
-                  id={claimedTask.id}
-                  key={claimedTask.id}
-                  onClick={e => declineTask(e, dispatch)}
-                >
-                  Decline
-                </Button>
+                <Button.Group>
+                  <Button
+                    basic
+                    color='green'
+                    id={`deliver-${claimedTask.id}`}
+                    key={`deliver-${claimedTask.id}`}
+                    onClick={e => deliverTask(e, dispatch)}
+                  >
+                    Deliver
+                  </Button>
+                  <Button
+                    basic
+                    color='red'
+                    id={`decline-${claimedTask.id}`}
+                    key={`decline-${claimedTask.id}`}
+                    onClick={e => declineTask(e, dispatch)}
+                  >
+                    Decline
+                  </Button>
+                </Button.Group>
               </Card.Content>
             </Card>
           </List.Content>
@@ -125,15 +137,26 @@ const ProfilePage = props => {
                 </Card.Description>
               </Card.Content>
               <Card.Content extra>
-                <Button
-                  basic
-                  color='red'
-                  id={createdTask.id}
-                  key={createdTask.id}
-                  onClick={e => destroyTask(e, dispatch)}
-                >
-                  Remove
-                </Button>
+                <Button.Group>
+                  <Button
+                    basic
+                    color='green'
+                    id={`accept-${createdTask.id}`}
+                    key={`accept-${createdTask.id}`}
+                    onClick={e => acceptTask(e, dispatch)}
+                  >
+                    Accept
+                  </Button>
+                  <Button
+                    basic
+                    color='red'
+                    id={`remove-${createdTask.id}`}
+                    key={`remove-${createdTask.id}`}
+                    onClick={e => destroyTask(e, dispatch)}
+                  >
+                    Remove
+                  </Button>
+                </Button.Group>
               </Card.Content>
             </Card>
           </List.Content>

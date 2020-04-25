@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
-import { Button, Grid, List } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import DisplayMap from './DisplayMap'
-import { getConfirmedTasks, claimTask } from '../state/actions/taskActions'
+import { getConfirmedTasks } from '../state/actions/taskActions'
 
 const ClaimTask = props => {
   let mapDisplay

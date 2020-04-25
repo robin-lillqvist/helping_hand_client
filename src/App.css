@@ -1,4 +1,4 @@
-.taskOwner { 
+.taskOwner {
   padding-left: 1rem;
 }
 .taskTotal {
@@ -17,22 +17,28 @@
   background-color: aliceblue;
 }
 
-.taskCard{
+.taskCard {
   margin-top: 10px;
 }
 
 .taskProducts {
   background-color: aliceblue;
-  padding: 0px!important;
+  padding: 0px !important;
 }
 
 #request-list {
-  text-align: center!important;
+  text-align: center !important;
 }
 
-.products-quantity, .products-amount, .products-name {
+.products-quantity,
+.products-amount,
+.products-name {
   margin: 2px;
   margin-bottom: 0px;
   font-weight: 900;
-  font-size: 
+  font-size: 1.4rem;
+}
+
+#confirm-button {
+  margin-bottom: 50px;
 }

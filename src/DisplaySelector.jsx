@@ -11,7 +11,8 @@ function Display (props) {
         <Grid.Column align='center'>
           <Button
             basic
-            color= 'red' tertiary
+            color= 'red' 
+            tertiary="true"
             id='create-request'
             onClick={() =>
               dispatch({ type: 'SHOW_MAP', showRequestForm: true })
@@ -29,7 +30,7 @@ function Display (props) {
       <Grid.Column align='center'>
         <Button
           basic
-          color= 'red' tertiary
+          color= 'red' tertiary="true"
           id='create-request'
           onClick={() =>
             dispatch({ type: 'SHOW_REQUEST_FORM', showRequestForm: true })
