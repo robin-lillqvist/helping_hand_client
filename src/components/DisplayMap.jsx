@@ -25,20 +25,15 @@ const MapContainer = props => {
     )
     taskProducts = showRequest.products.map(product => {
       return (
-        <Grid.Row columns={3} 
+        <Grid.Row
+          columns={3}
           className='taskProducts'
           id={`showProduct-${product.name}`}
           key={`showProduct-${product.name}`}
         >
-          <Grid.Column>
-            {product.amount}
-          </Grid.Column>
-          <Grid.Column>
-            {product.name}
-          </Grid.Column>
-          <Grid.Column>
-            {product.total}
-          </Grid.Column>
+          <Grid.Column>{product.amount}</Grid.Column>
+          <Grid.Column>{product.name}</Grid.Column>
+          <Grid.Column>{product.total}</Grid.Column>
         </Grid.Row>
       )
     })
@@ -71,9 +66,8 @@ const MapContainer = props => {
               <>
                 <Card>
                   <Card.Content>
-                    <Card.Meta>Deliver to: {showRequest.name}</Card.Meta>
-                    <Card.Meta>{showRequest.address}</Card.Meta>
-                    <Card.Meta>Status: {showRequest.status}</Card.Meta>
+                    <Card.Header><strong>{showRequest.name}</strong></Card.Header>
+                    <Card.Description><strong>{showRequest.address}</strong></Card.Description>
                   </Card.Content>
                   <Card.Content>
                     <Card.Description>
@@ -83,11 +77,11 @@ const MapContainer = props => {
                   <Card.Content>
                     <Card.Description>
                       <List className='claimedTaskProduct-list'>
-                        <Grid divided>
-                          {taskProducts}
-                        </Grid>
+                        <Grid divided>{taskProducts}</Grid>
                       </List>
                     </Card.Description>
+                  </Card.Content>
+                  <Card.Content>
                     <Card.Description>
                       <strong>Total Price: {showRequest.total}</strong>
                     </Card.Description>

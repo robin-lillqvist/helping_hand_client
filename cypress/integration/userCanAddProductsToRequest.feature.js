@@ -39,14 +39,19 @@ describe("When products are visible", () => {
     cy.get("#product-1").within(() => {
       cy.contains("Potatoes"); //product
       cy.contains("98"); //price
+    });
+    cy.get("#button-1").within(() => {
       cy.get("button").should("contain", "Add").click();
     });
+    
     cy.get("#request-list").within(() => {
       cy.contains("Potatoes"); //product
     });
     cy.get("#product-2").within(() => {
       cy.contains("Shampoo"); //product
       cy.contains("130"); //price
+    });
+    cy.get("#button-2").within(() => {
       cy.get("button").should("contain", "Add").click();
     });
     cy.get("#request-list").within(() => {

@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { connect, useDispatch } from 'react-redux'
-import { Button, List, Container, Grid, Input } from 'semantic-ui-react'
+import { Button, Container, Grid, Input, Card } from 'semantic-ui-react'
 import Geocode from 'react-geocode'
 import {
   getProducts,
   getCoordsFromAddress,
   submitTask
 } from '../state/actions/taskActions'
-
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY)
-
 const CreateRequest = props => {
   let productDisplay
   let requestProductDisplay
@@ -19,13 +17,10 @@ const CreateRequest = props => {
   let displayAddressInput
   let nameInput
   let phoneInput
-
   const dispatch = useDispatch()
-
   useEffect(() => {
     getProducts(props, dispatch)
   }, [props, dispatch])
-
   const onChangeName = event => {
     dispatch({ type: 'SET_NAME', payload: event.target.value })
   }
@@ -35,7 +30,6 @@ const CreateRequest = props => {
   const onChangeAddress = event => {
     dispatch({ type: 'SET_ADDRESS', payload: event.target.value })
   }
-
   const addToRequest = async event => {
     let headers = JSON.parse(localStorage.getItem('J-tockAuth-Storage'))
     let id = event.target.parentElement.dataset.id
@@ -68,7 +62,6 @@ const CreateRequest = props => {
     }
     dispatch({ type: 'UPDATE_REQUEST', payload: response.data.task })
   }
-
   if (props.showRequestForm) {
     nameInput = (
       <>
@@ -77,8 +70,7 @@ const CreateRequest = props => {
             <Input
               id='nameInput'
               onBlur={onChangeName.bind(this)}
-              placeholder='write something here'
-              label='Name'
+              placeholder='Enter Your Name'
             ></Input>
           </div>
         </Grid.Column>
@@ -91,8 +83,7 @@ const CreateRequest = props => {
             <Input
               id='phoneInput'
               onBlur={onChangePhone.bind(this)}
-              placeholder='write something here'
-              label='Phone'
+              placeholder='Enter Phone Number'
             ></Input>
           </div>
         </Grid.Column>
@@ -101,20 +92,23 @@ const CreateRequest = props => {
     displayAddressInput = (
       <>
         <Grid.Column key='addressInputGrid' align='center'>
-          <div>
+          <div className='margin'>
             <Input
+              color='blue'
               id='addressInput'
               onBlur={onChangeAddress.bind(this)}
-              placeholder='write something here'
-              label='Address'
+              placeholder='Enter Delivery Address'
             ></Input>
           </div>
-          <div>
+          <div className='margin'>
             <Button
+              color='green'
+              tertiary
               id='addressConfirm'
               onClick={() => getCoordsFromAddress(props, dispatch)}
+              style={{ marginTop: '10px' }}
             >
-              confirm address
+              Confirm Address
             </Button>
           </div>
         </Grid.Column>
@@ -123,8 +117,9 @@ const CreateRequest = props => {
     if (props.position.lat) {
       productDisplay = props.products.map(product => {
         return (
-          <Grid.Column key={product.id} align='center'>
-            <List
+          <Card key={product.id} color='red' style={{ maxWidth: '150px' }}>
+            <Card.Content
+              style={{ textAlign: 'center' }}
               id={`product-${product.id}`}
               key={`product-${product.id}`}
               data-cy={`product-${product.id}`}
@@ -132,32 +127,54 @@ const CreateRequest = props => {
               data-name={product.name}
               data-price={product.price}
             >
-              <span className="qu">{product.name}</span>
-              <span>{product.quantity}</span>
-              <span>{product.price}</span>
+              <Card.Header>{product.name}</Card.Header>
+              <Card.Description>{product.quantity}</Card.Description>
+              <Card.Description>{product.price} SEK</Card.Description>
+            </Card.Content>
+            <Card.Content
+              extra
+              style={{ textAlign: 'center' }}
+              id={`button-${product.id}`}
+              key={`button-${product.id}`}
+              data-cy={`button-${product.id}`}
+              data-id={product.id}
+              data-name={product.name}
+              data-price={product.price}
+            >
               <Button
+                style={{
+                  backgroundColor: '#e67276',
+                  color: 'white',
+                  marginBottom: '5px'
+                }}
+                size='tiny'
                 id={product.id}
                 key={product.id}
                 onClick={addToRequest.bind(this)}
-              >Add
+              >
+                Add
               </Button>
-            </List>
-          </Grid.Column>
+            </Card.Content>
+          </Card>
         )
       })
     }
-
     if (props.task.id) {
       requestProductDisplay = props.task.products.map(product => {
         return (
           <>
-            <Grid.Column align='center'>
-              <Container key={product.name} id={product.name}>
-                <span className='products-amount'>{product.amount} x</span>
-                <span className='products-amount'> {product.quantity}</span>
+            <Grid.Row style={{ padding: '2px' }}>
+              <Grid.Column
+                compact
+                style={{ textAlign: 'center' }}
+                key={product.name}
+                id={product.name}
+              >
+                <span className='products-amount'>{product.amount} x </span>
+                <span className='products-quantity'>{product.quantity}</span>
                 <span className='products-name'>{product.name}</span>
-              </Container>
-            </Grid.Column>
+              </Grid.Column>
+            </Grid.Row>
           </>
         )
       })
@@ -176,22 +193,37 @@ const CreateRequest = props => {
       )
     }
   }
-
   return (
     <>
       <div>
         {createButton}
-        <Container id='task-name'>{nameInput}</Container>
-        <Container id='task-phone'>{phoneInput}</Container>
-        <Container id='task-address'>{displayAddressInput}</Container>
-        <List id='product-list'>{productDisplay}</List>
-        <Container id='request-list'>{requestProductDisplay}</Container>
+        <Container
+          id='task-name'
+          style={{ marginBottom: '10px', marginTop: '10px' }}
+        >
+          {nameInput}
+        </Container>
+        <Container id='task-phone' style={{ marginBottom: '10px' }}>
+          {phoneInput}
+        </Container>
+        <Container id='task-address' style={{ marginBottom: '10px' }}>
+          {displayAddressInput}
+        </Container>
+        <Container>
+          <div id='product-list' class='ui centered cards'>
+            {productDisplay}
+          </div>
+        </Container>
+        <Container id='request-list'>
+          <Grid style={{ marginBottom: '20px', marginTop: '20px' }}>
+            {requestProductDisplay}
+          </Grid>
+        </Container>
         <Container id='confirm-button'>{confirmButton}</Container>
       </div>
     </>
   )
 }
-
 const mapStateToProps = state => {
   return {
     products: state.products,

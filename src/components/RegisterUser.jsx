@@ -2,11 +2,9 @@ import React from 'react'
 import { onRegister } from '../modules/authentication'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form, Button, Container, Modal } from 'semantic-ui-react'
-
 const RegisterUser = props => {
   const dispatch = useDispatch()
   const authenticated = useSelector(state => state.authenticated)
-
   let register
   if (!authenticated) {
     register = (
@@ -37,12 +35,16 @@ const RegisterUser = props => {
               name='password_confirmaton'
               type='password'
               id='password_confirmation'
-              placeholder='Password again...'
+              placeholder='Confirm your password'
               autoComplete='new-password'
             ></input>
           </Form.Field>
           <Container textAlign='center'>
-            <Button id='register-button' type='submit'>
+            <Button 
+              id='register-button' 
+              type='submit'
+              style={{backgroundColor: '#e67276', color: 'white'}}
+              >
               Register
             </Button>
           </Container>
@@ -66,5 +68,4 @@ const RegisterUser = props => {
     </>
   )
 }
-
 export default RegisterUser
