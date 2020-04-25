@@ -102,8 +102,7 @@ const CreateRequest = props => {
           </div>
           <div className='margin'>
             <Button
-              color='green'
-              tertiary
+              color='green' tertiary="true"
               id='addressConfirm'
               onClick={() => getCoordsFromAddress(props, dispatch)}
               style={{ marginTop: '10px' }}
@@ -165,7 +164,7 @@ const CreateRequest = props => {
           <>
             <Grid.Row style={{ padding: '2px' }}>
               <Grid.Column
-                compact
+                compact="true"
                 style={{ textAlign: 'center' }}
                 key={product.name}
                 id={product.name}

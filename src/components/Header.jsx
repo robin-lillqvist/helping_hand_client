@@ -1,5 +1,9 @@
 import React from 'react'
-import { LOGIN_USER, REGISTER_USER, VIEW_PROFILE } from '../state/actions/actionTypes'
+import {
+  LOGIN_USER,
+  REGISTER_USER,
+  VIEW_PROFILE
+} from '../state/actions/actionTypes'
 import { onLogout } from '../modules/authentication'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import { Button, Grid, Segment } from 'semantic-ui-react'
@@ -11,7 +15,10 @@ const Header = props => {
   if (authenticated) {
     buttons = (
       <>
-        <Button id='Profile' onClick={() => props.dispatch({ type: VIEW_PROFILE })}>
+        <Button
+          id='Profile'
+          onClick={() => props.dispatch({ type: VIEW_PROFILE })}
+        >
           Profile
         </Button>
         <Button id='Logout' onClick={() => onLogout(dispatch)}>

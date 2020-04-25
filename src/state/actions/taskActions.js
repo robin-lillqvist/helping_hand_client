@@ -53,7 +53,7 @@ const claimTaskMap = async (event, dispatch) => {
 
 const declineTask = async (event, dispatch) => {
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
-  let id = event.target.id;
+  let id = event.target.id.slice(8);
   try {
     let response = await axios.put(
       `/profiles/${id}`,
@@ -73,9 +73,54 @@ const declineTask = async (event, dispatch) => {
   }
 };
 
+const deliverTask = async (event, dispatch) => {
+  debugger
+  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
+  let id = event.target.id.slice(8);
+  try {
+    let response = await axios.put(
+      `/tasks/${id}`,
+      { activity: "delivered" },
+      { headers: headers }
+    );
+    if (response.status === 200)
+      dispatch({
+        type: "GREETING",
+        payload: "You have delivered the task!",
+      });
+  } catch (error) {
+    dispatch({
+      type: "GREETING",
+      payload: error.message,
+    });
+  }
+};
+
+const acceptTask = async (event, dispatch) => {
+  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
+  let id = event.target.id.slice(7);
+  try {
+    let response = await axios.put(
+      `/tasks/${id}`,
+      { activity: "finalized" },
+      { headers: headers }
+    );
+    debugger
+      dispatch({
+        type: "GREETING",
+        payload: response.data.message,
+      });
+  } catch (error) {
+    dispatch({
+      type: "GREETING",
+      payload: error.message,
+    });
+  }
+};
+
 const destroyTask = async (event, dispatch) => {
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
-  let id = event.target.id;
+  let id = event.target.id.slice(8);
   try {
     let response = await axios.delete(
       `/tasks/${id}`,
@@ -162,5 +207,7 @@ export {
   submitTask,
   claimTaskMap,
   declineTask,
-  destroyTask
+  destroyTask,
+  deliverTask,
+  acceptTask
 };
