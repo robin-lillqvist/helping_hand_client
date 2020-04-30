@@ -74,7 +74,6 @@ const declineTask = async (event, dispatch) => {
 };
 
 const deliverTask = async (event, dispatch) => {
-  debugger
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
   let id = event.target.id.slice(8);
   try {
@@ -91,7 +90,7 @@ const deliverTask = async (event, dispatch) => {
   } catch (error) {
     dispatch({
       type: "GREETING",
-      payload: error.message,
+      payload: error.response.data.error_message,
     });
   }
 };
@@ -105,15 +104,15 @@ const acceptTask = async (event, dispatch) => {
       { activity: "finalized" },
       { headers: headers }
     );
-    debugger
       dispatch({
         type: "GREETING",
         payload: response.data.message,
       });
   } catch (error) {
+    debugger
     dispatch({
       type: "GREETING",
-      payload: error.message,
+      payload: error.response.data.error_message,
     });
   }
 };
@@ -133,7 +132,6 @@ const destroyTask = async (event, dispatch) => {
       });
     }
   } catch (error) {
-    debugger
     dispatch({
       type: "GREETING",
       payload: error.response.data.error_message,
